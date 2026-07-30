@@ -1,0 +1,9 @@
+asgiref==3.12.1
+Django==6.0.7
+django-browser-reload==1.21.0
+gunicorn==26.0.0
+packaging==26.2
+pillow==12.3.0
+python-dotenv==1.2.2
+sqlparse==0.5.5
+whitenoise==6.12.0
