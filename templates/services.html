@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+{% comment %}
+En-tête de la page Services — utilise `intro` (instance ServicesIntro).
+{% endcomment %}
+<section class="relative bg-cream py-20 md:py-28 text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <p class="font-script text-4xl sm:text-5xl text-burgundy mb-4">
+      {{ intro.title_script|default:"Nos Services" }}
+    </p>
+    {% if intro %}{% if intro.subtitle %}
+      <p class="font-serif italic text-lg sm:text-xl text-boss-muted mb-6">{{ intro.subtitle }}</p>
+    {% endif %}
+    {% if intro.description %}
+      <p class="font-sans text-boss-muted leading-relaxed max-w-xl mx-auto mb-10">{{ intro.description }}</p>
+    {% endif %}{% endif %}
+
+    <!-- navigation d'ancrage vers les 4 sous-sections -->
+    <nav class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.15em] text-blush">
+      <a href="#prestations" class="hover:text-burgundy-dk transition-colors duration-200">Prestations</a>
+      <a href="#processus" class="hover:text-burgundy-dk transition-colors duration-200">Processus de travail</a>
+      <a href="#technologies" class="hover:text-burgundy-dk transition-colors duration-200">Technologies</a>
+      <a href="#faq" class="hover:text-burgundy-dk transition-colors duration-200">FAQ</a>
+    </nav>
+  </div>
+</section>
+
+{# =================== PRESTATIONS =================== #}
+{% comment %}
+Section Prestations — utilise `services_list` (queryset Service).
+{% endcomment %}
+<section id="prestations" class="relative bg-warm-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <div class="text-center mb-14">
+      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Prestations</p>
+      <p class="font-serif italic text-boss-muted">Des solutions sur mesure pour vos projets</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for service in services_list %}
+        <div class="bg-rose-pale/60 border border-rose-deep/20 p-8 text-center hover:bg-rose-pale transition-colors duration-200">
+          {% if service.icon %}
+            <img src="{{ service.icon.url }}" alt="" class="w-14 h-14 mx-auto mb-5 object-contain">
+          {% else %}
+            <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-rose-deep/30"></div>
+          {% endif %}
+          <h3 class="font-sans font-semibold uppercase tracking-wide text-boss-text mb-3">
+            {{ service.title }}
+          </h3>
+          <p class="font-sans text-sm text-boss-muted leading-relaxed">{{ service.description }}</p>
+        </div>
+      {% empty %}
+        <p class="col-span-full text-center text-boss-muted">
+          Ajoutez vos prestations depuis l'admin (modèle « Service »).
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# =================== PROCESSUS DE TRAVAIL =================== #}
+
+
+{% comment %}
+Section Processus de travail — utilise `process_steps` (queryset ProcessStep).
+{% endcomment %}
+<section id="processus" class="relative bg-cream py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <div class="text-center mb-16">
+      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Processus de travail</p>
+      <p class="font-serif italic text-boss-muted">Comment je transforme votre idée en réalité</p>
+    </div>
+
+    <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <!-- trait de liaison entre les étapes (desktop uniquement) -->
+      <div class="hidden lg:block absolute top-6 left-0 right-0 h-px bg-rose-deep/40"></div>
+
+      {% for step in process_steps %}
+        <div class="relative text-center px-2">
+          <div class="relative z-10 w-12 h-12 mx-auto mb-5 rounded-full bg-warm-white border border-burgundy flex items-center justify-center font-serif text-burgundy">
+            {{ forloop.counter|stringformat:"02d" }}
+          </div>
+          <h3 class="font-sans font-semibold uppercase tracking-wide text-boss-text mb-2">
+            {{ step.title }}
+          </h3>
+          <p class="font-sans text-sm text-boss-muted leading-relaxed">{{ step.description }}</p>
+        </div>
+      {% empty %}
+        <p class="col-span-full text-center text-boss-muted">
+          Ajoutez vos étapes depuis l'admin (modèle « ProcessStep »).
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% comment %}
+Section Technologies — utilise `technologies` (queryset Technology).
+{% endcomment %}
+<section id="technologies" class="relative bg-warm-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <div class="text-center mb-14">
+      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Technologies</p>
+      <p class="font-serif italic text-boss-muted">Les outils que j'utilise au quotidien</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8 sm:gap-12">
+      {% for tech in technologies %}
+        <div class="flex flex-col items-center gap-3 w-24">
+          <img src="{{ tech.icon.url }}" alt="{{ tech.name }}"
+               class="w-12 h-12 object-contain grayscale hover:grayscale-0 transition duration-200">
+          <span class="text-xs font-sans uppercase tracking-wide text-boss-muted text-center">
+            {{ tech.name }}
+          </span>
+        </div>
+      {% empty %}
+        <p class="text-center text-boss-muted">
+          Ajoutez vos technologies depuis l'admin (modèle « Technology »).
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% comment %}
+Section FAQ — utilise `faq_items` (queryset FAQItem).
+Accordéon natif via <details>/<summary>, aucun JavaScript nécessaire.
+{% endcomment %}
+<section id="faq" class="relative bg-cream py-20 md:py-28">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">FAQ</p>
+      <p class="font-serif italic text-boss-muted">Les questions les plus fréquentes</p>
+    </div>
+
+    <div class="space-y-4">
+      {% for faq in faq_items %}
+        <details class="group bg-warm-white border border-rose-deep/20 p-6 open:bg-rose-pale/40">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-sans font-semibold text-boss-text list-none [&::-webkit-details-marker]:hidden">
+            <span>{{ faq.question }}</span>
+            <span class="shrink-0 text-burgundy text-xl leading-none transition-transform duration-200 group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-4 font-sans text-sm text-boss-muted leading-relaxed">{{ faq.answer }}</p>
+        </details>
+      {% empty %}
+        <p class="text-center text-boss-muted">
+          Ajoutez vos questions depuis l'admin (modèle « FAQItem »).
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+ 

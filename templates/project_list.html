@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mes Projets{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<section class="relative overflow-hidden bg-rose-pale rounded-b-[2.5rem] md:rounded-b-[3rem] font-sans">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-12 pb-14 md:pt-16 md:pb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+      {# ---------- Colonne texte ---------- #}
+      <div class="lg:col-span-5 xl:col-span-4">
+        <p class="font-script text-2xl sm:text-3xl text-burgundy mb-1 leading-none">
+          Mon travail <span aria-hidden="true">🖐️</span>
+        </p>
+
+        <h1 class="font-serif font-semibold text-4xl sm:text-5xl leading-[1.05] text-burgundy-dk mb-5">
+          Mes Projets
+        </h1>
+
+        <p class="text-boss-muted text-base leading-relaxed max-w-md mb-8 sm:mb-10">
+          Découvrez une sélection de réalisations qui reflètent
+          ma passion pour le design, le code et la résolution de problèmes.
+        </p>
+
+        {# ---------- Stats dynamiques ---------- #}
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6">
+
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>
+              </svg>
+            </span>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold text-burgundy-dk">{{ projects_count }}+</p>
+              <p class="text-xs text-boss-muted">Projets réalisés</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9 8-4 4 4 4M15 8l4 4-4 4"/>
+              </svg>
+            </span>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold text-burgundy-dk">{{ technologies_count }}+</p>
+              <p class="text-xs text-boss-muted">Technologies</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm11 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </span>
+            <div class="leading-tight">
+              <p class="text-lg font-semibold text-burgundy-dk">{{ clients_count }}+</p>
+              <p class="text-xs text-boss-muted">Clients satisfaits</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {# ---------- Colonne image (hauteur fixe, pas de ratio arbitraire) ---------- #}
+      <div class="lg:col-span-7 xl:col-span-8">
+        <img
+          src="{% static 'images/ordi.jpeg' %}"
+          alt="Aperçu de l'espace de travail"
+          class="block w-full h-64 sm:h-80 lg:h-96 object-cover shadow-card
+                 rounded-tl-[3rem] rounded-bl-[3rem] rounded-tr-2xl rounded-br-2xl
+                 sm:rounded-tl-[5rem] sm:rounded-bl-[5rem]
+                 lg:rounded-tl-[7rem] lg:rounded-bl-[7rem]"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+  <section class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20 font-sans">
+
+    {# ---------- Message de confirmation (après envoi d'une idée) ---------- #}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="mb-6 px-4 py-3 rounded-xl text-sm font-medium
+                    {% if message.tags == 'error' %}bg-red-50 text-red-600{% else %}bg-rose-mid text-burgundy-dk{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% comment %} {# ============================================================
+       Barre d'outils
+       ============================================================ #} {% endcomment %}
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between mb-8">
+
+      <div class="flex flex-wrap gap-2 overflow-x-auto pb-1 -mx-1 px-1 lg:mx-0 lg:px-0">
+        <a href="?sort={{ current_sort }}&view={{ view_mode }}"
+           class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition
+                  {% if current_category == 'all' %}bg-burgundy-dk text-warm-white{% else %}bg-rose-mid text-burgundy-dk hover:bg-rose-deep{% endif %}">
+          All Projects
+        </a>
+        {% for cat in categories %}
+          <a href="?category={{ cat.slug }}&sort={{ current_sort }}&view={{ view_mode }}"
+             class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition
+                    {% if current_category == cat.slug %}bg-burgundy-dk text-warm-white{% else %}bg-rose-mid text-burgundy-dk hover:bg-rose-deep{% endif %}">
+            {{ cat.name }}
+          </a>
+        {% endfor %}
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <form method="get" class="relative">
+          <input type="hidden" name="category" value="{{ current_category }}">
+          <input type="hidden" name="view" value="{{ view_mode }}">
+          <select name="sort" onchange="this.form.submit()"
+                  class="appearance-none pl-4 pr-9 py-2 rounded-full border border-rose-mid text-sm
+                         text-burgundy-dk bg-warm-white focus:outline-none focus:ring-2 focus:ring-burgundy/30 cursor-pointer">
+            {% for key, opt in sort_options.items %}
+              <option value="{{ key }}" {% if current_sort == key %}selected{% endif %}>{{ opt.1 }}</option>
+            {% endfor %}
+          </select>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-burgundy pointer-events-none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/>
+          </svg>
+        </form>
+
+        <div class="flex items-center rounded-full border border-rose-mid overflow-hidden">
+          <a href="?category={{ current_category }}&sort={{ current_sort }}&view=grid"
+             class="p-2.5 {% if view_mode == 'grid' %}bg-burgundy-dk text-warm-white{% else %}bg-warm-white text-burgundy{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+          </a>
+          <a href="?category={{ current_category }}&sort={{ current_sort }}&view=list"
+             class="p-2.5 border-l border-rose-mid {% if view_mode == 'list' %}bg-burgundy-dk text-warm-white{% else %}bg-warm-white text-burgundy{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} {# ============================================================
+       Grille : 2 colonnes fixes → 8 projets/page = exactement 4 rangées
+       ============================================================ #} {% endcomment %}
+    {% if projects %}
+    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2{% endif %}">
+      {% for project in projects %}
+        <article class="group bg-warm-white rounded-2xl overflow-hidden border border-rose-pale shadow-card hover:shadow-hover transition-shadow
+                         {% if view_mode == 'list' %}sm:flex{% endif %}">
+
+          {# ---------- Image (hauteur fixe, plus jamais "trop grande") ---------- #}
+          <div class="relative {% if view_mode == 'list' %}sm:w-64 shrink-0{% endif %} bg-rose-pale">
+            <a href="{{ project.get_absolute_url }}" class="block w-full h-44 sm:h-48">
+              {% if project.thumbnail %}
+                <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              {% else %}
+                <div class="w-full h-full flex items-center justify-center text-burgundy">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-10 h-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>
+                  </svg>
+                </div>
+              {% endif %}
+            </a>
+
+            {% if project.status == 'production' %}
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-secondary/15 text-secondary">
+                {{ project.status_label }}
+              </span>
+            {% elif project.status == 'development' %}
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-tertiaryBlack/15 text-tertiaryBlack">
+                {{ project.status_label }}
+              </span>
+            {% elif project.status == 'prototype' %}
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/15 text-primary">
+                {{ project.status_label }}
+              </span>
+            {% endif %}
+
+            {# ---------- Like / Unlike ---------- #}
+            <button type="button"
+                    class="js-like-btn absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium
+                           bg-warm-white/90 text-burgundy-dk hover:bg-warm-white transition"
+                    data-project-id="{{ project.pk }}"
+                    data-url="{% url 'toggle_project_like' project.pk %}">
+              <svg class="js-like-icon w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   fill="{% if project.is_liked_by_me %}currentColor{% else %}none{% endif %}"
+                   stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6.7-4.35-9.3-8.1C1 10.4 1.5 6.9 4.4 5.3c2.2-1.2 4.6-.5 6 1.2l1.6 2 1.6-2c1.4-1.7 3.8-2.4 6-1.2 2.9 1.6 3.4 5.1 1.7 7.6C18.7 16.65 12 21 12 21Z"/>
+              </svg>
+              <span class="js-like-count">{{ project.likes_total }}</span>
+            </button>
+          </div>
+
+          {# ---------- Contenu ---------- #}
+          <div class="p-5 {% if view_mode == 'list' %}sm:flex-1{% endif %}">
+            {% if project.category %}
+              <p class="text-xs font-medium text-burgundy mb-1.5">{{ project.category.name }}</p>
+            {% endif %}
+
+            <h3 class="font-serif font-semibold text-lg text-burgundy-dk mb-1.5">
+              <a href="{{ project.get_absolute_url }}" class="group-hover:underline">{{ project.title }}</a>
+            </h3>
+            <p class="text-sm text-boss-muted line-clamp-2 mb-4">{{ project.short_description }}</p>
+
+            {% if project.technologies.all %}
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              {% for tech in project.technologies.all %}
+                <span class="flex items-center gap-1.5 text-xs pl-1 pr-2.5 py-1 rounded-full bg-rose-pale text-burgundy-dk">
+                  {% if tech.icon %}
+                    <img src="{{ tech.icon.url }}" alt="" class="w-4 h-4 rounded-full object-contain">
+                  {% else %}
+                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: {{ tech.fallback_color }};"></span>
+                  {% endif %}
+                  {{ tech.name }}
+                </span>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="flex items-center gap-4 text-xs text-boss-muted mb-4">
+              <span class="flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5">
+                  <rect x="3" y="4" width="18" height="17" rx="2"/><path stroke-linecap="round" d="M3 9h18M8 3v3M16 3v3"/>
+                </svg>
+                {{ project.project_date|date:"F Y" }}
+              </span>
+              <span class="flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/>
+                </svg>
+                {{ project.team_display }}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <a href="{{ project.get_absolute_url }}"
+                 class="flex-1 text-center px-4 py-2 rounded-full bg-rose-mid text-burgundy-dk text-sm font-medium
+                        hover:bg-rose-deep transition inline-flex items-center justify-center gap-1.5">
+                Voir les détails
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </a>
+              <button type="button"
+                      class="js-open-idea flex-1 text-center px-4 py-2 rounded-full bg-burgundy-dk text-warm-white text-sm font-medium hover:bg-burgundy transition"
+                      data-url="{% url 'submit_project_idea' project.pk %}"
+                      data-title="{{ project.title }}">
+                Proposer une idée
+              </button>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {# ---------- Pagination ---------- #}
+    {% if is_paginated %}
+    <div class="flex justify-center items-center gap-2 mt-14">
+      <a href="{% if page_obj.has_previous %}?{{ querystring }}&page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"
+         class="p-2.5 rounded-full border border-rose-mid text-burgundy
+                {% if not page_obj.has_previous %}opacity-40 pointer-events-none{% else %}hover:bg-rose-pale{% endif %}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"/>
+        </svg>
+      </a>
+
+      {% for num in page_obj.paginator.page_range %}
+        <a href="?{{ querystring }}&page={{ num }}"
+           class="w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition
+                  {% if num == page_obj.number %}bg-burgundy-dk text-warm-white{% else %}text-burgundy-dk hover:bg-rose-mid{% endif %}">
+          {{ num }}
+        </a>
+      {% endfor %}
+
+      <a href="{% if page_obj.has_next %}?{{ querystring }}&page={{ page_obj.next_page_number }}{% else %}#{% endif %}"
+         class="p-2.5 rounded-full border border-rose-mid text-burgundy
+                {% if not page_obj.has_next %}opacity-40 pointer-events-none{% else %}hover:bg-rose-pale{% endif %}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/>
+        </svg>
+      </a>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="text-center py-20">
+      <p class="text-burgundy-dk font-serif font-semibold text-xl mb-2">Aucun projet pour l'instant</p>
+      <p class="text-boss-muted text-sm">Ajoute un projet depuis l'admin Django pour qu'il apparaisse ici.</p>
+    </div>
+    {% endif %}
+
+  </section>
+
+  {% comment %} {# ============================================================
+     Modale "Proposer une idée" — une seule instance partagée,
+     réutilisée par toutes les cartes (l'action du form est fixée en JS)
+     ============================================================ #} {% endcomment %}
+  <dialog id="idea-modal" class="rounded-2xl p-0 w-[92vw] max-w-md backdrop:bg-burgundy-dk/40">
+    <form method="post" id="idea-form" class="p-6 relative">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <button type="button" id="idea-modal-close" aria-label="Fermer"
+              class="absolute top-4 right-4 text-boss-muted hover:text-burgundy-dk">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <h3 class="font-serif font-semibold text-xl text-burgundy-dk mb-1">Proposer une idée</h3>
+      <p id="idea-modal-project" class="text-sm text-boss-muted mb-5"></p>
+
+      <div class="space-y-3">
+        <input type="text" name="name" required placeholder="Ton nom"
+               class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30">
+        <input type="email" name="email" required placeholder="ton@email.com"
+               class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30">
+        <textarea name="message" required rows="4" placeholder="Ton idée en quelques mots..."
+                  class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30"></textarea>
+      </div>
+
+      <button type="submit"
+              class="mt-5 w-full px-4 py-2.5 rounded-full bg-burgundy-dk text-warm-white text-sm font-medium hover:bg-burgundy transition">
+        Envoyer
+      </button>
+    </form>
+  </dialog>
+
+  <script>
+    // ---------- Modale "Proposer une idée" ----------
+    const ideaModal = document.getElementById('idea-modal');
+    const ideaForm = document.getElementById('idea-form');
+    const ideaModalProject = document.getElementById('idea-modal-project');
+
+    document.querySelectorAll('.js-open-idea').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        ideaForm.action = btn.dataset.url;
+        ideaModalProject.textContent = 'Pour le projet : ' + btn.dataset.title;
+        ideaModal.showModal();
+      });
+    });
+    document.getElementById('idea-modal-close').addEventListener('click', () => ideaModal.close());
+    ideaModal.addEventListener('click', (e) => {
+      const rect = ideaModal.getBoundingClientRect();
+      const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+      if (!inside) ideaModal.close();
+    });
+
+    // ---------- Like / Unlike (AJAX) ----------
+    function getCookie(name) {
+      const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return match ? match.pop() : '';
+    }
+    document.querySelectorAll('.js-like-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const res = await fetch(btn.dataset.url, {
+          method: 'POST',
+          headers: { 'X-CSRFToken': getCookie('csrftoken') },
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        btn.querySelector('.js-like-count').textContent = data.likes_count;
+        const icon = btn.querySelector('.js-like-icon');
+        icon.setAttribute('fill', data.liked ? 'currentColor' : 'none');
+      });
+    });
+  </script>
+
+{% endblock %}

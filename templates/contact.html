@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+ 
+{% block title %}Contact — TechSpace{% endblock %}
+ 
+{% block content %}
+
+{# templates/partials/_contact_hero.html #}
+{# À inclure dans templates/pages/contact.html entre navbar et footer #}
+<section class="relative overflow-hidden">
+  <div class="max-w-[1536px] mx-auto grid contact-grid">
+
+    <!-- ============= COLONNE GAUCHE : photo + coordonnées ============= -->
+    <div class="relative px-6 sm:px-10 lg:pl-16 lg:pr-10 pt-8 pb-10 flex flex-col md:flex-row gap-8 lg:gap-10 items-start">
+
+      <div class="contact-photo shrink-0 overflow-hidden border border-rose-mid/40 -mx-6 sm:mx-0 sm:-ml-10 lg:-ml-16 mt-1 mx-auto">
+        <svg viewBox="0 0 270 700" preserveAspectRatio="xMidYMax slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F3D9DE"/>
+              <stop offset="1" stop-color="#E9C2CA"/>
+            </linearGradient>
+          </defs>
+          <rect width="270" height="700" fill="url(#wall)"/>
+          <rect y="600" width="270" height="100" fill="#E9C2CA"/>
+
+          <path d="M120 560 C 160 540 230 545 245 590 C 255 620 235 660 190 655 C 150 650 130 610 120 560 Z" fill="#C78684"/>
+          <path d="M130 570 C 165 560 210 565 225 595" stroke="#7B1E3A" stroke-width="2" fill="none" opacity="0.4"/>
+          <path d="M140 600 C 170 600 205 610 215 630" stroke="#7B1E3A" stroke-width="2" fill="none" opacity="0.4"/>
+
+          <rect x="15" y="630" width="130" height="22" rx="3" fill="#4A1225" opacity="0.55"/>
+          <rect x="10" y="654" width="140" height="24" rx="3" fill="#4A1225" opacity="0.7"/>
+
+          <path d="M55 470 C 45 470 40 490 45 510 C 50 545 45 570 60 590 C 75 610 120 610 132 590 C 145 570 138 545 143 510 C 147 490 142 470 132 470 C 132 460 130 455 120 452 L 68 452 C 58 455 55 460 55 470 Z" fill="#FDF8F3" stroke="#C78684" stroke-width="1.5"/>
+          <ellipse cx="94" cy="452" rx="27" ry="6" fill="#F3D9DE"/>
+
+          <g stroke="#7B1E3A" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.75">
+            <path d="M85 452 C 78 380 55 320 40 260"/>
+            <path d="M92 452 C 92 370 100 300 95 230"/>
+            <path d="M100 452 C 112 390 130 340 145 285"/>
+            <path d="M78 452 C 65 400 45 360 25 320"/>
+            <path d="M108 452 C 120 410 140 375 158 340"/>
+          </g>
+          <g fill="#C78684">
+            <circle cx="40" cy="260" r="4"/><circle cx="30" cy="245" r="3"/><circle cx="50" cy="240" r="3"/>
+            <circle cx="95" cy="230" r="4"/><circle cx="85" cy="215" r="3"/><circle cx="106" cy="212" r="3"/>
+            <circle cx="145" cy="285" r="4"/><circle cx="158" cy="270" r="3"/><circle cx="135" cy="268" r="3"/>
+            <circle cx="25" cy="320" r="3.5"/><circle cx="15" cy="305" r="2.5"/>
+            <circle cx="158" cy="340" r="3.5"/><circle cx="170" cy="325" r="2.5"/>
+            <circle cx="60" cy="290" r="3"/><circle cx="115" cy="270" r="3"/><circle cx="70" cy="330" r="3"/>
+            <circle cx="120" cy="330" r="3"/><circle cx="90" cy="270" r="3.5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="flex-1 pt-2 lg:pt-6 max-w-[480px] mx-auto md:mx-0 text-center md:text-left">
+        <h1 class="font-serif leading-[0.92] tracking-tight text-contact-h1">
+          <span class="text-burgundy">Parlons de</span><br>
+          <span class="text-rose-mid">votre projet</span>
+        </h1>
+        <div class="w-16 h-[3px] bg-burgundy mt-7 mb-8 mx-auto md:mx-0"></div>
+
+        <p class="font-sans text-boss-muted text-[15px] leading-relaxed max-w-sm mb-10 mx-auto md:mx-0">
+          Une idée de projet, une question, ou juste envie d'échanger ? Je serais ravie de vous lire.
+        </p>
+
+        <div class="space-y-6 text-left">
+          <div class="flex items-center gap-4">
+            <div class="w-[46px] h-[46px] rounded-full bg-blush flex items-center justify-center shrink-0">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7B1E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            </div>
+            <div>
+              <p class="font-sans font-semibold text-boss-text text-[15px] leading-tight">Email</p>
+              <p class="font-sans text-boss-muted text-[14px]">contact@techspace.com</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[46px] h-[46px] rounded-full bg-blush flex items-center justify-center shrink-0">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7B1E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <p class="font-sans font-semibold text-boss-text text-[15px] leading-tight">Téléphone</p>
+              <p class="font-sans text-boss-muted text-[14px]">+237 6 12 34 56 78</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[46px] h-[46px] rounded-full bg-blush flex items-center justify-center shrink-0">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7B1E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="font-sans font-semibold text-boss-text text-[15px] leading-tight">Localisation</p>
+              <p class="font-sans text-boss-muted text-[14px]">Douala, Cameroun</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-[46px] h-[46px] rounded-full bg-blush flex items-center justify-center shrink-0">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7B1E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <p class="font-sans font-semibold text-boss-text text-[15px] leading-tight">Disponibilité</p>
+              <p class="font-sans text-boss-muted text-[14px]">Lun – Ven : 9h – 18h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============= COLONNE DROITE : formulaire ============= -->
+    <div class="contact-panel relative bg-rose-pale px-6 sm:px-10 lg:pl-16 lg:pr-16 pt-10 lg:pt-14 pb-10 flex flex-col">
+
+      <div class="hidden lg:flex absolute -left-[42px] top-[340px] w-[80px] h-[80px] rounded-full bg-burgundy items-center justify-center shadow-lg z-10">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFDFB" stroke-width="1.5"><path d="M12 21s-6.7-4.35-9.3-8.1C.6 9.9 1.6 6 5 5c2-.6 3.7.3 5 2 1.3-1.7 3-2.6 5-2 3.4 1 4.4 4.9 2.3 7.9C18.7 16.65 12 21 12 21z"/></svg>
+      </div>
+
+      <h2 class="font-serif text-[30px] lg:text-[38px] text-burgundy">Envoyez-moi un message</h2>
+      <div class="w-14 h-[3px] bg-burgundy mt-4 mb-8 lg:mb-10"></div>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-6 rounded-lg px-5 py-4 text-[14px] font-sans {% if message.tags == 'success' %}bg-burgundy text-warm-white{% else %}bg-white border border-burgundy text-burgundy{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post" action="{% url 'contact' %}" class="space-y-5 max-w-[490px] relative z-10" novalidate>
+        {% csrf_token %}
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            {{ form.name }}
+            {% if form.name.errors %}<p class="text-burgundy text-[13px] mt-1.5">{{ form.name.errors.0 }}</p>{% endif %}
+          </div>
+          <div>
+            {{ form.email }}
+            {% if form.email.errors %}<p class="text-burgundy text-[13px] mt-1.5">{{ form.email.errors.0 }}</p>{% endif %}
+          </div>
+        </div>
+        <div>
+          {{ form.subject }}
+          {% if form.subject.errors %}<p class="text-burgundy text-[13px] mt-1.5">{{ form.subject.errors.0 }}</p>{% endif %}
+        </div>
+        <div>
+          {{ form.message }}
+          {% if form.message.errors %}<p class="text-burgundy text-[13px] mt-1.5">{{ form.message.errors.0 }}</p>{% endif %}
+        </div>
+
+        {# honeypot anti-spam : champ caché, vérifié côté vue #}
+        <div class="hidden" aria-hidden="true">{{ form.website }}</div>
+
+        <button type="submit"
+                class="bg-burgundy text-warm-white text-[15px] font-medium px-8 py-4 rounded-lg flex items-center gap-2.5 hover:bg-burgundy-dk transition-colors">
+          Envoyer le message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        </button>
+
+        <div class="flex items-center gap-2 text-boss-muted text-[13px] pt-1 pb-6 lg:pb-10">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A7169" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+          Vos informations restent confidentielles.
+        </div>
+      </form>
+
+      <svg class="absolute left-[40px] bottom-0 opacity-40 hidden lg:block pointer-events-none" width="180" height="230" viewBox="0 0 180 230" fill="none" stroke="#C78684" stroke-width="1.2">
+        <path d="M96 230 C93 190 88 150 82 118" />
+        <path d="M86 178 C 66 176 52 188 48 206 C 68 208 84 198 86 178 Z" />
+        <path d="M90 150 C 110 146 126 156 132 174 C 110 178 94 168 90 150 Z" />
+        <path d="M84 200 C 64 202 50 216 46 232" />
+        <g transform="translate(82,78)">
+          <path d="M0 -32 C 14 -28 18 -12 8 0 C 20 4 24 20 10 28 C 14 40 2 50 -8 44 C -14 54 -30 52 -32 40 C -44 42 -50 28 -40 18 C -50 8 -44 -8 -30 -8 C -30 -22 -14 -34 0 -32 Z" />
+          <circle r="7" />
+          <circle r="2" fill="#7B1E3A" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- grille fluide : proportions préservées via clamp(), pas de stack avant 640px --- */
+  .contact-grid{
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  .contact-photo{
+    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+    width: clamp(160px, 22vw, 270px);
+    height: clamp(320px, 55vw, 700px);
+  }
+  .contact-panel{
+    border-top-left-radius: clamp(60px, 14vw, 260px);
+  }
+  .text-contact-h1{
+    font-size: clamp(38px, 6vw, 76px);
+  }
+
+  @media (max-width: 640px){
+    .contact-grid{ grid-template-columns: 1fr; }
+    .contact-photo{
+      width: 100%;
+      height: 260px;
+      border-radius: 24px;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .contact-panel{ border-top-left-radius: 32px; }
+  }
+</style>
+{% endblock %}

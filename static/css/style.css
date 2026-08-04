@@ -1,0 +1,341 @@
+  /* ── Sélection de texte ── */
+::selection{
+    background-color: #c9a0a0;
+    color: #fff;
+}
+
+/*-- scrollbar elegante--*/
+::-webkit-scrollbar {width: 6px;}
+::-webkit-scrollbar-track{background: #faf7f4;
+::-webkit-scrollbar-thumb { background: #C9A0A0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #8B4A52; }
+}
+   /* ── Smooth scroll global ── */
+    html { scroll-behavior: smooth; }
+
+       /* ── Police par défaut ── */
+body {
+   font-family: 'jost', sans-serif;
+   background-color:faf7f4;
+   color: #3d2b2b;
+}
+
+/* ────────────────────────────────────────────────────
+       ANIMATIONS AU SCROLL — classes JS-driven
+       Le JS en bas de page ajoute/retire ces classes
+    ──────────────────────────────────────────────────── */
+
+    /* État initial — élément invisible avant animation */
+
+    [data-animate] {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)
+                    tranform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+
+
+    /*fade depuis la gauche */
+
+    [data-animate="fade-left"]{
+        transform: translateX(-40px);
+    }
+
+
+    /*fade depuis la droite */
+
+    [data-animate="fade-right"]{
+        transform: translateX(40px);
+        
+    }
+
+
+    /*zoom leger*/
+
+    [data-animate="zoom"]{
+        transform: scale(0.92);
+    }
+
+
+    /*rotationlegere + monter*/
+
+    [data-animate="tilt"]{
+        transform: translateY(30px) rotate(-2deg);
+    }
+
+
+    /* ─ Classe appliquée par JS quand l'élément est visible ─ */
+    [data-animate].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+     /* Délais en cascade pour les grilles (data-delay) */
+    [data-delay="100"] { transition-delay: 0.1s; }
+    [data-delay="200"] { transition-delay: 0.2s; }
+    [data-delay="300"] { transition-delay: 0.3s; }
+    [data-delay="400"] { transition-delay: 0.4s; }
+    [data-delay="500"] { transition-delay: 0.5s; }
+    [data-delay="600"] { transition-delay: 0.6s; }
+
+    /* ── Navbar — effet glass au scroll ── */
+    #navbar.scrolled {
+      background: rgba(250,247,244,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(139,74,82,0.08);
+    }
+
+    /* ── Lien nav — underline animée ── */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #7d3b47;
+      transition: left 0.3s ease, right 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      left: 10%;
+      right: 10%;
+    }
+
+    /* ── Bouton CTA principal ── */
+    .btn-primary {
+      background-color: #8B4A52;
+      color: #fff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.65rem 1.6rem;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #7a3f46;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(139,74,82,0.25);
+    }
+
+    /* ── Taches aquarelle décoratives (splashes) ── */
+    .splash {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+      /* ── Hamburger animation → croix ── */
+    #hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    #hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    #hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+    /* ═══════════════════════════════════════════════════
+       ENHANCEMENTS - Liens élégants et effets hover
+    ═══════════════════════════════════════════════════ */
+
+    /* Liens "AJOUTER UN LIEN" et "EN SAVOIR PLUS" */
+    .font-serif.italic[href] {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      border-bottom: 2px solid currentColor;
+      padding-bottom: 2px;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .font-serif.italic[href]:hover {
+      color: #7d3b47;
+      border-bottom-color: #7d3b47;
+    }
+
+    /* Images et cartes avec hover elegantes */
+    .rounded-2xl, .rounded-xl, .rounded-3xl {
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .rounded-2xl:hover, .rounded-xl:hover, .rounded-3xl:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Points decoratifs - animation douce */
+    span[class*="rounded-full"][class*="bg-"] {
+      animation: float-dots 6s ease-in-out infinite;
+    }
+
+    @keyframes float-dots {
+      0%, 100% { transform: translateY(0px); opacity: 0.5; }
+      50% { transform: translateY(-8px); opacity: 0.8; }
+    }
+
+    /* Effet de surbrillance sur les sections */
+    section {
+      transition: background-color 0.5s ease;
+    }
+
+    /* Gradient texte elegants */
+    h1, h2 {
+      background: linear-gradient(135deg, #7d3b47 0%, #c9a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 500;
+    }
+
+    /* Correction du gradient pour certains éléments */
+    .text-burgundy, .text-ink, .text-boss-text {
+      background: none;
+      -webkit-text-fill-color: unset;
+    }
+    
+    /* ──────────────────────────────────────────────────────
+       STYLES POUR LES LIENS AVEC SOULIGNÉS ÉTENDUS
+       ──────────────────────────────────────────────────────*/
+    
+    /* Conteneur des liens - permet le débordement du soulignisme */
+    a.group {
+      overflow: visible;
+    }
+    
+    /* Soulignés qui s'étendent de l'extrémité */
+    a.group span[style*="bottom: 0"] {
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* Hover effect sur les liens étendus */
+    a.group:hover span[style*="bottom: 0"] {
+      opacity: 0.8;
+    }
+    
+    /* ──────────────────────────────────────────────────────
+       STYLES POUR LA SECTION HERO
+       ──────────────────────────────────────────────────────*/
+    
+    /* Hero avec image de fond et blur */
+    section:first-of-type {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    section:first-of-type::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      filter: blur(0.5px);
+      z-index: 0;
+    }
+    
+    /* ──────────────────────────────────────────────────────
+       STYLES POUR LES IMAGES SUPERPOSÉES
+       ──────────────────────────────────────────────────────*/
+    
+    /* Conteneur d'images avec cadres */
+    div[style*="h-[500px"], div[style*="h-[550px"] {
+      position: relative;
+    }
+    
+    /* Cadres derrière les images */
+    div.absolute.top-4.left-4.right-4.bottom-4.rounded-3xl {
+      background: rgba(245, 230, 232, 0.3) !important;
+      border: 2px solid rgba(212, 165, 170, 0.3) !important;
+      box-shadow: 0 20px 40px rgba(125, 59, 71, 0.1);
+    }
+    
+    /* Images individuelles avec transitions fluides */
+    div.absolute[class*="rounded-2xl"].overflow-hidden {
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    /* Effet de profondeur sur les images */
+    div.absolute[class*="rounded-2xl"].overflow-hidden:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 20px 40px rgba(125, 59, 71, 0.15) !important;
+    }
+
+
+    /* ──────────────────────────────────────────────────────
+       STYLES POUR LES POINTS DÉCORATIFS (DOTS)
+       ──────────────────────────────────────────────────────*/
+    /* Points décoratifs avec animation de flottement */
+
+
+    /* service indicator active pulse */
+  .service-dot {
+    transition: transform 220ms ease, box-shadow 220ms ease, opacity 220ms;
+    opacity: 0.9;
+  }
+  .service-dot-active {
+    transform: scale(1.35);
+    box-shadow: 0 6px 18px rgba(125,59,71,0.18);
+    opacity: 1;
+    animation: service-pulse 900ms infinite ease-in-out;
+  }
+  @keyframes service-pulse {
+    0% { transform: scale(1.15); opacity: 1; }
+    50% { transform: scale(1.28); opacity: 0.9; }
+    100% { transform: scale(1.15); opacity: 1; }
+  }
+  #welcome-service {
+    /* transition déjà ajouté via classe html - ici fallback */
+    transition: opacity 240ms ease;
+  }
+
+    
+
+
+
+
+
+  .icon-circle{
+
+    position:absolute;
+
+    top:-28px;
+
+    left:28px;
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:9999px;
+
+    background:#f5e6e8;
+
+    color:#7d3b47;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 10px 30px rgba(125,59,71,.15);
+
+    border:6px solid #fff;
+
+}
+

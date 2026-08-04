@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+{% block title %}À propos — TechSpace{% endblock %}
+ 
+{% block content %}
+ 
+<!-- ===================================================================
+     HEADER — qualités autour de la photo
+     =================================================================== -->
+<section class="bg-cream font-sans py-[clamp(2.5rem,8vw,6rem)] px-4">
+  <div class="max-w-6xl mx-auto text-center">
+ 
+    <h2 class="font-script text-[clamp(1.6rem,5vw,3rem)] text-boss-text mb-3">
+      <span class="text-burgundy italic">Mes</span> qualités
+    </h2>
+    <p class="text-boss-muted text-[clamp(0.7rem,2.2vw,1rem)] mb-10 sm:mb-[clamp(2.5rem,8vw,6rem)]">
+      Ce qui guide chaque projet, du premier échange à la mise en ligne
+    </p>
+ 
+    <!-- ===== Version MOBILE (< sm) : sans superposition ===== -->
+    <div class="sm:hidden max-w-sm mx-auto">
+      <div class="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-xl ring-4 ring-warm-white mb-8">
+<img
+          src="{% if about.photo %}{{ about.photo.url }}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}"
+          alt="{{ about.name|default:'Portrait' }}"
+          class="w-full h-full object-cover"
+        >
+      </div>
+ 
+      <div class="grid grid-cols-2 gap-3">
+        {% for q in qualities %}
+        <div class="bg-warm-white rounded-2xl shadow-sm border border-rose-pale p-4 text-left">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-deep to-burgundy flex items-center justify-center shadow-md mb-2">
+            <i class="{{ q.icon }} text-warm-white text-xs"></i>
+          </div>
+          <h3 class="text-boss-text font-semibold mb-1 text-xs">{{ q.title }}</h3>
+          <p class="text-boss-muted leading-relaxed text-[0.7rem]">{{ q.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+ 
+    <!-- ===== Version DESKTOP/TABLETTE (>= sm) : design circulaire d'origine ===== -->
+    <div class="hidden sm:block relative mx-auto w-full max-w-[480px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[820px]">
+ 
+      <div style="padding-top: 100%;"></div>
+ 
+      <div class="absolute inset-0">
+ 
+        <div class="absolute inset-0 rounded-full border border-dashed border-burgundy-dk"></div>
+ 
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[47%] aspect-square rounded-full bg-rose-mid"></div>
+ 
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square rounded-full overflow-hidden shadow-xl ring-4 ring-warm-white z-10">
+<img
+          src="{% if about %}{% if about.main_image %}{{ about.main_image.url }}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}"
+          alt="{% if about %}{{ about.logo_text|default:'Portrait' }}{% else %}Portrait{% endif %}"
+          class="w-full h-full object-cover"
+        >
+        </div>
+ 
+        {% for q in qualities %}
+        <div class="absolute
+                    {% if forloop.counter0 == 0 %}left-0 top-[8%]
+                    {% elif forloop.counter0 == 1 %}right-0 top-[8%]
+                    {% elif forloop.counter0 == 2 %}left-0 bottom-[8%]
+                    {% else %}right-0 bottom-[8%]{% endif %}
+                    w-[34%] min-w-[130px] text-left">
+          <div class="bg-warm-white rounded-2xl shadow-sm border border-rose-pale px-[clamp(0.7rem,2.5vw,1.25rem)] pt-[clamp(1.7rem,5.5vw,2.5rem)] pb-[clamp(0.7rem,2.5vw,1.25rem)] relative">
+            <div class="absolute left-[12%] top-0 -translate-y-1/2 w-[26%] aspect-square rounded-full bg-gradient-to-br from-rose-deep to-burgundy flex items-center justify-center shadow-md z-10">
+              <i class="{{ q.icon }} text-warm-white text-[clamp(0.6rem,2vw,0.9rem)]"></i>
+            </div>
+            <h3 class="text-boss-text font-semibold mb-1 text-[clamp(0.7rem,2.2vw,1rem)]">{{ q.title }}</h3>
+            <p class="text-boss-muted leading-relaxed text-[clamp(0.6rem,1.8vw,0.75rem)]">
+              {{ q.description }}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+ 
+      </div>
+    </div>
+ 
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %}
+=====================================================================
+  templates/sections/about_hub.html  (version corrigée)
+  ---------------------------------------------------------------
+  BUG CORRIGÉ : la version précédente forçait un conteneur carré
+  parfait (padding-top: 100%) en copiant la technique du header
+  "Mes qualités". Mais l'image de référence est LARGE (format
+  paysage), pas carrée — il ne restait quasiment plus de place pour
+  les textes gauche/droite, d'où le chevauchement que tu as vu, même
+  en grand écran (donc rien à voir avec le cache/build cette fois).
+
+  Nouvelle structure : une vraie grille (3 colonnes sur desktop —
+  texte gauche | anneau | texte droite — puis texte haut/bas empilés
+  au-dessus/en-dessous de l'anneau). Chaque texte a son propre espace
+  réservé, l'anneau (avec ses 4 cercles satellites) reste dans un
+  petit carré à taille fixe, indépendant du texte.
+
+  Réutilise toujours ton modèle Quality existant (les 4 premières
+  qualités = les 4 satellites, dans l'ordre : haut, droite, bas,
+  gauche).
+
+  À inclure dans about.html :
+      {% include "sections/about_hub.html" %}
+=====================================================================
+{% endcomment %}
+
+<section class="bg-cream py-16 md:py-24 px-4">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-8 md:gap-10 items-center">
+
+      <!-- ===== Texte gauche (4e qualité) ===== -->
+      <div class="order-3 md:order-1 text-center md:text-right">
+        {% with q=qualities.3 %}
+        {% if q %}
+        <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
+        <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[220px] mx-auto md:ml-auto md:mr-0">
+          {{ q.description }}
+        </p>
+        {% endif %}
+        {% endwith %}
+      </div>
+
+      <!-- ===== Colonne centrale : labels haut/bas + anneau ===== -->
+      <div class="order-1 md:order-2 flex flex-col items-center gap-6 md:gap-8">
+
+        <!-- Texte haut (1re qualité) -->
+        <div class="text-center">
+          {% with q=qualities.0 %}
+          {% if q %}
+          <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
+          <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[260px] mx-auto">
+            {{ q.description }}
+          </p>
+          {% endif %}
+          {% endwith %}
+        </div>
+
+        <!-- L'anneau : conteneur PLUS GRAND que l'anneau visuel, pour laisser -->
+        <!-- de la marge aux cercles satellites qui dépassent du bord (13% de -->
+        <!-- leur propre taille de chaque côté) sans jamais toucher le texte -->
+        <!-- au-dessus/en-dessous. -->
+        <div class="relative w-[260px] sm:w-[320px] md:w-[360px] aspect-square shrink-0">
+
+          <div class="absolute inset-[13%] rounded-full border-2 border-burgundy/25"></div>
+          <div class="absolute inset-[10%] rounded-full border border-dashed border-rose-deep/40"></div>
+
+          <!-- Badge central -->
+          <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square rounded-full bg-burgundy-dk shadow-xl flex flex-col items-center justify-center text-center px-[10%] z-10">
+            <p class="font-script text-warm-white text-[clamp(0.95rem,4.5vw,1.4rem)] leading-tight">
+              {{ about.name|default:"Qui suis-je" }}
+            </p>
+            <p class="text-rose-pale/70 text-[clamp(0.55rem,2.2vw,0.7rem)] mt-2 leading-snug">
+              {{ about.tagline|default:"Développeur & designer full-stack" }}
+            </p>
+          </div>
+
+          <!-- Cercles satellites : centrés exactement SUR l'anneau (à 13%/87%), -->
+          <!-- taille réduite (22%) pour que même en dépassant de moitié ils -->
+          <!-- restent DANS les limites de ce conteneur (2% à 98%). -->
+          {% for q in qualities|slice:":4" %}
+          <div class="absolute
+                      {% if forloop.counter0 == 0 %}left-1/2 top-[13%] -translate-x-1/2 -translate-y-1/2
+                      {% elif forloop.counter0 == 1 %}left-[87%] top-1/2 -translate-x-1/2 -translate-y-1/2
+                      {% elif forloop.counter0 == 2 %}left-1/2 top-[87%] -translate-x-1/2 -translate-y-1/2
+                      {% else %}left-[13%] top-1/2 -translate-x-1/2 -translate-y-1/2{% endif %}
+                      w-[22%] aspect-square rounded-full shadow-lg flex items-center justify-center z-20
+                      {% if forloop.counter0|divisibleby:2 %}bg-burgundy{% else %}bg-rose-deep{% endif %}">
+            <i class="{{ q.icon }} text-[clamp(0.7rem,2.8vw,1.05rem)]
+                      {% if forloop.counter0|divisibleby:2 %}text-warm-white{% else %}text-boss-text{% endif %}"></i>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Texte bas (3e qualité) -->
+        <div class="text-center">
+          {% with q=qualities.2 %}
+          {% if q %}
+          <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
+          <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[260px] mx-auto">
+            {{ q.description }}
+          </p>
+          {% endif %}
+          {% endwith %}
+        </div>
+      </div>
+
+      <!-- ===== Texte droite (2e qualité) ===== -->
+      <div class="order-2 md:order-3 text-center md:text-left">
+        {% with q=qualities.1 %}
+        {% if q %}
+        <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
+        <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[220px] mx-auto md:mr-auto md:ml-0">
+          {{ q.description }}
+        </p>
+        {% endif %}
+        {% endwith %}
+      </div>
+
+    </div>
+  </div>
+</section>
+ 
+
+
+ 
+{% comment %} -------- Sous-modèle réutilisé pour parcours ET expérience -------- {% endcomment %}
+ 
+<!-- ===================================================================
+     PARCOURS ACADÉMIQUE
+     =================================================================== -->
+<section class="bg-warm-white py-16 lg:py-24 px-4">
+  <div class="max-w-4xl mx-auto">
+ 
+    <div class="text-center mb-14">
+      <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
+        Parcours <span class="text-burgundy italic">académique</span>
+      </h2>
+      <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
+    </div>
+ 
+    <!-- Mobile / tablette : liste verticale simple -->
+    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale">
+      {% for item in education %}
+      <div class="relative pb-10 last:pb-0">
+        <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-burgundy flex items-center justify-center ring-4 ring-warm-white">
+          <i class="{{ item.icon }} text-warm-white text-xs"></i>
+        </span>
+        <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
+        <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
+        {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+        <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+      </div>
+      {% empty %}
+      <p class="text-boss-muted">Ajoute ton parcours académique depuis l'admin (Quality / TimelineEntry).</p>
+      {% endfor %}
+    </div>
+ 
+    <!-- Desktop : zigzag façon infographie -->
+    <div class="hidden md:block relative">
+      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-rose-pale -translate-x-1/2"></div>
+      <div class="space-y-4">
+        {% for item in education %}
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+          <div class="text-right">
+            {% if forloop.counter0|divisibleby:2 %}
+            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            {% endif %}
+          </div>
+ 
+          <div class="flex justify-center">
+            <div class="w-12 h-12 rounded-full bg-burgundy flex items-center justify-center text-warm-white shadow-md z-10 shrink-0">
+              <i class="{{ item.icon }} text-sm"></i>
+            </div>
+          </div>
+ 
+          <div class="text-left">
+            {% if not forloop.counter0|divisibleby:2 %}
+            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- ===================================================================
+     COMPÉTENCES
+     =================================================================== -->
+<section class="bg-cream py-16 lg:py-24 px-4">
+  <div class="max-w-4xl mx-auto">
+ 
+    <div class="text-center mb-14">
+      <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
+        Mes <span class="text-burgundy italic">compétences</span>
+      </h2>
+      <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
+    </div>
+ 
+    <div class="grid md:grid-cols-2 gap-x-16 gap-y-8 mb-14">
+      {% for skill in skills %}
+      <div>
+        <div class="flex justify-between items-baseline mb-2">
+          <span class="text-sm font-medium text-boss-text">{{ skill.name }}</span>
+          <span class="text-xs text-boss-muted">{{ skill.level }}%</span>
+        </div>
+        <div class="w-full h-2 rounded-full bg-rose-pale overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-rose-deep to-burgundy transition-all duration-700"
+               style="width: {{ skill.level }}%;"></div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-boss-muted col-span-full">Ajoute tes compétences dans la vue about().</p>
+      {% endfor %}
+    </div>
+ 
+    {% if tools %}
+    <div class="text-center">
+      <p class="text-xs uppercase tracking-wider text-boss-muted mb-4">Outils utilisés au quotidien</p>
+      <div class="flex flex-wrap justify-center gap-2.5">
+        {% for tool in tools %}
+        <span class="text-xs px-4 py-1.5 rounded-full bg-warm-white border border-rose-pale text-boss-text">{{ tool }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+ 
+  </div>
+</section>
+ 
+<!-- ===================================================================
+     EXPÉRIENCE PROFESSIONNELLE
+     =================================================================== -->
+<section class="bg-warm-white py-16 lg:py-24 px-4">
+  <div class="max-w-4xl mx-auto">
+ 
+    <div class="text-center mb-14">
+      <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
+        Expérience <span class="text-burgundy italic">professionnelle</span>
+      </h2>
+      <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
+    </div>
+ 
+    <!-- Mobile / tablette : liste verticale simple -->
+    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale">
+      {% for item in experience %}
+      <div class="relative pb-10 last:pb-0">
+        <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-burgundy flex items-center justify-center ring-4 ring-warm-white">
+          <i class="{{ item.icon }} text-warm-white text-xs"></i>
+        </span>
+        <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
+        <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
+        {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+        <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+      </div>
+      {% empty %}
+      <p class="text-boss-muted">Ajoute ton expérience depuis l'admin (TimelineEntry).</p>
+      {% endfor %}
+    </div>
+ 
+    <!-- Desktop : zigzag façon infographie -->
+    <div class="hidden md:block relative">
+      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-rose-pale -translate-x-1/2"></div>
+      <div class="space-y-4">
+        {% for item in experience %}
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+          <div class="text-right">
+            {% if forloop.counter0|divisibleby:2 %}
+            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            {% endif %}
+          </div>
+ 
+          <div class="flex justify-center">
+            <div class="w-12 h-12 rounded-full bg-burgundy flex items-center justify-center text-warm-white shadow-md z-10 shrink-0">
+              <i class="{{ item.icon }} text-sm"></i>
+            </div>
+          </div>
+ 
+          <div class="text-left">
+            {% if not forloop.counter0|divisibleby:2 %}
+            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+{% endblock %}
+ 
+
+ 

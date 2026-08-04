@@ -1,0 +1,906 @@
+{% extends 'base.html'%}
+{%load static%}
+
+{% block content %}
+
+<!-- ============================= HERO: Add Gorgeous Content ============================= -->
+<section class="relative overflow-visible min-h-[80vh]" style="background:  url('{% static 'images/ordi3.jpeg' %}') center/cover no-repeat; background-attachment: fixed;">
+  <!-- Overlay flou léger -->
+  <div class="absolute inset-0" style="background: rgba(13,10,12,0.12); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);"></div>
+  
+  <div class="w-full mx-auto px-6 lg:px-10 py-20 lg:py-32 min-h-[80vh] flex items-center justify-center relative z-10">
+
+    <!-- RIGHT: Text Content -->
+    <div class="text-center w-full space-y-20">
+      <h1 class="font-script italic text-5xl sm:text-6xl lg:text-7xl leading-tight text-burgundy">
+        Estha's Portfolio
+      </h1>
+
+      <p class="font-sans font-bold  text-boss-text text-2xl  leading-relaxed  tracking-wide">
+       "Bienvenue dans mon univers créatif. Ici, chaque pixel raconte une histoire, 
+       chaque projet est un défi relevé. N’hésite pas à jeter un œil, à cliquer, 
+       à t’émerveiller... et surtout, à me faire signe si mon travail te parle. Bonne visite ! "       "Bienvenue dans mon univers créatif. Ici, chaque pixel raconte une histoire, 
+       chaque projet est un défi relevé. N’hésite pas à jeter un œil, à cliquer, 
+       à t’émerveiller... et surtout, à me faire signe si mon travail te parle. Bonne visite ! "
+
+      </p>
+
+     
+
+        <div class="relative overflow-visible">
+          <a href="{% url 'contact'%}"
+            class="group relative inline-flex items-center justify-center px-6 py-3 text-2xl uppercase tracking-[5px] text-[#7d3b47] font-serif italic bg-white border border-[#7d3b47]/20 rounded-full shadow-lg transition-all duration-300 hover:bg-[#7d3b47] hover:text-white">
+            contactez-moi
+
+            <span
+              class="absolute left-[-100vw] bottom-0 h-[2px] w-[100vw] bg-[#7d3b47] origin-right scale-x-0 transition-transform duration-300 group-hover:scale-x-100">
+            </span>
+          </a>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<section class="bg-cream py-24 overflow-hidden">
+
+    <!-- Séparateur décoratif -->
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">About Me</h2>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <span class="font-script text-5xl text-burgundy-dk">✦</span>
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+        </div>
+
+    </div>
+  <div
+    class="relative mx-auto
+           w-full max-w-7xl
+           min-h-[950px] lg:min-h-[760px]">
+
+    <!-- ===================== -->
+    <!-- Carte texte -->
+    <!-- ===================== -->
+    <div
+        class="relative
+               lg:absolute
+               lg:left-[9%]
+               lg:top-[150px]
+               w-[90%]
+               sm:w-[75%]
+               md:w-[60%]
+               lg:w-[28%]
+               mx-auto
+               lg:mx-0
+               bg-rose-pale
+               p-8
+               shadow-xl
+               z-30">
+
+        <h2
+            class="font-serif italic
+                   text-3xl lg:text-[34px]
+                   text-[#84635d]
+                   leading-tight">
+            Welcome to the Demo
+        </h2>
+
+        <p class="mt-5 text-sm leading-7 text-gray-600">
+            Use this welcome for visitors to the site and guide
+            them to the important spots within it.
+        </p>
+
+        <p class="mt-5 text-sm leading-7 text-gray-600">
+            These image spots can hold a Featured Page widget,
+            image, Slider and Featured Posts.
+        </p>
+
+        <div class="mt-8">
+            <a href="{% url 'about' %}"
+               class="group relative inline-flex items-center justify-center px-6 py-3 text-xs uppercase tracking-[5px] text-[#7d3b47] font-serif italic bg-white border border-[#7d3b47]/20 rounded-full shadow-lg transition-all duration-300 hover:bg-[#7d3b47] hover:text-cream">
+                Learn More
+            </a>
+        </div>
+
+    </div>
+
+    <!-- ===================== -->
+    <!-- Groupe Images -->
+    <!-- ===================== -->
+
+    <div
+        class="relative
+               mt-16 lg:mt-0
+               mx-auto
+               w-[90vw]
+               sm:w-[75vw]
+               md:w-[60vw]
+               lg:w-full
+               h-[520px]
+               sm:h-[620px]
+               lg:h-full">
+
+        <!-- Cadre principal -->
+        <div
+            class="absolute
+                   left-[15%]
+                   top-[70px]
+                   w-[60%]
+                   h-[380px]
+
+                   sm:h-[460px]
+
+                   lg:left-[31%]
+                   lg:top-[30px]
+                   lg:w-[36%]
+                   lg:h-[560px]
+
+                   border border-burgundy-dk">
+        </div>
+
+        <!-- Grande image -->
+        <div
+            class="absolute
+                   left-[19%]
+                   top-[50px]
+                   w-[60%]
+                   h-[380px]
+
+                   sm:h-[460px]
+
+                   lg:left-[33%]
+                   lg:top-[48px]
+                   lg:w-[38%]
+                   lg:h-[560px]
+
+                   shadow-2xl
+                   overflow-hidden
+                   bg-white
+                   z-10">
+
+            <img src="{% static 'images/boss1.jpeg' %}"
+                 class="w-full h-full object-cover">
+        </div>
+
+        <!-- Petite image -->
+        <div
+            class="absolute
+                   left-[58%]
+                   top-0
+
+                   lg:left-[65%]
+                   lg:top-[5px]
+
+                   z-20">
+
+            <div
+                class="absolute
+                       left-4
+                       top-4
+                       w-[140px]
+                       h-[170px]
+
+                       sm:w-[180px]
+                       sm:h-[220px]
+
+                       lg:w-[17.5vw]
+                       lg:h-[20.5vw]
+
+                       border border-burgundy-dk">
+            </div>
+
+            <div
+                class="relative
+                       w-[140px]
+                       h-[170px]
+
+                       sm:w-[180px]
+                       sm:h-[220px]
+
+                       lg:w-[16.5vw]
+                       lg:h-[19.5vw]
+
+                       overflow-hidden
+                       shadow-xl
+                       bg-white">
+
+                <img src="{% static 'images/boss2.jpeg' %}"
+                     class="w-full h-full object-cover">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+
+
+<!-- ============================= Welcome to the Dance ============================= -->
+
+
+
+
+
+<section class="bg-cream py-16 lg:py-24">
+
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Services</h2>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <span class="font-script text-5xl text-burgundy-dk">✦</span>
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+        </div>
+
+    </div>
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col lg:flex-row items-stretch gap-10 lg:gap-16">
+ 
+      <!-- ===== Colonne gauche : texte (change selon le service) ===== -->
+      <div class="lg:flex-[0_0_45%] flex flex-col justify-center">
+ 
+        <div id="approachTextTrack" class="min-h-[220px] sm:min-h-[180px]">
+          {% for service in services %}
+          <div class="approach-text-slide {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
+            <h2 class="font-sans font-bold text-3xl sm:text-4xl lg:text-[2.8rem] uppercase tracking-[0.08em] text-boss-text leading-[1.1] mb-8">
+              {{ service.title }}
+            </h2>
+            <p class="font-sans text-boss-text/90 text-[0.9rem] sm:text-[0.95rem] lg:text-base leading-[1.7] max-w-[95%]">
+              {{ service.description }}
+            </p>
+          </div>
+          {% empty %}
+          <div class="approach-text-slide" data-index="0">
+            <h2 class="font-sans font-bold text-3xl sm:text-4xl lg:text-[2.8rem] uppercase tracking-[0.08em] text-boss-text leading-[1.1] mb-8">
+              Our Approach
+            </h2>
+            <p class="font-sans text-boss-text/90 text-[0.9rem] sm:text-[0.95rem] lg:text-base leading-[1.7] max-w-[95%]">
+              Ajoute des services depuis ton espace admin pour qu'ils apparaissent ici.
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+ 
+        <!-- CTA statique, ne change pas selon le slide -->
+        <div class="mt-10">
+          <a href="{% url 'services' %}"
+             class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-burgundy text-warm-white text-sm font-medium
+                    hover:bg-burgundy/90 transition-colors">
+            Découvrir nos services
+            <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+ 
+      <!-- ===== Colonne droite : galerie en quinconce (change selon le service) ===== -->
+      <div class="lg:flex-[0_0_55%] flex items-center justify-center">
+        <div id="approachGallery"
+             class="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[540px] h-[300px] sm:h-[420px] lg:h-[520px] mx-auto">
+ 
+          <!-- Bouton précédent (unique, commun à tous les slides) -->
+          <button type="button" id="approachPrev" aria-label="Service précédent"
+            class="absolute top-0 left-0 z-20 w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[1.5px] border-burgundy
+                   flex items-center justify-center text-burgundy
+                   hover:bg-burgundy hover:text-warm-white transition-colors duration-300">
+            <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" stroke="currentColor" stroke-width="2" fill="none"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+ 
+          <!-- Slides image (un par service, superposés, un seul visible) -->
+          {% for service in services %}
+          <div class="approach-gallery-slide {% if not forloop.first %}hidden{% endif %} absolute inset-0" data-index="{{ forloop.counter0 }}">
+ 
+            <div class="absolute bottom-0 left-0 z-[2] w-[110px] h-[150px] sm:w-[160px] sm:h-[220px] lg:w-[200px] lg:h-[270px] overflow-hidden bg-rose-pale group">
+              {% if service.image_1 %}
+              <img src="{{ service.image_1.url }}" alt="{{ service.title }}" loading="lazy"
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              {% else %}
+              <div class="w-full h-full flex items-center justify-center text-burgundy/30"><i class="fas fa-image"></i></div>
+              {% endif %}
+            </div>
+ 
+            <div class="absolute top-0 right-0 z-[1] w-[120px] h-[170px] sm:w-[180px] sm:h-[250px] lg:w-[230px] lg:h-[310px] overflow-hidden bg-rose-pale group">
+              {% if service.image_2 %}
+              <img src="{{ service.image_2.url }}" alt="{{ service.title }}" loading="lazy"
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              {% else %}
+              <div class="w-full h-full flex items-center justify-center text-burgundy/30"><i class="fas fa-image"></i></div>
+              {% endif %}
+            </div>
+ 
+          </div>
+          {% empty %}
+          <div class="approach-gallery-slide absolute inset-0" data-index="0">
+            <div class="absolute bottom-0 left-0 z-[2] w-[110px] h-[150px] sm:w-[160px] sm:h-[220px] lg:w-[200px] lg:h-[270px] overflow-hidden bg-rose-pale">
+              <img src="https://placehold.co/200x270/e8e3da/7d3b47?text=Photo+1" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute top-0 right-0 z-[1] w-[120px] h-[170px] sm:w-[180px] sm:h-[250px] lg:w-[230px] lg:h-[310px] overflow-hidden bg-rose-pale">
+              <img src="https://placehold.co/230x310/e0d8cc/7d3b47?text=Photo+2" alt="" class="w-full h-full object-cover">
+            </div>
+          </div>
+          {% endfor %}
+ 
+          <!-- Bouton suivant (unique, commun à tous les slides) -->
+          <button type="button" id="approachNext" aria-label="Service suivant"
+            class="absolute bottom-0 right-0 z-20 w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[1.5px] border-burgundy
+                   flex items-center justify-center text-burgundy
+                   hover:bg-burgundy hover:text-warm-white transition-colors duration-300">
+            <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" stroke="currentColor" stroke-width="2" fill="none"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+ 
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<script>
+(function () {
+  const textSlides = Array.from(document.querySelectorAll('.approach-text-slide'));
+  const gallerySlides = Array.from(document.querySelectorAll('.approach-gallery-slide'));
+  const prevBtn = document.getElementById('approachPrev');
+  const nextBtn = document.getElementById('approachNext');
+  const total = textSlides.length;
+ 
+  if (total <= 1) {
+    // un seul service (ou aucun) : pas besoin de boutons fonctionnels
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    return;
+  }
+ 
+  let current = 0;
+ 
+  function show(index) {
+    current = (index + total) % total; // boucle dans les deux sens
+    textSlides.forEach((el, i) => el.classList.toggle('hidden', i !== current));
+    gallerySlides.forEach((el, i) => el.classList.toggle('hidden', i !== current));
+  }
+ 
+  prevBtn.addEventListener('click', () => show(current - 1));
+  nextBtn.addEventListener('click', () => show(current + 1));
+})();
+</script>
+
+
+
+
+
+ 
+
+
+<!-- ============================= Our Blog ============================= -->
+
+
+<section class="bg-cream py-24 lg:py-32 overflow-hidden">
+
+    <!-- Séparateur décoratif -->
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Latest from the Blog</h2>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <span class="font-script text-5xl text-burgundy-dk">✦</span>
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+        </div>
+
+    </div>
+
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+
+      {# ---------- Colonne gauche : texte ---------- #}
+      <div class="max-w-lg">
+        <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-boss-text">
+          900+ Projets Partout<br>
+          <span class="text-burgundy">Dans le Monde</span>
+        </h2>
+
+        <p class="mt-7 text-boss-muted text-lg leading-relaxed">
+          De New York à Tokyo, notre portfolio traverse continents et cultures.
+          Notre équipe apporte des solutions design adaptées à chaque espace —
+          toujours avec un souci du détail et de l'innovation.
+        </p>
+
+        <a href="{% url 'list' %}"
+           class="group inline-flex items-center gap-2 mt-10 px-9 py-4 rounded-full
+                  border-2 border-burgundy text-burgundy font-semibold text-sm tracking-wide
+                  transition-colors duration-300 hover:bg-burgundy hover:text-warm-white">
+          Voir plus
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+
+      {# ---------- Colonne droite : carrousel de cartes + pagination ---------- #}
+      <div class="relative">
+
+        {# Formes décoratives pour donner plus de présence visuelle #}
+        <span class="hidden lg:block absolute -top-10 -right-10 w-72 h-72 bg-rose-deep/25 rounded-full blur-3xl -z-10"></span>
+        <span class="hidden lg:block absolute -bottom-10 left-10 w-56 h-56 bg-rose-mid/40 rounded-full blur-3xl -z-10"></span>
+
+        <div id="projects-stack" class="relative flex items-end justify-center lg:justify-start min-h-[520px]">
+          <!-- Les 3 cartes visibles sont mises à jour dynamiquement en JS -->
+          <article data-slot="primary" class="project-card group cursor-pointer absolute left-0 bottom-0 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 ease-out">
+            <img data-role="img" src="" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-burgundy-dk/95 via-burgundy-dk/15 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-7">
+              <p data-role="title" class="text-warm-white font-bold text-2xl"></p>
+              <p data-role="count" class="text-rose-pale text-sm mt-1"></p>
+            </div>
+          </article>
+
+          <article data-slot="secondary" class="project-card group cursor-pointer absolute bottom-0 rounded-3xl overflow-hidden shadow-xl transition-all duration-500 ease-out">
+            <img data-role="img" src="" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-burgundy-dk/90 via-burgundy-dk/10 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-5">
+              <p data-role="title" class="text-warm-white font-semibold text-lg"></p>
+              <p data-role="count" class="text-rose-pale text-xs mt-1"></p>
+            </div>
+          </article>
+
+          <article data-slot="tertiary" class="project-card group cursor-pointer absolute bottom-0 rounded-3xl overflow-hidden shadow-lg transition-all duration-500 ease-out">
+            <img data-role="img" src="" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-burgundy-dk/90 via-burgundy-dk/10 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+              <p data-role="title" class="text-warm-white font-semibold text-base"></p>
+              <p data-role="count" class="text-rose-pale text-xs mt-1"></p>
+            </div>
+          </article>
+        </div>
+
+        {# Pagination fonctionnelle : fenêtre glissante de numéros #}
+        <div class="flex items-center justify-center lg:justify-start gap-4 mt-10">
+          <button type="button" id="pagination-prev" aria-label="Précédent"
+                  class="w-9 h-9 flex items-center justify-center rounded-full border border-rose-deep text-burgundy hover:bg-burgundy hover:text-warm-white hover:border-burgundy transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <span id="pagination-track" class="relative h-[2px] w-16 bg-rose-mid rounded-full overflow-hidden">
+            <span id="pagination-progress" class="absolute inset-y-0 left-0 bg-burgundy rounded-full transition-all duration-300"></span>
+          </span>
+
+          <div id="pagination-numbers" class="flex items-center gap-3"></div>
+
+          <button type="button" id="pagination-next" aria-label="Suivant"
+                  class="w-9 h-9 flex items-center justify-center rounded-full border border-rose-deep text-burgundy hover:bg-burgundy hover:text-warm-white hover:border-burgundy transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ---------- Données des cartes (autant d'items que tu veux) ---------- #}
+{# projects_items doit être une LISTE PLATE (pas une liste de listes) fournie par ta vue Django. #}
+{% if projects_items %}
+  {{ projects_items|json_script:"projects-items-data" }}
+{% endif %}
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+  // Fallback si "projects_items" n'est pas fourni par la vue Django
+  const fallbackItems = [
+    { title: "Commerciaux",   count: "200+ projets", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80", url: "#" },
+    { title: "Résidentiel",   count: "400+ projets", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1000&q=80", url: "#" },
+    { title: "Cuisine",       count: "300+ projets", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1000&q=80", url: "#" },
+    { title: "Bureaux",       count: "150+ projets", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000&q=80", url: "#" },
+    { title: "Restaurants",   count: "180+ projets", img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=80", url: "#" },
+    { title: "Hôtellerie",    count: "220+ projets", img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1000&q=80", url: "#" },
+  ];
+
+  let items = fallbackItems;
+  const dataEl = document.getElementById("projects-items-data");
+  if (dataEl) {
+    try {
+      const parsed = JSON.parse(dataEl.textContent);
+      if (Array.isArray(parsed) && parsed.length) items = parsed;
+    } catch (e) {
+      console.warn("projects_items invalide, utilisation du fallback.", e);
+    }
+  }
+
+  const total = items.length;
+  const stack = document.getElementById("projects-stack");
+  const cardPrimary = stack.querySelector('[data-slot="primary"]');
+  const cardSecondary = stack.querySelector('[data-slot="secondary"]');
+  const cardTertiary = stack.querySelector('[data-slot="tertiary"]');
+  const progressBar = document.getElementById("pagination-progress");
+  const numbersWrap = document.getElementById("pagination-numbers");
+  const prevBtn = document.getElementById("pagination-prev");
+  const nextBtn = document.getElementById("pagination-next");
+
+  // Styles propres à chaque rôle : la "primary" est la plus grande et passe devant.
+  const roleStyles = {
+    primary:   { classes: "w-[62%] sm:w-[58%] h-[440px] sm:h-[500px] left-0 z-30", },
+    secondary: { classes: "w-[46%] sm:w-[42%] h-[340px] sm:h-[380px] left-[46%] sm:left-[42%] mb-14 z-20", },
+    tertiary:  { classes: "w-[38%] sm:w-[34%] h-[260px] sm:h-[300px] left-[74%] sm:left-[68%] mb-2 z-10", },
+  };
+  const allSizeClasses = Object.values(roleStyles).flatMap(r => r.classes.split(" "));
+
+  function fillCard(card, item, role) {
+    card.classList.remove(...allSizeClasses);
+    card.classList.add(...roleStyles[role].classes.split(" "));
+    card.dataset.index = item._index;
+    card.dataset.url = item.url || "#";
+    card.querySelector('[data-role="img"]').src = item.img;
+    card.querySelector('[data-role="img"]').alt = item.title;
+    card.querySelector('[data-role="title"]').textContent = item.title;
+    card.querySelector('[data-role="count"]').textContent = item.count;
+  }
+
+  const state = { current: 0 };
+
+  function render() {
+    const iPrimary = state.current % total;
+    const iSecondary = (state.current + 1) % total;
+    const iTertiary = (state.current + 2) % total;
+
+    fillCard(cardPrimary, { ...items[iPrimary], _index: iPrimary }, "primary");
+    fillCard(cardSecondary, { ...items[iSecondary], _index: iSecondary }, "secondary");
+    fillCard(cardTertiary, { ...items[iTertiary], _index: iTertiary }, "tertiary");
+
+    progressBar.style.width = (100 / total) * (state.current + 1) + "%";
+    renderPagination();
+  }
+
+  function goTo(index) {
+    state.current = ((index % total) + total) % total;
+    render();
+  }
+
+  function renderPagination() {
+    numbersWrap.innerHTML = "";
+    // Fenêtre glissante : [courant-1, courant, courant+1], repliée en début/fin de liste.
+    let windowStart = state.current - 1;
+    if (windowStart < 0) windowStart = 0;
+    if (windowStart > total - 3) windowStart = Math.max(0, total - 3);
+
+    const windowSize = Math.min(3, total);
+    for (let i = 0; i < windowSize; i++) {
+      const pageIndex = windowStart + i;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = pageIndex + 1;
+      const isActive = pageIndex === state.current;
+      btn.className = isActive
+        ? "page-btn font-bold text-burgundy text-lg transition-all duration-200"
+        : "page-btn text-muted text-sm transition-all duration-200 hover:text-burgundy";
+      btn.addEventListener("click", () => goTo(pageIndex));
+      numbersWrap.appendChild(btn);
+    }
+  }
+
+  [cardSecondary, cardTertiary].forEach((card) => {
+    card.addEventListener("click", () => goTo(parseInt(card.dataset.index, 10)));
+  });
+  cardPrimary.addEventListener("click", () => {
+    const url = cardPrimary.dataset.url;
+    if (url && url !== "#") window.location.href = url;
+  });
+
+  prevBtn.addEventListener("click", () => goTo(state.current - 1));
+  nextBtn.addEventListener("click", () => goTo(state.current + 1));
+
+  render();
+});
+
+</script>
+
+
+
+
+
+<!-- section pour les projets -->
+
+<section class="bg-warm-white py-24 lg:py-28">
+
+
+      <!-- Séparateur décoratif -->
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Latest from the Project</h2>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <span class="font-script text-5xl text-burgundy-dk">✦</span>
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+        </div>
+
+    </div>
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+    {# En-tête #}
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+      <div>
+        <span class="inline-block bg-blush/40 text-burgundy text-xs font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-4">
+          Portfolio
+        </span>
+        <h2 class="font-script text-4xl sm:text-5xl text-boss-text leading-tight">
+          Mes projets <span class="text-burgundy italic">phares</span>
+        </h2>
+      </div>
+      <p class="text-boss-muted max-w-sm">
+        Trois collaborations récentes, du premier échange jusqu'à la mise en ligne.
+      </p>
+    </div>
+
+    {# Grille des projets phares #}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-14">
+      {% for project in featured_projects %}
+      <a href="{{ project.get_absolute_url }}" class="group relative block rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+        <div class="relative h-80 overflow-hidden">
+          <img src="{{ project.cover_image.url }}" alt="{{ project.title }}"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/85 via-dark/15 to-transparent"></div>
+
+          {% if project.category %}
+          <span class="absolute top-4 left-4 flex items-center gap-2 bg-blush px-3 py-1.5 rounded-full text-[11px] uppercase tracking-wider text-burgundy-dk font-semibold">
+            <span class="w-2 h-2 rounded-full bg-burgundy"></span>
+            {{ project.category }}
+          </span>
+          {% endif %}
+
+          <div class="absolute inset-x-0 bottom-0 p-6">
+            <h3 class="font-script text-2xl text-warm-white mb-1">{{ project.title }}</h3>
+            <p class="text-warm-white/80 text-sm line-clamp-2 mb-4">{{ project.short_description }}</p>
+
+            <span class="inline-flex items-center gap-2 text-warm-white text-xs uppercase tracking-wider font-medium">
+              Voir le projet
+              <span class="w-7 h-7 rounded-full bg-warm-white text-burgundy flex items-center justify-center group-hover:translate-x-1 transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+                </svg>
+              </span>
+            </span>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <p class="col-span-full text-center text-boss-muted">Aucun projet mis en avant pour le moment.</p>
+      {% endfor %}
+    </div>
+
+    {# CTA vers la page projets #}
+    <div class="text-center">
+      <a href="{% url 'project_list'%}"
+         class="group inline-flex items-center gap-8 rounded-full bg-burgundy-dk pl-8 pr-1.5 py-1.5 text-warm-white shadow-lg shadow-burgundy/30 hover:shadow-xl transition">
+        <span class="text-xs uppercase tracking-[0.2em] font-medium">Voir tous les projets</span>
+        <span class="w-11 h-11 rounded-full bg-blush text-burgundy-dk flex items-center justify-center group-hover:translate-x-1 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<!-- ============================= Contact Us ============================= -->
+<section class="relative bg-[#fffcfa] py-24 lg:py-40 overflow-hidden">
+
+  <!-- Séparateur décoratif -->
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Contact Us</h2>
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <span class="font-script text-5xl text-burgundy-dk">✦</span>
+          <div class="flex-1 h-px bg-burgundy-dk"></div>
+        </div>
+
+    </div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+    <!-- LEFT: Text Content -->
+    <div class="space-y-8">
+      <h2 class="font-script italic text-5xl sm:text-6xl lg:text-7xl leading-tight text-[#7d3b47]">
+        Contact <span class="text-4xl sm:text-5xl">Us</span>
+      </h2>
+
+      <p class="font-serif text-[#3a2a2c] text-sm sm:text-base leading-relaxed max-w-lg">
+        Feel free to reach out via any of the following methods:
+      </p>
+
+      <div class="space-y-4">
+        <div class="flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-[#d4a5aa]/30 flex items-center justify-center">
+            <svg class="w-5 h-5 text-[#7d3b47]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </span>
+          <span class="font-serif text-[#8a6e72] text-sm">hello@techspace.com</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-[#d4a5aa]/30 flex items-center justify-center">
+            <svg class="w-5 h-5 text-[#7d3b47]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </span>
+          <span class="font-serif text-[#8a6e72] text-sm">Paris, France</span>
+        </div>
+      </div>
+
+      <div class="flex gap-4 pt-4">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#7d3b47]/20"></span>
+        <span class="w-2 h-2 rounded-full bg-[#d4a5aa]/30"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#c17e88]/15"></span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Contact Form -->
+    <div class="relative">
+      <div class="rounded-3xl bg-white/80 p-10 sm:p-12 shadow-lg">
+        <form class="space-y-6">
+          <div>
+            <label class="block font-serif text-xs uppercase tracking-widest text-[#8a6e72] mb-3">Name</label>
+            <input type="text" class="w-full px-5 py-4 bg-[#fdf8f5] border border-[#d4a5aa]/30 rounded-xl text-[#3a2a2c] font-serif text-sm focus:outline-none focus:border-[#7d3b47]/50 transition-colors" placeholder="Your name">
+          </div>
+          <div>
+            <label class="block font-serif text-xs uppercase tracking-widest text-[#8a6e72] mb-3">Email</label>
+            <input type="email" class="w-full px-5 py-4 bg-[#fdf8f5] border border-[#d4a5aa]/30 rounded-xl text-[#3a2a2c] font-serif text-sm focus:outline-none focus:border-[#7d3b47]/50 transition-colors" placeholder="your@email.com">
+          </div>
+          <div>
+            <label class="block font-serif text-xs uppercase tracking-widest text-[#8a6e72] mb-3">Message</label>
+            <textarea rows="4" class="w-full px-5 py-4 bg-[#fdf8f5] border border-[#d4a5aa]/30 rounded-xl text-[#3a2a2c] font-serif text-sm focus:outline-none focus:border-[#7d3b47]/50 transition-colors resize-none" placeholder="Your message..."></textarea>
+          </div>
+          <button type="submit" class="w-full py-4 bg-[#7d3b47] text-white font-serif italic text-sm tracking-widest rounded-xl hover:bg-[#5c2a33] transition-colors duration-300">
+            SEND MESSAGE
+          </button>
+        </form>
+      </div>
+      <span class="absolute -top-4 right-8 w-3 h-3 rounded-full bg-[#7d3b47]/15"></span>
+      <span class="absolute -bottom-6 left-4 w-2 h-2 rounded-full bg-[#d4a5aa]/25"></span>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<section class="relative bg-gradient-to-br from-rose-pale via-rose-mid/70 to-rose-pale py-20 lg:py-24 overflow-hidden">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+ 
+    <h2 class="font-script text-5xl sm:text-6xl lg:text-7xl text-burgundy leading-tight">
+      Ready to Get Started?
+    </h2>
+ 
+    <p class="mt-5 text-boss-muted font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">
+      Join thousands of boss ladies who've transformed their online presence
+    </p>
+ 
+    <a href="{% url 'contact' %}"
+       class="inline-block mt-10 px-10 py-4 bg-burgundy text-warm-white font-bold text-xl sm:text-sm
+              tracking-[0.2em] uppercase transition-colors duration-300 hover:bg-burgundy-dk rounded-full">
+      contact me
+    </a>
+ 
+  </div>
+</section>
+ 
+
+
+
+
+
+
+
+
+<section class="min-h-screen w-full overflow-hidden bg-[#f8f1e8]">
+
+  <div class="flex flex-col lg:flex-row w-full min-h-screen">
+
+    <!-- Demi-cercle gauche IMAGE -->
+    <div 
+      class="
+      relative
+      w-full lg:w-1/2
+      min-h-[60vh] lg:min-h-screen
+      overflow-hidden
+      rounded-r-[100%] 
+      "
+    >
+
+      <img 
+        src="static/images/ordi4.jpeg"
+        class="
+        absolute inset-0
+        w-full h-full
+        object-cover
+        "
+      />
+
+    </div>
+
+
+    <!-- Demi-cercle droit TEXTE -->
+    <div
+      class="
+      w-full lg:w-1/2
+      min-h-[60vh] lg:min-h-screen
+      bg-rose-pale
+      flex items-center
+      rounded-l-[100%] border border-burgundy-dk
+      "
+    >
+
+      <div class="px-8 md:px-16 lg:px-24">
+
+        <h1 class="
+        text-4xl md:text-5xl lg:text-7xl
+        font-bold
+        ">
+          Développeuse Logicielle
+        </h1>
+
+        <p class="
+        mt-6
+        text-base md:text-lg
+        ">
+          Je transforme des idées en solutions digitales modernes.
+        </p>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+{%endblock %}

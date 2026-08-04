@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static blog_extras %}
+
+{% block title %}Articles — TechSpace{% endblock %}
+
+{% block nav_articles_active %}text-burgundy border-b-2 border-burgundy pb-1{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="bg-rose-pale overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-center">
+    <div class="relative">
+      <div class="rounded-[3rem] overflow-hidden aspect-[4/3] md:-mr-16 shadow-xl">
+        <img src="{% static 'blog/img/hero-journal.jpg' %}"
+             alt="Espace de travail cosy avec carnet et fleurs"
+             class="w-full h-full object-cover" />
+      </div>
+    </div>
+    <div>
+      <span class="inline-flex items-center gap-2 bg-blush text-burgundy text-xs font-mono font-medium px-4 py-1.5 rounded-full mb-6">
+        📓 Mon Journal
+      </span>
+      <h1 class="font-script text-5xl md:text-6xl leading-[1.05] mb-6">
+        <span class="text-ink">Réflexions,</span><br/>
+        <span class="italic-script text-burgundy">Idées &amp; Inspiration</span>
+      </h1>
+      <div class="w-16 h-[2px] bg-rose-deep mb-6"></div>
+      <p class="text-boss-muted text-base leading-relaxed max-w-md">
+        Un espace où je partage mes réflexions sur le design, le développement,
+        la productivité et tout ce qui se trouve entre les deux.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="max-w-7xl mx-auto px-6 py-14 grid lg:grid-cols-[1fr_320px] gap-10">
+
+  <!-- LEFT: filtres + grille + pagination -->
+  <div>
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <h2 class="text-sm font-semibold text-boss-text">Parcourir par catégories</h2>
+
+      <form method="get" action="{% url 'blog:article_list' %}" class="flex items-center gap-2">
+        {% if search_query %}<input type="hidden" name="q" value="{{ search_query }}">{% endif %}
+        {% if current_category != "all" %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
+        <label for="sortSelect" class="text-sm text-boss-muted">Trier par :</label>
+        <select id="sortSelect" name="sort" onchange="this.form.submit()"
+                class="text-sm border border-rose-pale rounded-full px-3 py-1.5 bg-warm-white focus:outline-none focus:ring-1 focus:ring-rose-deep">
+          <option value="newest" {% if current_sort == "newest" %}selected{% endif %}>Plus récents</option>
+          <option value="oldest" {% if current_sort == "oldest" %}selected{% endif %}>Plus anciens</option>
+          <option value="popular" {% if current_sort == "popular" %}selected{% endif %}>Plus populaires</option>
+        </select>
+      </form>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-10">
+      <a href="?{% url_replace category="" %}"
+         class="text-sm font-medium px-4 py-2 rounded-full border transition
+         {% if current_category == 'all' %}bg-burgundy text-warm-white border-burgundy
+         {% else %}bg-warm-white text-boss-text border-rose-pale hover:border-rose-deep{% endif %}">
+        Tous
+      </a>
+      {% for cat in categories %}
+      <a href="?{% url_replace category=cat.slug %}"
+         class="text-sm font-medium px-4 py-2 rounded-full border transition
+         {% if current_category == cat.slug %}bg-burgundy text-warm-white border-burgundy
+         {% else %}bg-warm-white text-boss-text border-rose-pale hover:border-rose-deep{% endif %}">
+        {{ cat.name }}
+      </a>
+      {% endfor %}
+    </div>
+
+    {% if articles %}
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+      {% for article in articles %}
+       
+        <div class="bg-warm-white border border-rose-pale rounded-2xl overflow-hidden card-shadow flex flex-col">
+            <a href="{{ article.get_absolute_url }}" class="relative block">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-44 object-cover" />
+                <span class="absolute top-3 left-3 bg-blush text-burgundy text-xs font-mono px-3 py-1 rounded-full">
+                {{ article.category.name }}
+                </span>
+            </a>
+            <div class="p-5 flex flex-col flex-1">
+                <div class="text-xs text-boss-muted font-mono mb-2">
+                📅 {{ article.published_date|date:"d M Y" }} &nbsp;·&nbsp; {{ article.reading_time }} min de lecture
+                </div>
+                <h3 class="font-semibold text-boss-text leading-snug mb-2">
+                <a href="{{ article.get_absolute_url }}" class="hover:text-burgundy transition">{{ article.title }}</a>
+                </h3>
+                <p class="text-sm text-boss-muted flex-1 mb-4">{{ article.excerpt }}</p>
+                <a href="{{ article.get_absolute_url }}" class="text-sm font-medium text-burgundy hover:text-burgundy-dk inline-flex items-center gap-1">
+                Lire la suite →
+                </a>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-16 text-boss-muted">
+      Aucun article ne correspond à ta recherche.
+    </div>
+    {% endif %}
+
+    {% if is_paginated %}
+    <div class="flex items-center justify-center gap-2 mt-12">
+      {% if page_obj.has_previous %}
+      <a href="?{% url_replace page=page_obj.previous_page_number %}"
+         class="pagination-btn w-9 h-9 flex items-center justify-center rounded-full border border-rose-pale text-boss-text hover:border-rose-deep">‹</a>
+      {% else %}
+      <span class="pagination-btn w-9 h-9 flex items-center justify-center rounded-full border border-rose-pale text-boss-text opacity-30">‹</span>
+      {% endif %}
+
+      {% for num in paginator.page_range %}
+      <a href="?{% url_replace page=num %}"
+         class="pagination-btn w-9 h-9 flex items-center justify-center rounded-full border text-sm border-rose-pale text-boss-text hover:border-rose-deep {% if num == page_obj.number %}active{% endif %}">
+        {{ num }}
+      </a>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <a href="?{% url_replace page=page_obj.next_page_number %}"
+         class="pagination-btn w-9 h-9 flex items-center justify-center rounded-full border border-rose-pale text-boss-text hover:border-rose-deep">›</a>
+      {% else %}
+      <span class="pagination-btn w-9 h-9 flex items-center justify-center rounded-full border border-rose-pale text-boss-text opacity-30">›</span>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="space-y-6">
+
+    <!-- Recherche (remplace la liste Career / Inspiration) -->
+    <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
+      <h3 class="text-sm font-semibold text-boss-text mb-3">Recherche</h3>
+      <form method="get" action="{% url 'blog:article_list' %}"
+            class="flex items-center gap-2 bg-rose-pale rounded-full pl-4 pr-1.5 py-1.5">
+        {% if current_category != "all" %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
+        {% if current_sort != "newest" %}<input type="hidden" name="sort" value="{{ current_sort }}">{% endif %}
+        <input type="text" name="q" value="{{ search_query }}" placeholder="Rechercher un article..."
+               class="flex-1 bg-transparent text-sm text-ink placeholder-boss-muted focus:outline-none" />
+        <button type="submit" class="bg-blush hover:bg-rose-mid transition p-2 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-burgundy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Featured Post -->
+    {% if featured_post %}
+    <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
+      <h3 class="text-sm font-semibold text-boss-text mb-4">Article à la une</h3>
+      <a href="{{ featured_post.get_absolute_url }}" class="flex gap-3 group">
+        <img src="{{ featured_post.image.url }}" class="w-16 h-16 rounded-xl object-cover flex-shrink-0" alt="{{ featured_post.title }}" />
+        <div>
+          <h4 class="text-sm font-semibold text-boss-text leading-snug mb-1 group-hover:text-burgundy transition">
+            {{ featured_post.title }}
+          </h4>
+          <p class="text-xs text-boss-muted font-mono">
+            {{ featured_post.published_date|date:"d F Y" }} · {{ featured_post.reading_time }} min
+          </p>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+
+    <!-- Newsletter -->
+    <div class="bg-burgundy-dk rounded-2xl p-6 text-warm-white">
+      <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4">✉</div>
+      <h3 class="font-semibold mb-2">Newsletter</h3>
+      <p class="text-sm text-rose-pale/80 mb-4">
+        Reçois mes dernières réflexions et mises à jour directement dans ta boîte mail.
+      </p>
+      <form method="post" action="{% url 'newsletter_subscribe' %}">
+        {% csrf_token %}
+        <input type="email" name="email" required placeholder="Ton adresse e-mail"
+               class="w-full mb-3 px-4 py-2 rounded-full text-sm text-ink bg-warm-white focus:outline-none" />
+        <button type="submit" class="w-full bg-burgundy hover:bg-rose-deep transition text-warm-white text-sm font-medium py-2 rounded-full">
+          S'abonner
+        </button>
+      </form>
+    </div>
+
+  </aside>
+</section>
+
+{% endblock %}
