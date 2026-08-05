@@ -73,11 +73,12 @@
       <div class="rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-xl">
         <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
       </div>
-      <button type="button"
-              class="absolute -bottom-5 left-6 w-12 h-12 bg-blush hover:bg-rose-mid transition rounded-full flex items-center justify-center shadow-lg"
-              aria-label="Aimer cet article" title="{{ article.likes_count }} j'aime">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-burgundy" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 21s-6.7-4.35-9.3-8.28C1 10.1 1.5 6.6 4.4 5.1c2.1-1.1 4.4-.4 5.6 1.3.4.5.7 1 1 1.5.3-.5.6-1 1-1.5 1.2-1.7 3.5-2.4 5.6-1.3 2.9 1.5 3.4 5 1.7 7.62C18.7 16.65 12 21 12 21z"/>
+      <button type="button" id="like-btn"
+              data-url="{% url 'toggle_article_like' article.slug %}"
+              class="js-like-btn absolute -bottom-5 left-6 w-12 h-12 bg-blush hover:bg-rose-mid transition rounded-full flex items-center justify-center shadow-lg"
+              aria-label="Aimer cet article" title="{{ likes_total }} j'aime">
+        <svg id="like-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-burgundy" fill="{% if is_liked %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6.7-4.35-9.3-8.28C1 10.1 1.5 6.6 4.4 5.1c2.1-1.1 4.4-.4 5.6 1.3.4.5.7 1 1 1.5.3-.5.6-1 1-1.5 1.2-1.7 3.5-2.4 5.6-1.3 2.9 1.5 3.4 5 1.7 7.62C18.7 16.65 12 21 12 21z"/>
         </svg>
       </button>
     </div>
@@ -225,5 +226,27 @@
     </aside>
   </div>
 </section>
+
+<script>
+  function getCookie(name) {
+    const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return match ? match.pop() : '';
+  }
+  const likeBtn = document.getElementById('like-btn');
+  if (likeBtn) {
+    likeBtn.addEventListener('click', async () => {
+      const res = await fetch(likeBtn.dataset.url, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCookie('csrftoken') },
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      const icon = document.getElementById('like-icon');
+      icon.setAttribute('fill', data.liked ? 'currentColor' : 'none');
+      likeBtn.querySelector('svg').setAttribute('fill', data.liked ? 'currentColor' : 'none');
+      likeBtn.title = data.likes_count + " j'aime";
+    });
+  }
+</script>
 
 {% endblock %}

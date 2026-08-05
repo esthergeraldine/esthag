@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static blog_extras %}
 
 {% block title %}Mes Projets{% endblock %}
 
@@ -10,7 +10,7 @@
 
 
 <section class="relative overflow-hidden bg-rose-pale rounded-b-[2.5rem] md:rounded-b-[3rem] font-sans">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-12 pb-14 md:pt-16 md:pb-20">
+  <div class="w-full mx-auto px-6 sm:px-8 lg:px-10 pt-12 pb-14 md:pt-16 md:pb-20 max-w-[1600px]">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
       {# ---------- Colonne texte ---------- #}
@@ -95,7 +95,16 @@
 
 
 
-  <section class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20 font-sans">
+  <section class="w-full mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20 font-sans max-w-[1600px]">
+    {# ---------- Message de confirmation (après envoi d'une idée) ---------- #}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="mb-6 px-4 py-3 rounded-xl text-sm font-medium
+                    {% if message.tags == 'error' %}bg-red-50 text-red-600{% else %}bg-rose-mid text-burgundy-dk{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
 
     {# ---------- Message de confirmation (après envoi d'une idée) ---------- #}
     {% if messages %}
@@ -163,10 +172,10 @@
     </div>
 
     {% comment %} {# ============================================================
-       Grille : 2 colonnes fixes → 8 projets/page = exactement 4 rangées
+       Grille : 4 colonnes → 8 projets/page = exactement 2 rangées
        ============================================================ #} {% endcomment %}
     {% if projects %}
-    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2{% endif %}">
+    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2 lg:grid-cols-4{% endif %}">
       {% for project in projects %}
         <article class="group bg-warm-white rounded-2xl overflow-hidden border border-rose-pale shadow-card hover:shadow-hover transition-shadow
                          {% if view_mode == 'list' %}sm:flex{% endif %}">
@@ -277,34 +286,7 @@
       {% endfor %}
     </div>
 
-    {# ---------- Pagination ---------- #}
-    {% if is_paginated %}
-    <div class="flex justify-center items-center gap-2 mt-14">
-      <a href="{% if page_obj.has_previous %}?{{ querystring }}&page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"
-         class="p-2.5 rounded-full border border-rose-mid text-burgundy
-                {% if not page_obj.has_previous %}opacity-40 pointer-events-none{% else %}hover:bg-rose-pale{% endif %}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"/>
-        </svg>
-      </a>
-
-      {% for num in page_obj.paginator.page_range %}
-        <a href="?{{ querystring }}&page={{ num }}"
-           class="w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition
-                  {% if num == page_obj.number %}bg-burgundy-dk text-warm-white{% else %}text-burgundy-dk hover:bg-rose-mid{% endif %}">
-          {{ num }}
-        </a>
-      {% endfor %}
-
-      <a href="{% if page_obj.has_next %}?{{ querystring }}&page={{ page_obj.next_page_number }}{% else %}#{% endif %}"
-         class="p-2.5 rounded-full border border-rose-mid text-burgundy
-                {% if not page_obj.has_next %}opacity-40 pointer-events-none{% else %}hover:bg-rose-pale{% endif %}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/>
-        </svg>
-      </a>
-    </div>
-    {% endif %}
+    {% pagination paginator page_obj querystring %}
 
     {% else %}
     <div class="text-center py-20">

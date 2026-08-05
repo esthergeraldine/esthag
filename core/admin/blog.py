@@ -31,7 +31,6 @@ class ArticleAdmin(admin.ModelAdmin):
         "is_featured",
         "is_published",
         "views_count",
-        "likes_count",
     )
     list_filter = ("category", "author", "is_featured", "is_published")
     list_editable = ("is_featured", "is_published")
@@ -51,6 +50,6 @@ class ArticleAdmin(admin.ModelAdmin):
             "fields": ("reading_time", "published_date", "updated_date")
         }),
         ("Statut & statistiques", {
-            "fields": ("is_featured", "is_published", "views_count", "likes_count")
+            "fields": ("is_featured", "is_published", "views_count")
         }),
     )

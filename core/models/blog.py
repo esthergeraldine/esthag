@@ -106,7 +106,6 @@ class Article(models.Model):
     is_published = models.BooleanField("Publié", default=True)
 
     views_count = models.PositiveIntegerField("Vues", default=0)
-    likes_count = models.PositiveIntegerField("Likes", default=0)
 
     published_date = models.DateTimeField("Date de publication", default=timezone.now)
     updated_date = models.DateTimeField("Dernière modification", auto_now=True)
@@ -131,7 +130,7 @@ class Article(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("blog:article_detail", kwargs={"slug": self.slug})
+        return reverse("article_detail", kwargs={"slug": self.slug})
 
     @property
     def reading_time_display(self):
@@ -148,3 +147,15 @@ class Article(models.Model):
             is_published=True,
             published_date__gt=self.published_date
         ).order_by("published_date").first()
+
+
+class ArticleLike(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="likes")
+    session_key = models.CharField(max_length=40)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("article", "session_key")
+
+    def __str__(self):
+        return f"Like — {self.article}"

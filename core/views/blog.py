@@ -3,10 +3,20 @@ Vues pour l'application blog de TechSpace.
 À placer dans blog/views.py
 """
 
-from django.db.models import Count, Q, F
+from django.db.models import Count, Q, F, Exists, OuterRef
 from django.views.generic import ListView, DetailView
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
 
-from ..models import Article, Category
+from ..models import Article, Category, ArticleLike
+
+
+def _session_key(request):
+    """Garantit qu'une session existe."""
+    if not request.session.session_key:
+        request.session.create()
+    return request.session.session_key
 
 
 class ArticleListView(ListView):
@@ -23,8 +33,14 @@ class ArticleListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
+        session_key = _session_key(self.request)
+        liked_subquery = ArticleLike.objects.filter(article=OuterRef("pk"), session_key=session_key)
+
         queryset = Article.objects.filter(is_published=True).select_related(
             "category", "author"
+        ).annotate(
+            likes_total=Count("likes", distinct=True),
+            is_liked_by_me=Exists(liked_subquery),
         )
 
         category_slug = self.request.GET.get("category")
@@ -51,6 +67,7 @@ class ArticleListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["request"] = self.request
 
         context["categories"] = Category.objects.annotate(
             article_count=Count("articles", filter=Q(articles__is_published=True))
@@ -66,8 +83,6 @@ class ArticleListView(ListView):
             .first()
         )
 
-        # Conserve les filtres actifs (catégorie, recherche, tri) dans les liens
-        # de pagination, sans le paramètre "page" lui-même.
         params = self.request.GET.copy()
         params.pop("page", None)
         context["querystring"] = params.urlencode()
@@ -103,6 +118,14 @@ class ArticleDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         article = self.object
 
+        session_key = _session_key(self.request)
+        liked_subquery = ArticleLike.objects.filter(article=OuterRef("pk"), session_key=session_key)
+
+        article_qs = Article.objects.annotate(
+            likes_total=Count("likes", distinct=True),
+            is_liked_by_me=Exists(liked_subquery),
+        )
+
         context["previous_article"] = article.get_previous_article()
         context["next_article"] = article.get_next_article()
 
@@ -118,4 +141,65 @@ class ArticleDetailView(DetailView):
 
         context["total_articles"] = Article.objects.filter(is_published=True).count()
 
+        article_likes_qs = article_qs.filter(pk=article.pk)
+        context["likes_total"] = article_likes_qs.first().likes_total
+        context["is_liked"] = article_likes_qs.first().is_liked_by_me
+
         return context
+
+
+@require_POST
+def toggle_article_like(request, slug):
+    """Like / unlike un article en AJAX."""
+    article = get_object_or_404(Article, slug=slug)
+    session_key = _session_key(request)
+
+    like = ArticleLike.objects.filter(article=article, session_key=session_key).first()
+    if like:
+        like.delete()
+        liked = False
+    else:
+        ArticleLike.objects.create(article=article, session_key=session_key)
+        liked = True
+
+    return JsonResponse({"liked": liked, "likes_count": article.likes.count()})
+
+
+def search_articles(request):
+    """Recherche AJAX pour articles."""
+    query = request.GET.get("q", "").strip()
+    category = request.GET.get("category", "all")
+
+    if len(query) < 2:
+        return JsonResponse({"query": query, "total": 0, "results": []})
+
+    queryset = Article.objects.filter(
+        is_published=True
+    ).select_related("category", "author").filter(
+        Q(title__icontains=query)
+        | Q(excerpt__icontains=query)
+        | Q(content__icontains=query)
+        | Q(category__name__icontains=query)
+        | Q(author__name__icontains=query)
+    )
+
+    if category and category != "all":
+        queryset = queryset.filter(category__slug=category)
+
+    articles = queryset.order_by("-published_date")[:20]
+
+    results = [
+        {
+            "slug": a.slug,
+            "title": a.title,
+            "excerpt": a.excerpt,
+            "category": a.category.name,
+            "category_slug": a.category.slug,
+            "reading_time": a.reading_time,
+            "url": a.get_absolute_url(),
+            "image": a.image.url if a.image else None,
+        }
+        for a in articles
+    ]
+
+    return JsonResponse({"query": query, "total": len(results), "results": results})

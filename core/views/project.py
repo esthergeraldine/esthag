@@ -75,6 +75,7 @@ class ProjectListView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
+        ctx["request"] = self.request
 
         ctx["categories"] = ProjectCategory.objects.all()
         ctx["current_category"] = self.request.GET.get("category", "all")
@@ -82,14 +83,12 @@ class ProjectListView(ListView):
         ctx["sort_options"] = SORT_OPTIONS
         ctx["view_mode"] = self.request.GET.get("view", "grid")
 
-        # ---- Compteurs dynamiques du hero ----
         ctx["projects_count"] = Project.objects.count()
         ctx["technologies_count"] = Technology.objects.count()
         ctx["clients_count"] = (
             Project.objects.exclude(client="").values("client").distinct().count()
         )
 
-        # ---- Conserve filtre/tri dans les liens de pagination ----
         params = self.request.GET.copy()
         params.pop("page", None)
         ctx["querystring"] = params.urlencode()
