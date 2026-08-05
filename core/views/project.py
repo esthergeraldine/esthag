@@ -16,8 +16,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, DetailView
 
-from .forms import ProjectIdeaForm
-from .models import Project, ProjectCategory, ProjectChallenge, ProjectLike, Technology
+from ..forms import ProjectIdeaForm
+from ..models import Project, ProjectCategory, ProjectChallenge, ProjectLike, Technology
 
 
 SORT_OPTIONS = {
@@ -41,7 +41,7 @@ def _session_key(request):
 
 class ProjectListView(ListView):
     model = Project
-    template_name = "projects/project_list.html"
+    template_name = "project_list.html"
     context_object_name = "projects"
     paginate_by = PROJECTS_PER_PAGE
 
@@ -99,7 +99,7 @@ class ProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
-    template_name = "projects/project_detail.html"
+    template_name = "project_detail.html"
     context_object_name = "project"
 
     def get_context_data(self, **kwargs):

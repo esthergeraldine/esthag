@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 
 
-from .models import FAQItem, ProcessStep, Service, ServicesIntro, Technology
+from ..models import FAQItem, ProcessStep, Service, ServicesIntro, Technology
 
 
 # pour gerer les projets 

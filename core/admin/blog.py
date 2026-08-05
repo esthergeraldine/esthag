@@ -4,7 +4,7 @@ Admin pour l'application blog de TechSpace.
 """
 
 from django.contrib import admin
-from .models import Category, Author, Article
+from ..models import Category, Author, Article
 
 
 @admin.register(Category)

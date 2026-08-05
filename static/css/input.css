@@ -1,1 +1,96 @@
 @import "tailwindcss";
+
+@theme {
+  --breakpoint-admin-nav-bar: 875px;
+
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-lato: "Lato", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-script: "Great Vibes", cursive;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Jost", sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --color-primary: #1e3a8a;
+  --color-secondary: #d4a017;
+  --color-tertiary: #0A2540;
+  --color-tertiaryBlack: #ff6227;
+  --color-cancel: #676565;
+
+  --color-burgundy: #7d3b47;
+  --color-burgundy-dk: #5c2a33;
+  --color-cream: #fdf8f5;
+  --color-boss-text: #3a2a2c;
+  --color-boss-muted: #8a6e72;
+  --color-warm-white: #fffcfa;
+  --color-rose-pale: #f5e6e8;
+  --color-rose-mid: #e8cdd0;
+  --color-rose-deep: #d4a5aa;
+  --color-rose: #c9a0a0;
+  --color-rose-t: #d4a0a0;
+  --color-blush: #d4a0a0;
+  --color-muted: #b8a8a8;
+  --color-ink: #c17e88;
+  --color-dark: #3d2b2b;
+
+  --tracking-18: 4.5rem;
+  --tracking-22: 5.5rem;
+  --tracking-30: 7.5rem;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-850: 850ms;
+  --shadow-soft: 0 4px 24px rgba(139, 74, 82, 0.08);
+  --shadow-card: 0 8px 40px rgba(139, 74, 82, 0.12);
+  --shadow-hover: 0 12px 48px rgba(139, 74, 82, 0.18);
+  --background-image-rose-fade: linear-gradient(135deg, #faf7f4 0%, #edd5d0 100%);
+  --background-image-hero-hoverlay: linear-gradient(to right, rgba(250,247,244,0.85) 40%, transparent 100%);
+
+  --container-padding: 12px;
+  --container-padding-md: 2px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loadBar {
+  from { width: 0%; }
+  60% { width: 75%; }
+  85% { width: 90%; }
+  to { width: 100%; }
+}
+
+@keyframes float-p {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  50% { opacity: 0.15; }
+  100% { opacity: 0; transform: translateY(-120px) scale(1.5); }
+}
+
+@keyframes move {
+  50% { transform: translateY(-1rem); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes springEntrance {
+  0% { opacity: 0; transform: translateY(-100px); }
+  60% { transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}

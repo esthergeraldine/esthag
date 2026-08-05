@@ -9,13 +9,13 @@ from django.conf import settings
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
-from .forms import ContactForm
+from ..forms import ContactForm
 
 logger = logging.getLogger(__name__)
 
 
 class ContactView(FormView):
-    template_name = "pages/contact.html"
+    template_name = "contact.html"
     form_class = ContactForm
     success_url = reverse_lazy("contact")
 

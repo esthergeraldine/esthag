@@ -1,15 +1,17 @@
 // ─────────────────────────────────────────────────────
     // 1. NAVBAR — effet glass + lien actif au scroll
     // ─────────────────────────────────────────────────────
-    const navbar = document.getElementById('navbar');
+const navbar = document.getElementById('navbar');
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }, { passive: true });
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }, { passive: true });
+}
 
     // Marquer le lien actif selon l'URL courante
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -21,26 +23,28 @@
     // ─────────────────────────────────────────────────────
     // 2. MENU MOBILE — toggle
     // ─────────────────────────────────────────────────────
-    const menuToggle  = document.getElementById('menu-toggle');
-    const mobileMenu  = document.getElementById('mobile-menu');
-    const iconOpen    = document.getElementById('icon-open');
-    const iconClose   = document.getElementById('icon-close');
+const menuToggle  = document.getElementById('menu-toggle');
+const mobileMenu  = document.getElementById('mobile-menu');
+const iconOpen    = document.getElementById('icon-open');
+const iconClose   = document.getElementById('icon-close');
 
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== '0px';
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== '0px';
 
-      if (isOpen) {
-        mobileMenu.style.maxHeight = '0px';
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      } else {
-        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
-        iconOpen.classList.add('hidden');
-        iconClose.classList.remove('hidden');
-        menuToggle.setAttribute('aria-expanded', 'true');
-      }
-    });
+    if (isOpen) {
+      mobileMenu.style.maxHeight = '0px';
+      if (iconOpen) iconOpen.classList.remove('hidden');
+      if (iconClose) iconClose.classList.add('hidden');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    } else {
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      if (iconOpen) iconOpen.classList.add('hidden');
+      if (iconClose) iconClose.classList.remove('hidden');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+}
 
     // ─────────────────────────────────────────────────────
     // 3. SCROLL ANIMATIONS — IntersectionObserver
@@ -107,6 +111,8 @@
   const btn = document.getElementById('welcome-learn-btn');
   const serviceArea = document.getElementById('welcome-service');
   const dots = Array.from(document.querySelectorAll('[data-service-index]'));
+
+  if (!btn || !serviceArea || dots.length === 0) return;
 
   // compteur stocké en session (reset à fermeture onglet) ; change à localStorage si tu veux persister
   let count = Number(sessionStorage.getItem('welcome_click_count') || 0);

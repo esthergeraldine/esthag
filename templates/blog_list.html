@@ -42,7 +42,7 @@
     <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
       <h2 class="text-sm font-semibold text-boss-text">Parcourir par catégories</h2>
 
-      <form method="get" action="{% url 'blog:article_list' %}" class="flex items-center gap-2">
+      <form method="get" action="{% url 'article_list' %}" class="flex items-center gap-2">
         {% if search_query %}<input type="hidden" name="q" value="{{ search_query }}">{% endif %}
         {% if current_category != "all" %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
         <label for="sortSelect" class="text-sm text-boss-muted">Trier par :</label>
@@ -136,7 +136,7 @@
     <!-- Recherche (remplace la liste Career / Inspiration) -->
     <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
       <h3 class="text-sm font-semibold text-boss-text mb-3">Recherche</h3>
-      <form method="get" action="{% url 'blog:article_list' %}"
+      <form method="get" action="{% url 'article_list' %}"
             class="flex items-center gap-2 bg-rose-pale rounded-full pl-4 pr-1.5 py-1.5">
         {% if current_category != "all" %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
         {% if current_sort != "newest" %}<input type="hidden" name="sort" value="{{ current_sort }}">{% endif %}

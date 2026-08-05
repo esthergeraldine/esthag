@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Quality, TimelineEntry
+from ..models import Quality, TimelineEntry
 
 
 @admin.register(Quality)

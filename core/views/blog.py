@@ -6,7 +6,7 @@ Vues pour l'application blog de TechSpace.
 from django.db.models import Count, Q, F
 from django.views.generic import ListView, DetailView
 
-from .models import Article, Category
+from ..models import Article, Category
 
 
 class ArticleListView(ListView):
@@ -18,7 +18,7 @@ class ArticleListView(ListView):
     - sidebar : catégories + compteur, featured post, recherche
     """
     model = Article
-    template_name = "blog/article_list.html"
+    template_name = "blog_list.html"
     context_object_name = "articles"
     paginate_by = 6
 
@@ -83,7 +83,7 @@ class ArticleDetailView(DetailView):
     - sidebar : à propos de l'article, articles récents, catégories
     """
     model = Article
-    template_name = "blog/article_detail.html"
+    template_name = "blog_detail.html"
     context_object_name = "article"
     slug_field = "slug"
     slug_url_kwarg = "slug"
