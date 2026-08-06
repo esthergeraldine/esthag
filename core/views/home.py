@@ -1,15 +1,26 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from ..models import Service, Project
+from ..models import Service, Article
 
 
 def home(request):
-    featured_projects = Project.objects.all()[:3]
+    recent_articles = Article.objects.filter(is_published=True).order_by('-published_date')[:6]
+
+    articles_items = [
+        {
+            "title": article.title,
+            "category": article.category.name,
+            "excerpt": article.excerpt,
+            "img": article.image.url,
+            "url": article.get_absolute_url(),
+        }
+        for article in recent_articles
+    ]
 
     context = {
-        "featured_projects": featured_projects,
         "services": Service.objects.all(),
+        "articles_items": articles_items,
     }
     return render(request, "home.html", context)
 

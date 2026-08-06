@@ -402,8 +402,8 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
-      {# ---------- Colonne gauche : texte ---------- #}
-      <div class="max-w-lg">
+      {# ---------- Colonne gauche : texte dynamique ---------- #}
+      <div id="blog-left-content" class="max-w-lg">
         <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-boss-text">
           900+ Projets Partout<br>
           <span class="text-burgundy">Dans le Monde</span>
@@ -495,33 +495,31 @@
   </div>
 </section>
 
-{# ---------- Données des cartes (autant d'items que tu veux) ---------- #}
-{# projects_items doit être une LISTE PLATE (pas une liste de listes) fournie par ta vue Django. #}
-{% if projects_items %}
-  {{ projects_items|json_script:"projects-items-data" }}
+{# ---------- Données des articles ---------- #}
+{% if articles_items %}
+  {{ articles_items|json_script:"articles-items-data" }}
 {% endif %}
 
 <script>
 
   document.addEventListener("DOMContentLoaded", function () {
-  // Fallback si "projects_items" n'est pas fourni par la vue Django
+  // Fallback articles si "articles_items" n'est pas fourni par la vue Django
   const fallbackItems = [
-    { title: "Commerciaux",   count: "200+ projets", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80", url: "#" },
-    { title: "Résidentiel",   count: "400+ projets", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1000&q=80", url: "#" },
-    { title: "Cuisine",       count: "300+ projets", img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1000&q=80", url: "#" },
-    { title: "Bureaux",       count: "150+ projets", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000&q=80", url: "#" },
-    { title: "Restaurants",   count: "180+ projets", img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=80", url: "#" },
-    { title: "Hôtellerie",    count: "220+ projets", img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1000&q=80", url: "#" },
+    { title: "Les tendances du design en 2024",   category: "Design", excerpt: "Découvrez les tendances actuelles qui transforment l'univers du design d'intérieur...", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1000&q=80", url: "#" },
+    { title: "Comment aménager un petit espace",   category: "Conseils", excerpt: "Astuces et idées pour optimiser chaque mètre carré de votre intérieur...", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&q=80", url: "#" },
+    { title: "Les couleurs de l'année",            category: "Décoration", excerpt: "Pantone a choisi ses couleurs de l'année. Voici comment les intégrer...", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1000&q=80", url: "#" },
+    { title: "专访: Notre philosophie",            category: "Interview", excerpt: "Retour sur notre vision et notre approche unique du design...", img: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1000&q=80", url: "#" },
+    { title: "5 astuces pour un intérieur durable",category: "Écologie", excerpt: "Comment créer un espace beau tout en respectant l'environnement...", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1000&q=80", url: "#" },
   ];
 
   let items = fallbackItems;
-  const dataEl = document.getElementById("projects-items-data");
+  const dataEl = document.getElementById("articles-items-data");
   if (dataEl) {
     try {
       const parsed = JSON.parse(dataEl.textContent);
       if (Array.isArray(parsed) && parsed.length) items = parsed;
     } catch (e) {
-      console.warn("projects_items invalide, utilisation du fallback.", e);
+      console.warn("articles_items invalide, utilisation du fallback.", e);
     }
   }
 
@@ -534,6 +532,7 @@
   const numbersWrap = document.getElementById("pagination-numbers");
   const prevBtn = document.getElementById("pagination-prev");
   const nextBtn = document.getElementById("pagination-next");
+  const leftContent = document.getElementById("blog-left-content");
 
   // Styles propres à chaque rôle : la "primary" est la plus grande et passe devant.
   const roleStyles = {
@@ -551,7 +550,33 @@
     card.querySelector('[data-role="img"]').src = item.img;
     card.querySelector('[data-role="img"]').alt = item.title;
     card.querySelector('[data-role="title"]').textContent = item.title;
-    card.querySelector('[data-role="count"]').textContent = item.count;
+    card.querySelector('[data-role="count"]').textContent = item.category;
+  }
+
+  function updateLeftContent(item) {
+    if (!leftContent || !item) return;
+    leftContent.innerHTML = `
+      <span class="inline-block px-3 py-1 rounded-full bg-rose-mid text-burgundy-dk text-xs font-semibold uppercase tracking-wider mb-4">
+        ${item.category}
+      </span>
+      <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-boss-text mb-4">
+        ${item.title}
+      </h2>
+      <p class="mt-7 text-boss-muted text-lg leading-relaxed line-clamp-3">
+        ${item.excerpt}
+      </p>
+      <a href="${item.url || '#'}"
+         class="group inline-flex items-center gap-2 mt-10 px-9 py-4 rounded-full
+                border-2 border-burgundy text-burgundy font-semibold text-sm tracking-wide
+                transition-colors duration-300 hover:bg-burgundy hover:text-warm-white">
+        Lire l'article
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    `;
   }
 
   const state = { current: 0 };
@@ -567,6 +592,7 @@
 
     progressBar.style.width = (100 / total) * (state.current + 1) + "%";
     renderPagination();
+    updateLeftContent(items[iPrimary]);
   }
 
   function goTo(index) {
