@@ -1,0 +1,141 @@
+{% load static %}
+{% comment %}
+   Modal "Proposer une idée" — à inclure dans les pages projet
+{% endcomment %}
+<style>
+  #idea-modal {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    background: white !important;
+    max-width: 28rem !important;
+    width: 92vw !important;
+    padding: 0 !important;
+    border-radius: 1rem !important;
+  }
+  #idea-modal::backdrop {
+    background: rgba(92, 42, 51, 0.7) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+</style>
+<dialog id="idea-modal">
+  <form method="post" id="idea-form" class="p-6 relative">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.path }}#proposer-une-idee">
+    <button type="button" id="idea-modal-close" aria-label="Fermer"
+            class="absolute top-4 right-4 text-boss-muted hover:text-burgundy-dk">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <h3 class="font-serif font-semibold text-xl text-burgundy-dk mb-1">Proposer une idée</h3>
+    <p id="idea-modal-project" class="text-sm text-boss-muted mb-5"></p>
+
+    <div class="space-y-3">
+      <input type="text" name="name" required placeholder="Ton nom"
+             class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30">
+      <input type="email" name="email" required placeholder="ton@email.com"
+             class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30">
+      <textarea name="message" required rows="4" placeholder="Ton idée en quelques mots..."
+                class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30"></textarea>
+    </div>
+
+    <button type="submit"
+            class="mt-5 w-full px-4 py-2.5 rounded-full bg-burgundy-dk text-warm-white text-sm font-medium hover:bg-burgundy transition">
+      Envoyer
+    </button>
+  </form>
+</dialog>
+
+{# ---------- Conteneur pour les messages AJAX ---------- #}
+<div id="ajax-message" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-[9999] px-8 py-4 rounded-2xl text-base font-medium shadow-xl transition-all duration-300"></div>
+
+<script>
+  // ---------- Modale "Proposer une idée" ----------
+  const ideaModal = document.getElementById('idea-modal');
+  const ideaForm = document.getElementById('idea-form');
+  const ideaModalProject = document.getElementById('idea-modal-project');
+  const ajaxMessage = document.getElementById('ajax-message');
+
+  function openIdeaModal(url, projectTitle) {
+    ideaForm.action = url;
+    ideaModalProject.textContent = 'Pour le projet : ' + projectTitle;
+    ideaModal.showModal();
+  }
+
+  document.getElementById('idea-modal-close').addEventListener('click', () => ideaModal.close());
+  ideaModal.addEventListener('click', (e) => {
+    const rect = ideaModal.getBoundingClientRect();
+    const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+    if (!inside) ideaModal.close();
+  });
+
+  // ---------- Formulaire "Proposer une idée" via AJAX ----------
+  ideaForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(ideaForm);
+    const submitBtn = ideaForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi...';
+
+    try {
+      const res = await fetch(ideaForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken'),
+        },
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        showAjaxMessage(data.message, 'success');
+        ideaModal.close();
+        ideaForm.reset();
+      } else {
+        showAjaxMessage(data.error, 'error');
+      }
+    } catch (err) {
+      showAjaxMessage('Une erreur de connexion est survenue.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  function showAjaxMessage(text, type) {
+    ajaxMessage.textContent = text;
+    ajaxMessage.className = 'fixed top-24 left-1/2 -translate-x-1/2 z-[9999] px-8 py-4 rounded-2xl text-base font-medium shadow-xl transition-all duration-300';
+    if (type === 'success') {
+      ajaxMessage.classList.add('bg-burgundy-dk', 'text-warm-white');
+    } else {
+      ajaxMessage.classList.add('bg-red-50', 'text-red-600', 'border', 'border-red-200');
+    }
+    ajaxMessage.classList.remove('hidden');
+
+    ajaxMessage.style.opacity = '0';
+    ajaxMessage.style.transform = 'translate(-50%, -20px)';
+    requestAnimationFrame(() => {
+      ajaxMessage.style.opacity = '1';
+      ajaxMessage.style.transform = 'translate(-50%, 0)';
+    });
+
+    setTimeout(() => {
+      ajaxMessage.style.opacity = '0';
+      ajaxMessage.style.transform = 'translate(-50%, -20px)';
+      setTimeout(() => ajaxMessage.classList.add('hidden'), 300);
+    }, 5000);
+  }
+
+  function getCookie(name) {
+    const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return match ? match.pop() : '';
+  }
+</script>

@@ -21,10 +21,10 @@ from ..models import Project, ProjectCategory, ProjectChallenge, ProjectLike, Te
 
 
 SORT_OPTIONS = {
-    "latest": ("-project_date", "Latest First"),
-    "oldest": ("project_date", "Oldest First"),
-    "popular": ("-likes_total", "Most Liked"),
-    "az": ("title", "A → Z"),
+    "latest": (["-project_date", "-created_at"], "Latest First"),
+    "oldest": (["project_date", "created_at"], "Oldest First"),
+    "popular": (["-likes_total", "-project_date"], "Most Liked"),
+    "az": (["title"], "A → Z"),
 }
 DEFAULT_SORT = "latest"
 
@@ -46,30 +46,25 @@ class ProjectListView(ListView):
     paginate_by = PROJECTS_PER_PAGE
 
     def get_queryset(self):
-        # On s'assure d'avoir une session AVANT de construire la sous-requête
-        # "is_liked_by_me", sinon session_key serait None pour un tout premier visiteur.
         session_key = _session_key(self.request)
 
         liked_subquery = ProjectLike.objects.filter(
             project=OuterRef("pk"), session_key=session_key
         )
 
-        qs = (
-            Project.objects.select_related("category")
-            .prefetch_related("technologies")
-            .annotate(
-                likes_total=Count("likes", distinct=True),
-                is_liked_by_me=Exists(liked_subquery),
-            )
+        category_slug = self.request.GET.get("category")
+        sort_key = self.request.GET.get("sort", DEFAULT_SORT)
+        order_fields, _ = SORT_OPTIONS.get(sort_key, SORT_OPTIONS[DEFAULT_SORT])
+
+        qs = Project.objects.select_related("category").prefetch_related("technologies").annotate(
+            likes_total=Count("likes", distinct=True),
+            is_liked_by_me=Exists(liked_subquery),
         )
 
-        category_slug = self.request.GET.get("category")
         if category_slug and category_slug != "all":
             qs = qs.filter(category__slug=category_slug)
 
-        sort_key = self.request.GET.get("sort", DEFAULT_SORT)
-        order_field, _ = SORT_OPTIONS.get(sort_key, SORT_OPTIONS[DEFAULT_SORT])
-        qs = qs.order_by(order_field)
+        qs = qs.order_by(*order_fields)
 
         return qs
 
