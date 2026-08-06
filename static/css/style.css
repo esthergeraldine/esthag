@@ -16,7 +16,7 @@
        /* ── Police par défaut ── */
 body {
    font-family: 'jost', sans-serif;
-   background-color:faf7f4;
+   background-color:#faf7f4;
    color: #3d2b2b;
 }
 
@@ -224,12 +224,12 @@ body {
       opacity: 0.8;
     }
     
-    /* ──────────────────────────────────────────────────────
+    /* /* ──────────────────────────────────────────────────────
        STYLES POUR LA SECTION HERO
        ──────────────────────────────────────────────────────*/
     
     /* Hero avec image de fond et blur */
-    section:first-of-type {
+    /* section:first-of-type {
       position: relative;
       overflow: hidden;
     }
@@ -240,8 +240,8 @@ body {
       inset: 0;
       background: inherit;
       filter: blur(0.5px);
-      z-index: 0;
-    }
+      z-index: -1;
+    }  */
     
     /* ──────────────────────────────────────────────────────
        STYLES POUR LES IMAGES SUPERPOSÉES

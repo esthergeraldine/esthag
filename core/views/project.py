@@ -156,9 +156,6 @@ def submit_project_idea(request, pk):
         idea = form.save(commit=False)
         idea.project = project
         idea.save()
-        messages.success(request, "Merci ! Ton idée a bien été envoyée.")
+        return JsonResponse({'success': True, 'message': 'Merci ! Ton idée a bien été envoyée.'})
     else:
-        messages.error(request, "Merci de vérifier les champs du formulaire.")
-
-    next_url = request.POST.get("next") or project.get_absolute_url()
-    return redirect(next_url)
+        return JsonResponse({'success': False, 'error': 'Merci de vérifier les champs du formulaire.'}, status=400)

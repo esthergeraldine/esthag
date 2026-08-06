@@ -9,82 +9,85 @@
 
 
 
-<section class="relative overflow-hidden bg-rose-pale rounded-b-[2.5rem] md:rounded-b-[3rem] font-sans">
-  <div class="w-full mx-auto px-6 sm:px-8 lg:px-10 pt-12 pb-14 md:pt-16 md:pb-20 max-w-[1600px]">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-
-      {# ---------- Colonne texte ---------- #}
-      <div class="lg:col-span-5 xl:col-span-4">
-        <p class="font-script text-2xl sm:text-3xl text-burgundy mb-1 leading-none">
-          Mon travail <span aria-hidden="true">🖐️</span>
-        </p>
-
-        <h1 class="font-serif font-semibold text-4xl sm:text-5xl leading-[1.05] text-burgundy-dk mb-5">
+  <section class="w-full bg-rose-pale border-b border-rose-pale overflow-hidden">
+    <div class="w-full flex flex-col lg:flex-row items-center">
+ 
+      <!-- Colonne gauche : texte -->
+      <div class="w-full lg:w-[44%] px-8 sm:px-12 lg:px-16 py-14 lg:py-0">
+        <p class="font-script text-2xl text-rose mb-3">Mon travail ✨</p>
+ 
+        <h1 class="font-display font-extrabold text-maroon text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
           Mes Projets
         </h1>
-
-        <p class="text-boss-muted text-base leading-relaxed max-w-md mb-8 sm:mb-10">
-          Découvrez une sélection de réalisations qui reflètent
+ 
+        <p class="text-gray-500 text-base sm:text-lg leading-relaxed max-w-md mb-10">
+          Découvrez une sélection de réalisations qui reflètent<br class="hidden sm:block">
           ma passion pour le design, le code et la résolution de problèmes.
         </p>
-
-        {# ---------- Stats dynamiques ---------- #}
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6">
-
+ 
+        <div class="flex flex-wrap gap-x-10 gap-y-6">
+          <!-- Projets réalisés -->
           <div class="flex items-center gap-3">
             <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.586a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
               </svg>
             </span>
-            <div class="leading-tight">
-              <p class="text-lg font-semibold text-burgundy-dk">{{ projects_count }}+</p>
-              <p class="text-xs text-boss-muted">Projets réalisés</p>
+            <div>
+              <p class="font-display font-bold text-burgundy-dk text-xl leading-none">{{ projects_count }}</p>
+              <p class="text-boss-muted text-sm mt-1">Projets réalisés</p>
             </div>
           </div>
 
+          <!-- Technologies -->
           <div class="flex items-center gap-3">
-            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m9 8-4 4 4 4M15 8l4 4-4 4"/>
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-boss-text text-burgundy shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10"  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
               </svg>
             </span>
-            <div class="leading-tight">
-              <p class="text-lg font-semibold text-burgundy-dk">{{ technologies_count }}+</p>
-              <p class="text-xs text-boss-muted">Technologies</p>
+            <div>
+              <p class="font-display font-bold text-burgundy-dk text-2xl leading-none">{{ technologies_count }}</p>
+              <p class="text-boss-muted text-sm mt-1">Technologies</p>
             </div>
           </div>
 
+          <!-- Clients satisfaits -->
           <div class="flex items-center gap-3">
             <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm11 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-4a4 4 0 10-4-4 4 4 0 004 4zm6 0a4 4 0 10-3-6.65" />
               </svg>
             </span>
-            <div class="leading-tight">
-              <p class="text-lg font-semibold text-burgundy-dk">{{ clients_count }}+</p>
-              <p class="text-xs text-boss-muted">Clients satisfaits</p>
+            <div>
+              <p class="font-display font-bold text-burgundy-dk text-xl leading-none">{{ clients_count }}</p>
+              <p class="text-boss-muted text-sm mt-1">Clients satisfaits</p>
             </div>
           </div>
-
         </div>
       </div>
-
-      {# ---------- Colonne image (hauteur fixe, pas de ratio arbitraire) ---------- #}
-      <div class="lg:col-span-7 xl:col-span-8">
-        <img
-          src="{% static 'images/ordi.jpeg' %}"
-          alt="Aperçu de l'espace de travail"
-          class="block w-full h-64 sm:h-80 lg:h-96 object-cover shadow-card
-                 rounded-tl-[3rem] rounded-bl-[3rem] rounded-tr-2xl rounded-br-2xl
-                 sm:rounded-tl-[5rem] sm:rounded-bl-[5rem]
-                 lg:rounded-tl-[7rem] lg:rounded-bl-[7rem]"
-        />
+ 
+      <!-- Colonne droite : image -->
+      <div class="w-full lg:w-[56%] relative">
+        <div class="relative w-full h-[280px] sm:h-[380px] lg:h-[460px] rounded-tl-[120px] rounded-bl-[120px] lg:rounded-tl-[160px] lg:rounded-bl-[160px] overflow-hidden shadow-xl">
+ 
+          <!-- Remplace ce chemin par ta propre image de bureau/plante/ordinateur -->
+          <img
+            src="{% static 'images/ordi3.jpeg' %}"
+            alt="Espace de travail avec ordinateur portable, vase et livres"
+            class="w-full h-full object-cover"
+            onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-[#e8c9c2]','to-[#d9a9a0]');"
+          >
+ 
+ 
+        </div>
       </div>
-
+ 
     </div>
-  </div>
-</section>
+  </section>
+
+ 
+
 
 
 
@@ -106,15 +109,6 @@
       {% endfor %}
     {% endif %}
 
-    {# ---------- Message de confirmation (après envoi d'une idée) ---------- #}
-    {% if messages %}
-      {% for message in messages %}
-        <div class="mb-6 px-4 py-3 rounded-xl text-sm font-medium
-                    {% if message.tags == 'error' %}bg-red-50 text-red-600{% else %}bg-rose-mid text-burgundy-dk{% endif %}">
-          {{ message }}
-        </div>
-      {% endfor %}
-    {% endif %}
 
     {% comment %} {# ============================================================
        Barre d'outils
@@ -196,15 +190,15 @@
             </a>
 
             {% if project.status == 'production' %}
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-secondary/15 text-secondary">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-cream text-secondary">
                 {{ project.status_label }}
               </span>
             {% elif project.status == 'development' %}
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-tertiaryBlack/15 text-tertiaryBlack">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-cream text-tertiaryBlack">
                 {{ project.status_label }}
               </span>
             {% elif project.status == 'prototype' %}
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/15 text-primary">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-cream text-primary">
                 {{ project.status_label }}
               </span>
             {% endif %}
@@ -331,11 +325,15 @@
     </form>
   </dialog>
 
+  {# ---------- Conteneur pour les messages AJAX ---------- #}
+  <div id="ajax-message" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-[9999] px-8 py-4 rounded-2xl text-base font-medium shadow-xl"></div>
+
   <script>
     // ---------- Modale "Proposer une idée" ----------
     const ideaModal = document.getElementById('idea-modal');
     const ideaForm = document.getElementById('idea-form');
     const ideaModalProject = document.getElementById('idea-modal-project');
+    const ajaxMessage = document.getElementById('ajax-message');
 
     document.querySelectorAll('.js-open-idea').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -350,6 +348,66 @@
       const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
       if (!inside) ideaModal.close();
     });
+
+    // ---------- Formulaire "Proposer une idée" via AJAX ----------
+    ideaForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(ideaForm);
+      const submitBtn = ideaForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi...';
+
+      try {
+        const res = await fetch(ideaForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+          },
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          showAjaxMessage(data.message, 'success');
+          ideaModal.close();
+          ideaForm.reset();
+        } else {
+          showAjaxMessage(data.error, 'error');
+        }
+      } catch (err) {
+        showAjaxMessage('Une erreur de connexion est survenue.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+
+    function showAjaxMessage(text, type) {
+      ajaxMessage.textContent = text;
+      ajaxMessage.className = 'fixed top-24 left-1/2 -translate-x-1/2 z-[9999] px-8 py-4 rounded-2xl text-base font-medium shadow-xl transition-all duration-300';
+      if (type === 'success') {
+        ajaxMessage.classList.add('bg-burgundy-dk', 'text-warm-white');
+      } else {
+        ajaxMessage.classList.add('bg-red-50', 'text-red-600', 'border', 'border-red-200');
+      }
+      ajaxMessage.classList.remove('hidden');
+
+      // Animation d'entrée
+      ajaxMessage.style.opacity = '0';
+      ajaxMessage.style.transform = 'translate(-50%, -20px)';
+      requestAnimationFrame(() => {
+        ajaxMessage.style.opacity = '1';
+        ajaxMessage.style.transform = 'translate(-50%, 0)';
+      });
+
+      setTimeout(() => {
+        ajaxMessage.style.opacity = '0';
+        ajaxMessage.style.transform = 'translate(-50%, -20px)';
+        setTimeout(() => ajaxMessage.classList.add('hidden'), 300);
+      }, 5000);
+    }
 
     // ---------- Like / Unlike (AJAX) ----------
     function getCookie(name) {
