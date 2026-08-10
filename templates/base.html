@@ -14,6 +14,7 @@
 
 
   <link rel="stylesheet" href="{% static 'css/output.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animations.css' %}">
 
   <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
   <title>portfolio</title>
@@ -26,24 +27,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
  
-   <style>
-     :root {
-       --nav-height: 72px;
-     }
-     /* Anti-flash : fond crème avant que le CSS soit chargé */
-     body { background-color: #fdf8f5; }
+    <style>
+      :root {
+        --nav-height: 72px;
+      }
+      /* Anti-flash : fond crème avant que le CSS soit chargé */
+      body { background-color: #fdf8f5; }
 
-     /* Blocage du scroll pendant le loading */
-     body.is-loading { overflow: hidden; }
-   </style>
+      /* Blocage du scroll pendant le loading */
+      body.is-loading { overflow: hidden; }
+    </style>
+
+    <!-- Anti-flash dark mode -->
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
 
 </head>
 
 
 <body class="min-h-screen flex flex-col">
 
+<!-- Hidden utility refs for Tailwind dark mode -->
+<div class="hidden bg-navy-950 bg-navy-900 bg-navy-800 bg-navy-500 bg-navy-300 bg-navy-100 text-navy-950 text-navy-900 text-navy-800 text-navy-500 text-navy-300 text-navy-100 border-navy-950 border-navy-900 border-navy-800 border-navy-500 border-navy-300 border-navy-100"></div>
 
-  
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress"></div>
+
+<!-- Cursor Trail -->
+<div id="cursor-trail"></div>
+
+
   
     <!-- ===================================================
        NAVBAR
@@ -119,6 +139,16 @@
 
         <!-- socials + cta -->
         <div class="hidden lg:flex items-center gap-4">
+          <!-- Dark mode toggle -->
+          <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-rose-pale dark:hover:bg-navy-800 transition-colors duration-300">
+            <svg id="sun-icon" class="w-5 h-5 text-burgundy-dk hidden dark:text-navy-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg id="moon-icon" class="w-5 h-5 text-burgundy-dk" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
           <!--icone instagram-->
           <a href="#" aria-label="facebook" class="text-dark hover:text-bordeaux transition-colors duration-200 ">
             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24 " > 
@@ -268,6 +298,7 @@
   });
   </script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/animations.js' %}"></script>
 
 
 </body>

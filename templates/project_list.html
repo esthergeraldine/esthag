@@ -169,10 +169,10 @@
        Grille : 4 colonnes → 8 projets/page = exactement 2 rangées
        ============================================================ #} {% endcomment %}
     {% if projects %}
-    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2 lg:grid-cols-4{% endif %}">
+    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2 lg:grid-cols-4{% endif %}" data-stagger-parent data-stagger-delay="80">
       {% for project in projects %}
         <article class="group bg-warm-white rounded-2xl overflow-hidden border border-rose-pale shadow-card hover:shadow-hover transition-shadow
-                         {% if view_mode == 'list' %}sm:flex{% endif %}">
+                         {% if view_mode == 'list' %}sm:flex{% endif %}" data-hover="lift" data-stagger-child>
 
           {# ---------- Image (hauteur fixe, plus jamais "trop grande") ---------- #}
           <div class="relative {% if view_mode == 'list' %}sm:w-64 shrink-0{% endif %} bg-rose-pale">

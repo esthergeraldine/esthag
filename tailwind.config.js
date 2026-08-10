@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./templates/**/*.{html,js}",
     "./static/**/*.{js,html}",
@@ -26,6 +27,12 @@ module.exports = {
         'muted': '#b8a8a8',
         'ink': '#c17e88',
         'dark': '#3d2b2b',
+        'navy-950': '#011C40',
+        'navy-900': '#023859',
+        'navy-800': '#052659',
+        'navy-500': '#5482B4',
+        'navy-300': '#7EA0C5',
+        'navy-100': '#C2E8FF',
       },
     },
   },

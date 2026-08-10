@@ -19,23 +19,23 @@
   <!-- Contenu principal aligné à gauche -->
   <div class="relative z-10 w-full pl-[8%] pt-12 pb-20">
     <!-- Label BLOG -->
-    <span class="inline-block text-boss-text text-xs font-semibold uppercase tracking-[0.2em] mb-4">Blog</span>
+    <span class="inline-block text-white text-xs font-semibold uppercase tracking-[0.2em] mb-4" data-reveal="fade-up" data-delay="0">Blog</span>
 
     <!-- Titre -->
-    <h1 class="text-boss-text  font-script font-bold text-5xl sm:text-6xl lg:text-7xl tracking-tight mb-4">
-      Mon <span class="text-cream">Blog</span>
+    <h1 class="text-boss-textfont-bold text-5xl sm:text-6xl lg:text-7xl tracking-tight mb-4" data-reveal="fade-up" data-delay="100">
+      Mon <span class="text-boss-text">Blog</span>
     </h1>
 
     <!-- Ligne décorative -->
-    <div class="w-12 h-px bg-rose-mid/50 mb-6"></div>
+    <div class="w-12 h-px bg-rose-mid/50 mb-6" data-reveal="fade-up" data-delay="200"></div>
 
     <!-- Description -->
-    <p class="text-warm-white/90 text-base sm:text-lg max-w-md leading-relaxed mb-16">
+    <p class="text-warm-white/90 text-base sm:text-lg max-w-md leading-relaxed mb-16" data-reveal="fade-up" data-delay="300">
       Articles, tutoriels et réflexions sur le développement web, le design UI/UX et l'entrepreneuriat digital.
     </p>
 
     <!-- Stats -->
-    <div class="flex items-center gap-8 sm:gap-10">
+    <div class="flex items-center gap-8 sm:gap-10" data-reveal="fade-up" data-delay="400">
       <!-- Article icon -->
       <div class="flex items-center gap-3">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4a5aa" stroke-width="1.5" class="w-6 h-6">
@@ -116,10 +116,10 @@
     </div>
 
     {% if articles %}
-    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6" data-stagger-parent data-stagger-delay="100">
       {% for article in articles %}
 
-        <div class="bg-warm-white border border-rose-pale rounded-2xl overflow-hidden card-shadow flex flex-col">
+        <div class="bg-warm-white border border-rose-pale rounded-2xl overflow-hidden card-shadow flex flex-col" data-hover="lift" data-stagger-child>
             <a href="{{ article.get_absolute_url }}" class="relative block">
                 <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-44 object-cover" />
                 <span class="absolute top-3 left-3 bg-boss-text text-warm-white text-xs font-mono px-3 py-1 rounded-full">

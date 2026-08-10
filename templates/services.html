@@ -11,9 +11,9 @@ En-tête de la page Services — utilise `intro` (instance ServicesIntro).
 <section class="relative overflow-hidden bg-rose-pale font-sans">
   <div class="w-full mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center">
- 
+
       {# ---------- Colonne photo ---------- #}
-      <div class="lg:col-span-5 order-1">
+      <div class="lg:col-span-5 order-1" data-reveal="fade-right" data-delay="100">
         <div class="relative max-w-sm mx-auto lg:mx-0">
  
           {# écho décoratif du contour, légèrement décalé derrière la photo #}
@@ -49,25 +49,25 @@ En-tête de la page Services — utilise `intro` (instance ServicesIntro).
  
       {# ---------- Colonne texte ---------- #}
       <div class="lg:col-span-7 order-2 text-center lg:text-left">
-        <p class="font-script text-2xl sm:text-3xl text-ink mb-2">About Me</p>
- 
-        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4">
+        <p class="font-script text-2xl sm:text-3xl text-ink mb-2" data-reveal="fade-up" data-delay="0">About Me</p>
+
+        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4" data-reveal="fade-up" data-delay="100">
           Hello, I'm Marie
         </h1>
- 
-        <div class="w-14 h-[2px] bg-rose-deep mx-auto lg:mx-0 mb-4"></div>
- 
-        <p class="text-lg sm:text-xl text-ink font-medium mb-4">
+
+        <div class="w-14 h-[2px] bg-rose-deep mx-auto lg:mx-0 mb-4" data-reveal="fade-up" data-delay="200"></div>
+
+        <p class="text-lg sm:text-xl text-ink font-medium mb-4" data-reveal="fade-up" data-delay="300">
           Développeuse Full-Stack &amp; Designer UI/UX
         </p>
- 
-        <p class="text-boss-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
+
+        <p class="text-boss-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8" data-reveal="fade-up" data-delay="400">
           Je conçois et développe des expériences numériques élégantes,
           utiles et centrées sur l'humain. Curieuse, rigoureuse et passionnée,
           j'aime transformer des idées en produits concrets qui font la différence.
         </p>
- 
-        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+
+        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start" data-reveal="fade-up" data-delay="500">
           <a href="{% static 'files/cv-marie-dupont.pdf' %}" download
              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-warm-white text-sm font-medium
                     hover:bg-burgundy transition shadow-soft">
@@ -96,14 +96,14 @@ Section Prestations — utilise `services_list` (queryset Service).
 {% endcomment %}
 <section id="prestations" class="relative bg-warm-white py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 sm:px-10">
-    <div class="text-center mb-14">
+    <div class="text-center mb-14" data-reveal="fade-up">
       <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Prestations</p>
       <p class="font-serif italic text-boss-muted">Des solutions sur mesure pour vos projets</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" data-stagger-parent data-stagger-delay="100">
       {% for service in services_list %}
-        <div class="bg-rose-pale/60 border border-rose-deep/20 p-8 text-center hover:bg-rose-pale transition-colors duration-200">
+        <div class="bg-rose-pale/60 border border-rose-deep/20 p-8 text-center hover:bg-rose-pale transition-colors duration-200" data-hover="lift" data-stagger-child>
           {% if service.icon %}
             <img src="{{ service.icon.url }}" alt="" class="w-14 h-14 mx-auto mb-5 object-contain">
           {% else %}
@@ -131,17 +131,17 @@ Section Processus de travail — utilise `process_steps` (queryset ProcessStep).
 {% endcomment %}
 <section id="processus" class="relative bg-cream py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 sm:px-10">
-    <div class="text-center mb-16">
+    <div class="text-center mb-16" data-reveal="fade-up">
       <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Processus de travail</p>
       <p class="font-serif italic text-boss-muted">Comment je transforme votre idée en réalité</p>
     </div>
 
-    <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+    <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-12" data-stagger-parent data-stagger-delay="80">
       <!-- trait de liaison entre les étapes (desktop uniquement) -->
       <div class="hidden lg:block absolute top-6 left-0 right-0 h-px bg-rose-deep/40"></div>
 
       {% for step in process_steps %}
-        <div class="relative text-center px-2">
+        <div class="relative text-center px-2" data-stagger-child>
           <div class="relative z-10 w-12 h-12 mx-auto mb-5 rounded-full bg-warm-white border border-burgundy flex items-center justify-center font-serif text-burgundy">
             {{ forloop.counter|stringformat:"02d" }}
           </div>
@@ -194,14 +194,14 @@ Accordéon natif via <details>/<summary>, aucun JavaScript nécessaire.
 {% endcomment %}
 <section id="faq" class="relative bg-cream py-20 md:py-28">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-14">
+    <div class="text-center mb-14" data-reveal="fade-up">
       <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">FAQ</p>
       <p class="font-serif italic text-boss-muted">Les questions les plus fréquentes</p>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-4" data-stagger-parent data-stagger-delay="80">
       {% for faq in faq_items %}
-        <details class="group bg-warm-white border border-rose-deep/20 p-6 open:bg-rose-pale/40">
+        <details class="group bg-warm-white border border-rose-deep/20 p-6 open:bg-rose-pale/40" data-stagger-child>
           <summary class="flex items-center justify-between gap-4 cursor-pointer font-sans font-semibold text-boss-text list-none [&::-webkit-details-marker]:hidden">
             <span>{{ faq.question }}</span>
             <span class="shrink-0 text-burgundy text-xl leading-none transition-transform duration-200 group-open:rotate-45">+</span>

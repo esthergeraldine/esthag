@@ -37,6 +37,12 @@
   --color-muted: #b8a8a8;
   --color-ink: #c17e88;
   --color-dark: #3d2b2b;
+  --color-navy-950: #011C40;
+  --color-navy-900: #023859;
+  --color-navy-800: #052659;
+  --color-navy-500: #5482B4;
+  --color-navy-300: #7EA0C5;
+  --color-navy-100: #C2E8FF;
 
   --tracking-18: 4.5rem;
   --tracking-22: 5.5rem;

@@ -763,7 +763,7 @@
   <div class="max-w-6xl mx-auto px-6 lg:px-10">
 
     {# En-tête #}
-    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14" data-reveal="fade-up">
       <div>
         <span class="inline-block bg-blush/40 text-burgundy text-xs font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-4">
           Portfolio
@@ -778,9 +778,9 @@
     </div>
 
     {# Grille des projets récents #}
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-14" data-stagger-parent data-stagger-delay="100">
       {% for project in recent_projects %}
-      <a href="{{ project.get_absolute_url }}" class="group relative block rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+      <a href="{{ project.get_absolute_url }}" class="group relative block rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow" data-hover="lift" data-stagger-child>
         <div class="relative h-80 overflow-hidden">
           <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}"
                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">

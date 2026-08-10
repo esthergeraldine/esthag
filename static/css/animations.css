@@ -1,0 +1,612 @@
+/**
+ * =====================================================
+ * ANIMATIONS.CSS — Classes d'animations et de scroll
+ * =====================================================
+ */
+
+/* ─────────────────────────────────────────────────────
+   REVEAL ANIMATIONS — apparition au scroll
+   Utilisation: <div data-reveal="fade-up" data-delay="200">
+   ───────────────────────────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal="fade-up"] {
+  transform: translateY(40px);
+}
+[data-reveal="fade-down"] {
+  transform: translateY(-40px);
+}
+[data-reveal="fade-left"] {
+  transform: translateX(40px);
+}
+[data-reveal="fade-right"] {
+  transform: translateX(-40px);
+}
+[data-reveal="zoom-in"] {
+  transform: scale(0.9);
+}
+[data-reveal="zoom-out"] {
+  transform: scale(1.1);
+}
+[data-reveal="rotate-in"] {
+  transform: rotate(-5deg) scale(0.95);
+}
+[data-reveal="flip-up"] {
+  transform: perspective(800px) rotateX(-15deg);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Legacy .reveal class animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────────────────
+   STAGGER CHILDREN — apparition en cascade
+   Utilisation: <div data-stagger-parent data-stagger-delay="100">
+                  <div data-stagger-child>
+   ───────────────────────────────────────────────────── */
+
+[data-stagger-child] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-stagger-child].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────────────────
+   CARD HOVER LIFT — élévation au survol
+   Utilisation: <div data-hover="lift">
+   ───────────────────────────────────────────────────── */
+
+[data-hover="lift"] {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-hover="lift"].is-lifted {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────
+   RIPPLE EFFECT — onde au clic
+   Utilisation: <button data-ripple>
+   ───────────────────────────────────────────────────── */
+
+[ data-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   SCROLL PROGRESS BAR — barre de progression
+   Utilisation: <div id="scroll-progress">
+   ───────────────────────────────────────────────────── */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--rose-mid));
+  width: 0;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* ─────────────────────────────────────────────────────
+   CURSOR TRAIL — traînée au curseur
+   Utilisation: <div id="cursor-trail">
+   ───────────────────────────────────────────────────── */
+
+#cursor-trail {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: rgba(125, 59, 71, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+
+body:hover #cursor-trail {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────
+   NAVBAR SCROLL STATES
+   ───────────────────────────────────────────────────── */
+
+.navbar-scrolled {
+  background: rgba(255, 252, 250, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+/* ─────────────────────────────────────────────────────
+   COUNTER ANIMATION
+   Utilisation: <span data-counter="150" data-suffix="+">
+   ───────────────────────────────────────────────────── */
+
+[data-counter] {
+  display: inline-block;
+}
+
+/* ─────────────────────────────────────────────────────
+   SMOOTH TRANSITIONS
+   ───────────────────────────────────────────────────── */
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.4s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────────────
+   PULSE ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ─────────────────────────────────────────────────────
+   FLOAT ANIMATION — élément flottant
+   ───────────────────────────────────────────────────── */
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ─────────────────────────────────────────────────────
+   SPIN ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────────────
+   SHAKE ANIMATION — secousse
+   ───────────────────────────────────────────────────── */
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* ─────────────────────────────────────────────────────
+   BOUNCE ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.bounce {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+/* ─────────────────────────────────────────────────────
+   GLOW EFFECT — effet lumineux
+   ───────────────────────────────────────────────────── */
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px rgba(125, 59, 71, 0.2); }
+  to { box-shadow: 0 0 20px rgba(125, 59, 71, 0.6); }
+}
+
+/* ─────────────────────────────────────────────────────
+   TYPEWRITER CURSOR
+   ───────────────────────────────────────────────────── */
+
+.typewriter {
+  border-right: 2px solid currentColor;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ─────────────────────────────────────────────────────
+   SCROLL INDICATOR — indicateur de défilement
+   ───────────────────────────────────────────────────── */
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+/* ─────────────────────────────────────────────────────
+   PAGE LOAD ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.page-loaded [data-animate-on-load] {
+  animation: pageEntry 0.8s ease forwards;
+}
+
+@keyframes pageEntry {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────────────
+   MARQUEE — texte défilant
+   ───────────────────────────────────────────────────── */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────────────────
+   UTILITY CLASSES
+   ───────────────────────────────────────────────────── */
+
+.will-animate {
+  opacity: 0;
+}
+
+.animate-now {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────
+   DARK MODE — Blue Night Palette
+   ───────────────────────────────────────────────────── */
+
+/* Base */
+.dark body,
+body.dark {
+  background-color: #011C40 !important;
+  color: #C2E8FF !important;
+}
+
+.dark {
+  --tw-bg-opacity: 1;
+  background-color: #011C40;
+}
+
+/* ═══════════════════════════════════
+   BACKGROUNDS
+   ═══════════════════════════════════ */
+.dark .bg-cream { background-color: #023859 !important; }
+.dark .bg-warm-white { background-color: #023859 !important; }
+.dark .bg-white { background-color: #023859 !important; }
+.dark .bg-rose-pale { background-color: #023859 !important; }
+.dark .bg-rose-mid { background-color: #023859 !important; }
+.dark .bg-rose-deep { background-color: #023859 !important; }
+.dark .bg-rose { background-color: #023859 !important; }
+.dark .bg-blush { background-color: #023859 !important; }
+.dark .bg-burgundy { background-color: #023859 !important; }
+.dark .bg-burgundy-dk { background-color: #011C40 !important; }
+.dark .bg-dark { background-color: #011C40 !important; }
+.dark .bg-muted { background-color: #011C40 !important; }
+.dark .bg-ink { background-color: #011C40 !important; }
+.dark .bg-navy-950 { background-color: #011C40 !important; }
+.dark .bg-navy-900 { background-color: #023859 !important; }
+.dark .bg-navy-800 { background-color: #052659 !important; }
+.dark .bg-navy-500 { background-color: #023859 !important; }
+.dark .bg-navy-300 { background-color: #011C40 !important; }
+.dark .bg-navy-100 { background-color: #023859 !important; }
+
+/* RGBA backgrounds */
+.dark .bg-rose\/60 { background-color: rgba(2, 56, 89, 0.6) !important; }
+.dark .bg-warm-white\/90 { background-color: rgba(2, 56, 89, 0.9) !important; }
+.dark .bg-warm-white\/80 { background-color: rgba(2, 56, 89, 0.8) !important; }
+.dark .bg-warm-white\/70 { background-color: rgba(2, 56, 89, 0.7) !important; }
+.dark .bg-warm-white\/60 { background-color: rgba(2, 56, 89, 0.6) !important; }
+.dark .bg-warm-white\/50 { background-color: rgba(2, 56, 89, 0.5) !important; }
+.dark .bg-cream\/90 { background-color: rgba(2, 56, 89, 0.9) !important; }
+.dark .bg-cream\/80 { background-color: rgba(2, 56, 89, 0.8) !important; }
+.dark .bg-cream\/70 { background-color: rgba(2, 56, 89, 0.7) !important; }
+.dark .bg-cream\/60 { background-color: rgba(2, 56, 89, 0.6) !important; }
+.dark .bg-burgundy\/60 { background-color: rgba(2, 56, 89, 0.6) !important; }
+.dark .bg-rose-pale\/90 { background-color: rgba(2, 56, 89, 0.9) !important; }
+.dark .bg-rose-pale\/80 { background-color: rgba(2, 56, 89, 0.8) !important; }
+.dark .bg-rose-pale\/70 { background-color: rgba(2, 56, 89, 0.7) !important; }
+.dark .bg-rose-pale\/60 { background-color: rgba(2, 56, 89, 0.6) !important; }
+.dark .bg-rose-pale\/50 { background-color: rgba(2, 56, 89, 0.5) !important; }
+.dark .bg-rose-mid\/90 { background-color: rgba(2, 56, 89, 0.9) !important; }
+.dark .bg-rose-mid\/80 { background-color: rgba(2, 56, 89, 0.8) !important; }
+.dark .bg-rose-mid\/70 { background-color: rgba(2, 56, 89, 0.7) !important; }
+.dark .bg-rose-mid\/60 { background-color: rgba(2, 56, 89, 0.6) !important; }
+
+/* ═══════════════════════════════════
+   BORDERS
+   ═══════════════════════════════════ */
+.dark .border-rose-pale { border-color: #052659 !important; }
+.dark .border-rose-mid { border-color: #052659 !important; }
+.dark .border-rose-deep { border-color: #052659 !important; }
+.dark .border-blush { border-color: #052659 !important; }
+.dark .border-rose { border-color: #052659 !important; }
+.dark .border-burgundy { border-color: #052659 !important; }
+.dark .border-burgundy-dk { border-color: #052659 !important; }
+.dark .border-cream { border-color: #052659 !important; }
+.dark .border-warm-white { border-color: #052659 !important; }
+.dark .border-dark { border-color: #052659 !important; }
+.dark .border-white { border-color: #052659 !important; }
+.dark .border-muted { border-color: #052659 !important; }
+.dark .border-ink { border-color: #052659 !important; }
+.dark .border-navy-800 { border-color: #5482B4 !important; }
+.dark .border-navy-500 { border-color: #5482B4 !important; }
+.dark .border-navy-300 { border-color: #5482B4 !important; }
+
+/* ═══════════════════════════════════
+   TEXT COLORS
+   ═══════════════════════════════════ */
+.dark .text-boss-text { color: #C2E8FF !important; }
+.dark .text-boss-muted { color: #7EA0C5 !important; }
+.dark .text-muted { color: #7EA0C5 !important; }
+.dark .text-burgundy { color: #5482B4 !important; }
+.dark .text-burgundy-dk { color: #5482B4 !important; }
+.dark .text-dark { color: #C2E8FF !important; }
+.dark .text-ink { color: #C2E8FF !important; }
+.dark .text-cream { color: #C2E8FF !important; }
+.dark .text-warm-white { color: #C2E8FF !important; }
+.dark .text-rose-pale { color: #C2E8FF !important; }
+.dark .text-rose-mid { color: #C2E8FF !important; }
+.dark .text-rose-deep { color: #C2E8FF !important; }
+.dark .text-rose { color: #C2E8FF !important; }
+.dark .text-blush { color: #C2E8FF !important; }
+.dark .text-white { color: #C2E8FF !important; }
+.dark .text-navy-100 { color: #C2E8FF !important; }
+.dark .text-navy-300 { color: #7EA0C5 !important; }
+.dark .text-navy-500 { color: #5482B4 !important; }
+.dark .text-navy-800 { color: #C2E8FF !important; }
+.dark .text-navy-900 { color: #C2E8FF !important; }
+.dark .text-navy-950 { color: #C2E8FF !important; }
+
+/* ═══════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════ */
+.dark #navbar,
+.dark .navbar-scrolled {
+  background-color: rgba(2, 56, 89, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+.dark .nav-link { color: #C2E8FF !important; }
+.dark .nav-link:hover { color: #5482B4 !important; }
+
+/* ═══════════════════════════════════
+   CARDS & SHADOWS
+   ═══════════════════════════════════ */
+.dark .card-shadow,
+.dark .shadow-card,
+.dark .shadow-lg,
+.dark .shadow-2xl,
+.dark .shadow-xl {
+  box-shadow: 0 10px 40px rgba(1, 28, 64, 0.4) !important;
+}
+
+/* ═══════════════════════════════════
+   FORM INPUTS
+   ═══════════════════════════════════ */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #011C40 !important;
+  border-color: #052659 !important;
+  color: #C2E8FF !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #7EA0C5 !important;
+}
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #5482B4 !important;
+  outline: none;
+}
+
+/* ═══════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════ */
+.dark .btn-primary {
+  background-color: #5482B4 !important;
+  color: #011C40 !important;
+}
+.dark .btn-primary:hover {
+  background-color: #7EA0C5 !important;
+}
+.dark .btn-secondary {
+  background-color: transparent !important;
+  border-color: #5482B4 !important;
+  color: #5482B4 !important;
+}
+.dark .btn-secondary:hover {
+  background-color: rgba(84, 130, 180, 0.1) !important;
+}
+
+/* ═══════════════════════════════════
+   BADGES & TAGS
+   ═══════════════════════════════════ */
+.dark .bg-blush { background-color: #052659 !important; color: #C2E8FF !important; }
+.dark .bg-rose-pale { background-color: #052659 !important; color: #C2E8FF !important; }
+.dark .bg-rose-mid { background-color: #052659 !important; color: #C2E8FF !important; }
+.dark .bg-rose-deep { background-color: #052659 !important; color: #C2E8FF !important; }
+.dark .bg-rose { background-color: #052659 !important; color: #C2E8FF !important; }
+
+/* ═══════════════════════════════════
+   LINKS & ANCHORS
+   ═══════════════════════════════════ */
+.dark a:not(.btn-primary):not(.btn-secondary):not(.nav-link) {
+  color: #C2E8FF !important;
+}
+.dark a:not(.btn-primary):not(.btn-secondary):not(.nav-link):hover {
+  color: #5482B4 !important;
+}
+
+/* ═══════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════ */
+.dark section,
+.dark header,
+.dark footer {
+  background-color: #011C40 !important;
+}
+
+/* ═══════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════ */
+.dark ::-webkit-scrollbar { width: 8px; }
+.dark ::-webkit-scrollbar-track { background: #011C40; }
+.dark ::-webkit-scrollbar-thumb { background: #5482B4; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #7EA0C5; }
+
+/* ═══════════════════════════════════
+   HOVER STATES
+   ═══════════════════════════════════ */
+.dark .hover\:bg-rose-pale:hover { background-color: #052659 !important; }
+.dark .hover\:bg-burgundy:hover { background-color: #5482B4 !important; }
+.dark .hover\:text-burgundy:hover { color: #5482B4 !important; }
+.dark .hover\:text-burgundy-dk:hover { color: #5482B4 !important; }
+.dark .hover\:text-white:hover { color: #C2E8FF !important; }
+
+/* ═══════════════════════════════════
+   AFTER / UNDERLINE EFFECTS
+   ═══════════════════════════════════ */
+.dark .after\:bg-dark::after { background-color: #5482B4 !important; }
+.dark .after\:bg-burgundy::after { background-color: #5482B4 !important; }
+
+/* ═══════════════════════════════════
+   SMOOTH TRANSITIONS
+   ═══════════════════════════════════ */
+.dark,
+.dark * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}

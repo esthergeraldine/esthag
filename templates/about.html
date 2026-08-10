@@ -22,7 +22,7 @@
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center w-full">
 
       {# ---------- Colonne photo ---------- #}
-      <div class="lg:col-span-6 order-1 flex justify-center lg:justify-center">
+      <div class="lg:col-span-6 order-1 flex justify-center lg:justify-center" data-reveal="fade-right" data-delay="100">
         <div class="relative">
 
           {# Grand cercle extéerieur avec border #}
@@ -65,25 +65,25 @@
 
       {# ---------- Colonne texte ---------- #}
       <div class="lg:col-span-6 order-2 text-center lg:text-left">
-        <p class="font-script text-2xl sm:text-3xl text-ink mb-2">About Me</p>
+        <p class="font-script text-2xl sm:text-3xl text-ink mb-2" data-reveal="fade-up" data-delay="0">About Me</p>
 
-        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4">
+        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4" data-reveal="fade-up" data-delay="100">
           Hello, I'm Marie
         </h1>
 
-        <div class="w-14 h-[2px] bg-rose-deep mx-auto lg:mx-0 mb-4"></div>
+        <div class="w-14 h-[2px] bg-rose-deep mx-auto lg:mx-0 mb-4" data-reveal="fade-up" data-delay="200"></div>
 
-        <p class="text-lg sm:text-xl text-ink font-medium mb-4">
+        <p class="text-lg sm:text-xl text-ink font-medium mb-4" data-reveal="fade-up" data-delay="300">
           Développeuse Full-Stack &amp; Designer UI/UX
         </p>
 
-        <p class="text-boss-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
+        <p class="text-boss-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8" data-reveal="fade-up" data-delay="400">
           Je conçois et développe des expériences numériques élégantes,
           utiles et centrées sur l'humain. Curieuse, rigoureuse et passionnée,
           j'aime transformer des idées en produits concrets qui font la différence.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start" data-reveal="fade-up" data-delay="500">
           <a href="{% static 'files/cv-marie-dupont.pdf' %}" download
              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-warm-white text-sm font-medium
                     hover:bg-burgundy transition shadow-soft">
@@ -106,27 +106,27 @@
      =================================================================== -->
 <section class="bg-cream font-sans py-[clamp(2.5rem,8vw,6rem)] px-4">
   <div class="max-w-6xl mx-auto text-center">
- 
-    <h2 class="font-script text-[clamp(1.6rem,5vw,3rem)] text-boss-text mb-3">
+
+    <h2 class="font-script text-[clamp(1.6rem,5vw,3rem)] text-boss-text mb-3" data-reveal="fade-up">
       <span class="text-burgundy italic">Mes</span> qualités
     </h2>
-    <p class="text-boss-muted text-[clamp(0.7rem,2.2vw,1rem)] mb-10 sm:mb-[clamp(2.5rem,8vw,6rem)]">
+    <p class="text-boss-muted text-[clamp(0.7rem,2.2vw,1rem)] mb-10 sm:mb-[clamp(2.5rem,8vw,6rem)]" data-reveal="fade-up" data-delay="100">
       Ce qui guide chaque projet, du premier échange à la mise en ligne
     </p>
  
     <!-- ===== Version MOBILE (< sm) : sans superposition ===== -->
-    <div class="sm:hidden max-w-sm mx-auto">
-      <div class="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-xl ring-4 ring-warm-white mb-8">
+    <div class="sm:hidden max-w-sm mx-auto" data-stagger-parent data-stagger-delay="100">
+      <div class="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-xl ring-4 ring-warm-white mb-8" data-stagger-child>
 <img
           src="{% if about.photo %}{{ about.photo.url }}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}"
           alt="{{ about.name|default:'Portrait' }}"
           class="w-full h-full object-cover"
         >
       </div>
- 
+
       <div class="grid grid-cols-2 gap-3">
         {% for q in qualities %}
-        <div class="bg-warm-white rounded-2xl shadow-sm border border-rose-pale p-4 text-left">
+        <div class="bg-warm-white rounded-2xl shadow-sm border border-rose-pale p-4 text-left" data-hover="lift" data-stagger-child>
           <div class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-deep to-burgundy flex items-center justify-center shadow-md mb-2">
             <i class="{{ q.icon }} text-warm-white text-xs"></i>
           </div>
@@ -138,8 +138,8 @@
     </div>
  
     <!-- ===== Version DESKTOP/TABLETTE (>= sm) : design circulaire d'origine ===== -->
-    <div class="hidden sm:block relative mx-auto w-full max-w-[480px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[820px]">
- 
+    <div class="hidden sm:block relative mx-auto w-full max-w-[480px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[820px]" data-reveal="zoom-in">
+
       <div style="padding-top: 100%;"></div>
  
       <div class="absolute inset-0">
@@ -191,7 +191,7 @@
     <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-8 md:gap-10 items-center">
 
       <!-- ===== Texte gauche (4e qualité) ===== -->
-      <div class="order-3 md:order-1 text-center md:text-right">
+      <div class="order-3 md:order-1 text-center md:text-right" data-reveal="fade-left" data-delay="100">
         {% with q=qualities.3 %}
         {% if q %}
         <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
@@ -267,7 +267,7 @@
       </div>
 
       <!-- ===== Texte droite (2e qualité) ===== -->
-      <div class="order-2 md:order-3 text-center md:text-left">
+      <div class="order-2 md:order-3 text-center md:text-left" data-reveal="fade-right" data-delay="100">
         {% with q=qualities.1 %}
         {% if q %}
         <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
@@ -292,8 +292,8 @@
      =================================================================== -->
 <section class="bg-warm-white py-16 lg:py-24 px-4">
   <div class="max-w-4xl mx-auto">
- 
-    <div class="text-center mb-14">
+
+    <div class="text-center mb-14" data-reveal="fade-up">
       <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
         Parcours <span class="text-burgundy italic">académique</span>
       </h2>
@@ -301,9 +301,9 @@
     </div>
  
     <!-- Mobile / tablette : liste verticale simple -->
-    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale">
+    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale" data-stagger-parent data-stagger-delay="100">
       {% for item in education %}
-      <div class="relative pb-10 last:pb-0">
+      <div class="relative pb-10 last:pb-0" data-stagger-child>
         <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-burgundy flex items-center justify-center ring-4 ring-warm-white">
           <i class="{{ item.icon }} text-warm-white text-xs"></i>
         </span>
@@ -318,11 +318,11 @@
     </div>
  
     <!-- Desktop : zigzag façon infographie -->
-    <div class="hidden md:block relative">
+    <div class="hidden md:block relative" data-stagger-parent data-stagger-delay="100">
       <div class="absolute left-1/2 top-0 bottom-0 w-px bg-rose-pale -translate-x-1/2"></div>
       <div class="space-y-4">
         {% for item in education %}
-        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8" data-stagger-child>
           <div class="text-right">
             {% if forloop.counter0|divisibleby:2 %}
             <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
@@ -359,17 +359,17 @@
      =================================================================== -->
 <section class="bg-cream py-16 lg:py-24 px-4">
   <div class="max-w-4xl mx-auto">
- 
-    <div class="text-center mb-14">
+
+    <div class="text-center mb-14" data-reveal="fade-up">
       <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
         Mes <span class="text-burgundy italic">compétences</span>
       </h2>
       <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
     </div>
- 
-    <div class="grid md:grid-cols-2 gap-x-16 gap-y-8 mb-14">
+
+    <div class="grid md:grid-cols-2 gap-x-16 gap-y-8 mb-14" data-stagger-parent data-stagger-delay="80">
       {% for skill in skills %}
-      <div>
+      <div data-stagger-child>
         <div class="flex justify-between items-baseline mb-2">
           <span class="text-sm font-medium text-boss-text">{{ skill.name }}</span>
           <span class="text-xs text-boss-muted">{{ skill.level }}%</span>
@@ -403,8 +403,8 @@
      =================================================================== -->
 <section class="bg-warm-white py-16 lg:py-24 px-4">
   <div class="max-w-4xl mx-auto">
- 
-    <div class="text-center mb-14">
+
+    <div class="text-center mb-14" data-reveal="fade-up">
       <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
         Expérience <span class="text-burgundy italic">professionnelle</span>
       </h2>
@@ -412,9 +412,9 @@
     </div>
  
     <!-- Mobile / tablette : liste verticale simple -->
-    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale">
+    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale" data-stagger-parent data-stagger-delay="100">
       {% for item in experience %}
-      <div class="relative pb-10 last:pb-0">
+      <div class="relative pb-10 last:pb-0" data-stagger-child>
         <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-burgundy flex items-center justify-center ring-4 ring-warm-white">
           <i class="{{ item.icon }} text-warm-white text-xs"></i>
         </span>
@@ -429,11 +429,11 @@
     </div>
  
     <!-- Desktop : zigzag façon infographie -->
-    <div class="hidden md:block relative">
+    <div class="hidden md:block relative" data-stagger-parent data-stagger-delay="100">
       <div class="absolute left-1/2 top-0 bottom-0 w-px bg-rose-pale -translate-x-1/2"></div>
       <div class="space-y-4">
         {% for item in experience %}
-        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8" data-stagger-child>
           <div class="text-right">
             {% if forloop.counter0|divisibleby:2 %}
             <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
