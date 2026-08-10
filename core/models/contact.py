@@ -12,6 +12,8 @@ from django.db import models
 class ContactMessage(models.Model):
     name = models.CharField("Nom", max_length=150)
     email = models.EmailField("Email")
+    company = models.CharField("Entreprise", max_length=200, blank=True, default="")
+    phone = models.CharField("Téléphone", max_length=50, blank=True, default="")
     subject = models.CharField("Sujet", max_length=200)
     message = models.TextField("Message")
 

@@ -175,14 +175,14 @@ body {
     }
 
     /* Points decoratifs - animation douce */
-    span[class*="rounded-full"][class*="bg-"] {
+    /* span[class*="rounded-full"][class*="bg-"] {
       animation: float-dots 6s ease-in-out infinite;
     }
 
     @keyframes float-dots {
       0%, 100% { transform: translateY(0px); opacity: 0.5; }
       50% { transform: translateY(-8px); opacity: 0.8; }
-    }
+    } */
 
     /* Effet de surbrillance sur les sections */
     section {

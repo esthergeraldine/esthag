@@ -4,7 +4,7 @@ Admin pour l'application blog de TechSpace.
 """
 
 from django.contrib import admin
-from ..models import Category, Author, Article
+from ..models import Category, Author, Article, ArticleSubscriber
 
 
 @admin.register(Category)
@@ -53,3 +53,19 @@ class ArticleAdmin(admin.ModelAdmin):
             "fields": ("is_featured", "is_published", "views_count")
         }),
     )
+
+
+@admin.register(ArticleSubscriber)
+class ArticleSubscriberAdmin(admin.ModelAdmin):
+    list_display = ("email", "is_active", "subscribed_at")
+    list_filter = ("is_active", "subscribed_at")
+    search_fields = ("email",)
+    actions = ["activate_subscribers", "deactivate_subscribers"]
+
+    @admin.action(description="Activer les abonnés sélectionnés")
+    def activate_subscribers(self, request, queryset):
+        queryset.update(is_active=True)
+
+    @admin.action(description="Désactiver les abonnés sélectionnés")
+    def deactivate_subscribers(self, request, queryset):
+        queryset.update(is_active=False)

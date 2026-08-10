@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 
-from ..models import Article, Category, ArticleLike
+from ..models import Article, Category, ArticleLike, ArticleSubscriber
 
 
 def _session_key(request):
@@ -82,6 +82,11 @@ class ArticleListView(ListView):
             .order_by("-published_date")
             .first()
         )
+
+        # Stats pour la hero section
+        context["articles_count"] = Article.objects.filter(is_published=True).count()
+        context["categories_count"] = Category.objects.count()
+        context["subscribers_count"] = ArticleSubscriber.objects.filter(is_active=True).count()
 
         params = self.request.GET.copy()
         params.pop("page", None)

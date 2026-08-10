@@ -12,26 +12,35 @@ class ContactForm(forms.ModelForm):
     # on le détecte comme spam dans clean_website().
     website = forms.CharField(required=False, widget=forms.HiddenInput())
 
+    company = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        "placeholder": "Company name",
+        "class": "field w-full rounded-xl px-4 py-3 text-sm text-[#3a2a2c] bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-burgundy/30 focus:border-burgundy placeholder-gray-400",
+    }))
+    phone = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        "placeholder": "+1 (000) 000-0000",
+        "class": "field w-full rounded-xl px-4 py-3 text-sm text-[#3a2a2c] bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-burgundy/30 focus:border-burgundy placeholder-gray-400",
+    }))
+
     class Meta:
         model = ContactMessage
         fields = ["name", "email", "subject", "message"]
         widgets = {
             "name": forms.TextInput(attrs={
-                "placeholder": "Votre nom",
-                "class": "field w-full rounded-lg px-5 py-4 text-[14px] text-boss-text bg-warm-white border border-rose-pale focus:outline-none focus:ring-2 focus:ring-burgundy/30",
+                "placeholder": "Your name",
+                "class": "field w-full rounded-xl px-4 py-3 text-sm text-[#3a2a2c] bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-burgundy/30 focus:border-burgundy placeholder-gray-400",
             }),
             "email": forms.EmailInput(attrs={
-                "placeholder": "Votre email",
-                "class": "field w-full rounded-lg px-5 py-4 text-[14px] text-boss-text bg-warm-white border border-rose-pale focus:outline-none focus:ring-2 focus:ring-burgundy/30",
+                "placeholder": "you@example.com",
+                "class": "field w-full rounded-xl px-4 py-3 text-sm text-[#3a2a2c] bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-burgundy/30 focus:border-burgundy placeholder-gray-400",
             }),
             "subject": forms.TextInput(attrs={
-                "placeholder": "Sujet",
-                "class": "field w-full rounded-lg px-5 py-4 text-[14px] text-boss-text bg-warm-white border border-rose-pale focus:outline-none focus:ring-2 focus:ring-burgundy/30",
+                "placeholder": "How can we help?",
+                "class": "field w-full rounded-xl px-4 py-3 text-sm text-[#3a2a2c] bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-burgundy/30 focus:border-burgundy placeholder-gray-400",
             }),
             "message": forms.Textarea(attrs={
-                "placeholder": "Votre message",
-                "rows": 6,
-                "class": "field w-full rounded-lg px-5 py-4 text-[14px] text-boss-text bg-warm-white border border-rose-pale focus:outline-none focus:ring-2 focus:ring-burgundy/30 resize-y",
+                "placeholder": "Write your message...",
+                "rows": 5,
+                "class": "field w-full rounded-xl px-4 py-3 text-sm text-[#3a2a2c] bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-burgundy/30 focus:border-burgundy placeholder-gray-400 resize-none",
             }),
         }
         labels = {

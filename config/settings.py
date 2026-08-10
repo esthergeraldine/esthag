@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,3 +126,44 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# =============================================================================
+# EMAIL CONFIGURATION -django pour envoyer des emails via SMTP
+# =============================================================================
+
+import os
+
+# 1. Quel service email utiliser (Gmail, SendGrid, Mailgun, etc.)
+# 'smtp' = Simple Mail Transfer Protocol, le protocole standard
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# 2. Adresse du serveur SMTP de Gmail
+# smtp.gmail.com = le serveur de Google
+EMAIL_HOST = 'smtp.gmail.com'
+
+# 3. Port de connexion
+# 587 = port standard pour TLS (sécurité)
+EMAIL_PORT = 587
+
+# 4. Utiliser TLS pour chiffrer la connexion
+# TLS = Transport Layer Security, chiffre les données pendant l'envoi
+EMAIL_USE_TLS = True
+
+# 5. Ton adresse email (remplace par la tienne)
+# C'est l'adresse qui ENVOIE les messages
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+
+# 6. Mot de passe d'application (PAS ton mot de passe normal)
+# Comment obtenir un mot de passe d'application :
+#    Google Account → Sécurité → Authentification à 2因素 → Mots de passe d'application
+# IMPORTANT : stocke ceci dans .env, JAMAIS en dur dans le code !
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+# 7. L'adresse qui apparaît comme expéditeur dans les emails
+# Format : "Nom" <email@domaine.com>
+DEFAULT_FROM_EMAIL = f'Estha Portfolio <{os.getenv("EMAIL_HOST_USER")}>'
+
+# 8. Ton adresse email où tu reçois les messages
+# Quand quelqu'un remplit le formulaire, c'est ICI que tu recois le mail
+CONTACT_RECIPIENT_EMAIL = os.getenv('CONTACT_RECIPIENT_EMAIL')

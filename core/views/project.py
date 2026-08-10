@@ -10,11 +10,13 @@ views.py — app "projects"
 """
 
 from django.contrib import messages
+from django.core.mail import EmailMessage
 from django.db.models import Count, Exists, OuterRef
 from django.http import JsonResponse, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, DetailView
+from django.conf import settings
 
 from ..forms import ProjectIdeaForm
 from ..models import Project, ProjectCategory, ProjectChallenge, ProjectLike, Technology
@@ -151,6 +153,50 @@ def submit_project_idea(request, pk):
         idea = form.save(commit=False)
         idea.project = project
         idea.save()
+
+        # Email 1 : Notification pour l'admin (toi)
+        admin_subject = f"[TechSpace] Nouvelle idée pour : {project.title}"
+        admin_body = f"""Nouvelle idée reçue !
+
+Projet : {project.title}
+Nom : {idea.name}
+Email : {idea.email}
+
+Message :
+{idea.message}
+
+Date : {idea.created_at.strftime('%d/%m/%Y à %H:%M')}
+"""
+        EmailMessage(
+            subject=admin_subject,
+            body=admin_body,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.CONTACT_RECIPIENT_EMAIL],
+            reply_to=[idea.email],
+        ).send(fail_silently=True)
+
+        # Email 2 : Confirmation pour le visiteur
+        confirm_subject = f"Confirmation - Idée pour {project.title}"
+        confirm_body = f"""Bonjour {idea.name},
+
+Merci pour votre idée !
+
+J'ai bien reçu votre suggestion pour le projet "{project.title}".
+
+Je l'étudierai attentivement et reviendrai vers vous si elle correspond à mes critères.
+
+Cordialement,
+
+Estha
+Développeuse Full Stack
+"""
+        EmailMessage(
+            subject=confirm_subject,
+            body=confirm_body,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[idea.email],
+        ).send(fail_silently=True)
+
         return JsonResponse({'success': True, 'message': 'Merci ! Ton idée a bien été envoyée.'})
     else:
         return JsonResponse({'success': False, 'error': 'Merci de vérifier les champs du formulaire.'}, status=400)

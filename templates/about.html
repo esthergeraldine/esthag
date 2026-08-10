@@ -16,26 +16,34 @@
    comme demandé) : si tu veux un jour le rendre dynamique, il
    suffira de remplacer le texte en dur par des variables.
    ============================================================ #} {% endcomment %}
-
-<section class="relative overflow-hidden bg-rose-pale font-sans">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20">
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center">
+<!-- ============================= HERO: About Section ============================= -->
+<section class="relative overflow-hidden bg-rose-pale font-sans w-full">
+  <div class="w-full px-6 sm:px-8 lg:px-10 py-14 md:py-20">
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center w-full">
 
       {# ---------- Colonne photo ---------- #}
-      <div class="lg:col-span-5 order-1">
-        <div class="relative max-w-sm mx-auto lg:mx-0">
+      <div class="lg:col-span-6 order-1 flex justify-center lg:justify-center">
+        <div class="relative">
 
-          {# écho décoratif du contour, légèrement décalé derrière la photo #}
-          <div class="absolute -left-3 -top-3 w-full h-full rounded-tr-[160px] sm:rounded-tr-[200px] border-2 border-rose-deep/50 -z-10"></div>
+          {# Grand cercle extéerieur avec border #}
+          <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[500px] lg:h-[500px]">
+            {# Bordure circulaire #}
+            <div class="absolute inset-0 rounded-full border-[3px] border-rose-deep/40"></div>
+            {# Deuxième cercle décoratif #}
+            <div class="absolute inset-2 rounded-full border border-rose-deep/20"></div>
 
-          <img
-            src="{% static 'images/about-marie.jpg' %}"
-            alt="Portrait"
-            class="w-full aspect-[4/5] object-cover rounded-tr-[160px] sm:rounded-tr-[200px] shadow-card"
-          >
+            {# Image dans le cercle #}
+            <div class="absolute inset-4 rounded-full overflow-hidden shadow-card">
+              <img
+                src="{% static 'images/boss1.jpeg' %}"
+                alt="Portrait"
+                class="w-full h-full object-cover"
+              >
+            </div>
+          </div>
 
-          {# ---------- Badge / sceau rond ---------- #}
-          <div class="absolute -bottom-7 right-6 sm:right-10 w-24 h-24 sm:w-28 sm:h-28 drop-shadow-lg">
+          {# Badge circulaire #}
+          <div class="absolute -bottom-4 right-4 sm:right-0 w-20 h-20 sm:w-24 sm:h-24 drop-shadow-lg">
             <svg viewBox="0 0 120 120" class="w-full h-full">
               <circle cx="60" cy="60" r="58" fill="var(--color-burgundy-dk)"/>
               <path id="badge-circle" fill="none"
@@ -45,7 +53,6 @@
                   LISBON · CREATIVE · LIFESTYLE ·
                 </textPath>
               </text>
-              {# petite rose minimaliste au centre #}
               <g transform="translate(60,60)" stroke="var(--color-warm-white)" stroke-width="1.4" fill="none" stroke-linecap="round">
                 <circle r="9"/>
                 <circle r="4.5"/>
@@ -57,7 +64,7 @@
       </div>
 
       {# ---------- Colonne texte ---------- #}
-      <div class="lg:col-span-7 order-2 text-center lg:text-left">
+      <div class="lg:col-span-6 order-2 text-center lg:text-left">
         <p class="font-script text-2xl sm:text-3xl text-ink mb-2">About Me</p>
 
         <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4">
@@ -92,34 +99,6 @@
 
     </div>
   </div>
-
-  {% comment %} {# ============================================================
-     Illustration florale décorative (coin haut-droit)
-     ============================================================ #} {% endcomment %}
-  <svg class="pointer-events-none select-none absolute -top-6 -right-6 w-56 sm:w-72 lg:w-80 opacity-90 z-0"
-       viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g stroke="var(--color-rose-deep)" stroke-width="1.2" fill="none" opacity="0.55">
-      <path d="M40 280 C 90 230, 120 170, 180 120"/>
-      <path d="M70 260 C110 210,150 160,200 100"/>
-      <path d="M100 240 Q120 200 100 170 Q80 200 100 240Z"/>
-      <path d="M140 190 Q160 150 140 120 Q120 150 140 190Z"/>
-      <path d="M60 300 c6 -10 6 -20 0 -28"/>
-      <path d="M180 130 c8 -8 20 -10 30 -6"/>
-    </g>
-    <g transform="translate(230,70)">
-      <circle r="34" fill="var(--color-rose-mid)" opacity="0.55"/>
-      <circle r="24" fill="var(--color-rose-deep)" opacity="0.55"/>
-      <circle r="14" fill="var(--color-burgundy)" opacity="0.55"/>
-      <g stroke="var(--color-burgundy-dk)" stroke-width="1" fill="none" opacity="0.6">
-        <path d="M-30,4 Q-38,10 -34,20"/>
-        <path d="M30,4 Q38,10 34,20"/>
-        <path d="M0,-34 Q6,-44 0,-52"/>
-      </g>
-    </g>
-    <circle cx="60" cy="60" r="3" fill="var(--color-rose-deep)" opacity="0.5"/>
-    <circle cx="20" cy="110" r="2" fill="var(--color-rose-deep)" opacity="0.4"/>
-    <circle cx="270" cy="180" r="2.5" fill="var(--color-rose-deep)" opacity="0.4"/>
-  </svg>
 </section>
  
 <!-- ===================================================================
@@ -205,41 +184,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-{% comment %}
-=====================================================================
-  templates/sections/about_hub.html  (version corrigée)
-  ---------------------------------------------------------------
-  BUG CORRIGÉ : la version précédente forçait un conteneur carré
-  parfait (padding-top: 100%) en copiant la technique du header
-  "Mes qualités". Mais l'image de référence est LARGE (format
-  paysage), pas carrée — il ne restait quasiment plus de place pour
-  les textes gauche/droite, d'où le chevauchement que tu as vu, même
-  en grand écran (donc rien à voir avec le cache/build cette fois).
-
-  Nouvelle structure : une vraie grille (3 colonnes sur desktop —
-  texte gauche | anneau | texte droite — puis texte haut/bas empilés
-  au-dessus/en-dessous de l'anneau). Chaque texte a son propre espace
-  réservé, l'anneau (avec ses 4 cercles satellites) reste dans un
-  petit carré à taille fixe, indépendant du texte.
-
-  Réutilise toujours ton modèle Quality existant (les 4 premières
-  qualités = les 4 satellites, dans l'ordre : haut, droite, bas,
-  gauche).
-
-  À inclure dans about.html :
-      {% include "sections/about_hub.html" %}
-=====================================================================
-{% endcomment %}
 
 <section class="bg-cream py-16 md:py-24 px-4">
   <div class="max-w-5xl mx-auto">

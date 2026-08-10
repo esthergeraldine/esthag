@@ -159,3 +159,18 @@ class ArticleLike(models.Model):
 
     def __str__(self):
         return f"Like — {self.article}"
+
+
+class ArticleSubscriber(models.Model):
+    """Abonnés à la newsletter du blog."""
+    email = models.EmailField("Email", unique=True)
+    is_active = models.BooleanField("Actif", default=True)
+    subscribed_at = models.DateTimeField("Abonné le", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Abonné newsletter"
+        verbose_name_plural = "Abonnés newsletter"
+        ordering = ["-subscribed_at"]
+
+    def __str__(self):
+        return self.email
