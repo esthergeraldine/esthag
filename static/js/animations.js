@@ -5,9 +5,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
+  initThemeToggle();
   initScrollReveal();
-  initLegacyReveal(); // Pour .reveal class (ancien système)
+  initLegacyReveal();
   initParallax();
   initSmoothScroll();
   initAnimatedCounters();
@@ -17,31 +17,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * ─────────────────────────────────────────────────────
- * DARK MODE — Toggle avec persistence
+ * THEME TOGGLE — Warm / Tech Mode
  * ─────────────────────────────────────────────────────
  */
-function initDarkMode() {
+function initThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
-  const sunIcon = document.getElementById('sun-icon');
-  const moonIcon = document.getElementById('moon-icon');
+  const warmIcon = document.getElementById('warm-icon');
+  const techIcon = document.getElementById('tech-icon');
 
   if (!themeToggle) return;
 
-  function updateIcons(isDark) {
-    if (sunIcon && moonIcon) {
-      sunIcon.classList.toggle('hidden', !isDark);
-      moonIcon.classList.toggle('hidden', isDark);
+  function updateIcons() {
+    const isTech = document.documentElement.getAttribute('data-theme') === 'tech';
+    if (warmIcon && techIcon) {
+      warmIcon.classList.toggle('hidden', isTech);
+      techIcon.classList.toggle('hidden', !isTech);
     }
   }
 
-  // Sync icons on load
-  const isDark = document.documentElement.classList.contains('dark');
-  updateIcons(isDark);
+  updateIcons();
 
   themeToggle.addEventListener('click', () => {
-    const nowDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', nowDark ? 'dark' : 'light');
-    updateIcons(nowDark);
+    const isTech = document.documentElement.getAttribute('data-theme') === 'tech';
+    if (isTech) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme-preference', 'warm');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'tech');
+      localStorage.setItem('theme-preference', 'tech');
+    }
+    updateIcons();
   });
 }
 

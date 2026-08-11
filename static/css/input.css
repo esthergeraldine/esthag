@@ -1,5 +1,35 @@
 @import "tailwindcss";
 
+:root {
+  --bg-base: #fdf8f5;
+  --bg-surface: #fffcfa;
+  --bg-soft: #f5e6e8;
+  --accent: #7d3b47;
+  --accent-dark: #5c2a33;
+  --accent-soft: #e8cdd0;
+  --accent-mid: #d4a5aa;
+  --text-main: #3a2a2c;
+  --text-muted: #8a6e72;
+  --ink: #c17e88;
+  --footer-bg: #3d2b2b;
+  --muted: #b8a8a8;
+}
+
+[data-theme="tech"] {
+  --bg-base: #F5FAFF;
+  --bg-surface: #F5FAFF;
+  --bg-soft: #C9D8FB;
+  --accent: #2A67B7;
+  --accent-dark: #084093;
+  --accent-soft: #C9D8FB;
+  --accent-mid: #4282D8;
+  --text-main: #030514;
+  --text-muted: #5A67B0;
+  --ink: #4282D8;
+  --footer-bg: #000552;
+  --muted: #C9D8FB;
+}
+
 @theme {
   --breakpoint-admin-nav-bar: 875px;
 
