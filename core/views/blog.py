@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 
-from ..models import Article, Category, ArticleLike, ArticleSubscriber
+from ..models import Article, Category, ArticleLike, ArticleSubscriber, ArticleComment, CommentLike
 
 
 def _session_key(request):
@@ -150,6 +150,8 @@ class ArticleDetailView(DetailView):
         context["likes_total"] = article_likes_qs.first().likes_total
         context["is_liked"] = article_likes_qs.first().is_liked_by_me
 
+        context["comments"] = article.comments.filter(is_approved=True).order_by("-created_date")
+
         return context
 
 
@@ -208,3 +210,48 @@ def search_articles(request):
     ]
 
     return JsonResponse({"query": query, "total": len(results), "results": results})
+
+
+@require_POST
+def add_article_comment(request, slug):
+    """Ajoute un commentaire à un article."""
+    article = get_object_or_404(Article, slug=slug)
+
+    name = request.POST.get("name", "").strip()
+    email = request.POST.get("email", "").strip()
+    content = request.POST.get("content", "").strip()
+
+    if not name or not email or not content:
+        from django.http import HttpResponseBadRequest
+        return HttpResponseBadRequest("Tous les champs sont requis.")
+
+    ArticleComment.objects.create(
+        article=article,
+        name=name,
+        email=email,
+        content=content,
+    )
+
+    from django.shortcuts import redirect
+    return redirect(article.get_absolute_url() + "#comments")
+
+
+@require_POST
+def toggle_comment_like(request, comment_id):
+    """Like / unlike un commentaire en AJAX."""
+    comment = get_object_or_404(ArticleComment, id=comment_id)
+    session_key = _session_key(request)
+
+    like = CommentLike.objects.filter(comment=comment, session_key=session_key).first()
+    if like:
+        like.delete()
+        comment.likes_count = max(0, comment.likes_count - 1)
+        comment.save()
+        liked = False
+    else:
+        CommentLike.objects.create(comment=comment, session_key=session_key)
+        comment.likes_count += 1
+        comment.save()
+        liked = True
+
+    return JsonResponse({"liked": liked, "likes_count": comment.likes_count})

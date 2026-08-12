@@ -4,40 +4,40 @@
 {% block content %}
 <section>
   <div id="loading-screen"
-      class="fixed inset-0 z-[9999] bg-burgundy-dk flex flex-col items-center justify-center overflow-hidden transition-opacity duration-700">
+      class="fixed inset-0 z-[9999] bg-accent-dark flex flex-col items-center justify-center overflow-hidden transition-opacity duration-700">
 
     <!-- Particules flottantes -->
-    <div class="absolute w-1 h-1 rounded-full bg-[#a05c6b] opacity-0 animate-[float-p_3.5s_ease-in-out_infinite] left-[20%] top-[70%]"></div>
-    <div class="absolute w-1 h-1 rounded-full bg-[#a05c6b] opacity-0 animate-[float-p_4s_ease-in-out_0.8s_infinite] left-[55%] top-[75%]"></div>
-    <div class="absolute w-1 h-1 rounded-full bg-[#a05c6b] opacity-0 animate-[float-p_4.5s_ease-in-out_0.4s_infinite] left-[75%] top-[65%]"></div>
+    <div class="absolute w-1 h-1 rounded-full opacity-0 animate-[float-p_3.5s_ease-in-out_infinite] left-[20%] top-[70%]" style="background-color: var(--loading-particle);"></div>
+    <div class="absolute w-1 h-1 rounded-full opacity-0 animate-[float-p_4s_ease-in-out_0.8s_infinite] left-[55%] top-[75%]" style="background-color: var(--loading-particle);"></div>
+    <div class="absolute w-1 h-1 rounded-full opacity-0 animate-[float-p_4.5s_ease-in-out_0.4s_infinite] left-[75%] top-[65%]" style="background-color: var(--loading-particle);"></div>
 
     <!-- Logo rotatif -->
-    <div class="relative flex items-center justify-center w-[130px] h-[130px] rounded-full border border-[#7a3f52] animate-spin" style="animation-duration:6s;">
-      <div class="absolute inset-[-6px] rounded-full border border-transparent border-t-[#a05c6b] border-r-[#a05c6b] animate-spin" style="animation-duration:3s; animation-direction:reverse;"></div>
-      <div class="w-[115px] h-[115px] rounded-full bg-gradient-to-br from-[#1a1a1a] to-[#2a1520] border border-[#3a2030] flex items-center justify-center animate-spin" style="animation-duration:6s; animation-direction:reverse;">
-        <span class="font-script text-[3rem] text-rose-t -tracking-[-4px] pl-1">TS</span>
+    <div class="relative flex items-center justify-center w-[130px] h-[130px] rounded-full animate-spin" style="animation-duration:6s; border-color: var(--loading-border);">
+      <div class="absolute inset-[-6px] rounded-full border border-transparent animate-spin" style="animation-duration:3s; animation-direction:reverse; border-top-color: var(--loading-particle); border-right-color: var(--loading-particle);"></div>
+      <div class="w-[115px] h-[115px] rounded-full flex items-center justify-center animate-spin" style="animation-duration:6s; animation-direction:reverse; background: linear-gradient(135deg, var(--loading-spinner-from), var(--loading-spinner-to)); border-color: var(--loading-spinner-border);">
+        <span class="font-script text-[3rem] text-accent-mid -tracking-[-4px] pl-1">TS</span>
       </div>
     </div>
 
     <!-- Texte -->
-    <p class="font-script  text-[1.4rem] tracking-normal text-[#efd5d5] mt-7
+    <p class="font-script  text-[1.4rem] tracking-normal text-accent-soft mt-7
               opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease_0.6s_forwards]">
       TechSpace
     </p>
-    <p class="font-sans font-light text-[0.65rem] tracking-[0.2em] uppercase text-blush mt-2
+    <p class="font-sans font-light text-[0.65rem] tracking-[0.2em] uppercase text-accent-soft mt-2
               opacity-0 translate-y-3 animate-[fadeUp_0.8s_ease_1s_forwards]">
       L'innovation sans limite avec Esther
     </p>
 
     <!-- Barre de progression -->
-    <div class="mt-10 w-40 h-1 bg-[#2a1520] relative opacity-0 animate-[fadeUp_0.5s_ease_1.2s_forwards]">
-      <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-[#7a3f52] to-[#d4a0a0] animate-[loadBar_2.5s_cubic-bezier(0.4,0,0.2,1)_1.4s_forwards] w-0"></div>
+    <div class="mt-10 w-40 h-1 relative opacity-0 animate-[fadeUp_0.5s_ease_1.2s_forwards]" style="background-color: var(--loading-progress-track);">
+      <div class="absolute inset-y-0 left-0 animate-[loadBar_2.5s_cubic-bezier(0.4,0,0.2,1)_1.4s_forwards] w-0" style="background: linear-gradient(to right, var(--loading-progress-from), var(--loading-progress-to));"></div>
     </div>
   </div>
 </section>
 
 <!-- ============================= HERO: About Section ============================= -->
-<section class="min-h-screen w-full overflow-hidden bg-rose-pale">
+<section class="min-h-screen w-full overflow-hidden bg-bg-soft">
 
   <div class="flex flex-col lg:flex-row w-full min-h-screen">
 
@@ -53,7 +53,7 @@
     >
       <!-- Cercle image sur mobile/tablette -->
       <div class="absolute inset-0 flex items-center justify-center lg:hidden">
-        <div class="w-100 h-100 rounded-full overflow-hidden border border-burgundy-dk shadow-2xl">
+        <div class="w-100 h-100 rounded-full overflow-hidden border border-accent-dark shadow-2xl">
           <img
             src="{% static 'images/ordi4.jpeg' %}"
             alt="Développeuse au travail"
@@ -75,24 +75,24 @@
       relative
       w-full lg:w-1/2
       min-h-[50vh] lg:min-h-screen
-      bg-rose-pale
+      bg-bg-soft
       flex items-center justify-center
       order-2 lg:order-1
       "
     >
       <div class="px-8 md:px-16 lg:px-24 py-12 text-center lg:text-left">
 
-        <p class="font-script text-2xl text-burgundy mb-2">Bienvenue</p>
+        <p class="font-script text-2xl text-accent mb-2">Bienvenue</p>
 
         <h1 class="
         text-4xl md:text-5xl lg:text-7xl
-        font-bold font-script text-burgundy-dk
+        font-bold font-script text-accent
         ">
           Développeuse Logicielle
         </h1>
 
         <p class="
-        mt-6 text-base md:text-lg text-boss-muted max-w-md mx-auto lg:mx-0
+        mt-6 text-base md:text-lg text-accent max-w-md mx-auto lg:mx-0
         ">
           Je transforme des idées en solutions digitales modernes.Je transforme des idées en solutions digitales modernes
           Je transforme des idées en solutions digitales modernes
@@ -101,28 +101,28 @@
         <!-- Réseaux sociaux -->
         <div class="flex items-center justify-center lg:justify-start gap-5 mt-8">
           <!-- WhatsApp -->
-          <a href="#" class="w-12 h-12 rounded-full bg-burgundy-dk flex items-center justify-center text-warm-white hover:bg-burgundy transition-colors">
+          <a href="#" class="w-12 h-12 rounded-full bg-accent-dark flex items-center justify-center text-bg-surface hover:bg-accent transition-colors">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
           </a>
 
           <!-- Facebook -->
-          <a href="#" class="w-12 h-12 rounded-full bg-burgundy-dk flex items-center justify-center text-warm-white hover:bg-burgundy transition-colors">
+          <a href="#" class="w-12 h-12 rounded-full bg-accent-dark flex items-center justify-center text-bg-surface hover:bg-accent transition-colors">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
           </a>
 
           <!-- GitHub -->
-          <a href="#" class="w-12 h-12 rounded-full bg-burgundy-dk flex items-center justify-center text-warm-white hover:bg-burgundy transition-colors">
+          <a href="#" class="w-12 h-12 rounded-full bg-accent-dark flex items-center justify-center text-bg-surface hover:bg-accent transition-colors">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
           </a>
 
           <!-- LinkedIn -->
-          <a href="#" class="w-12 h-12 rounded-full bg-burgundy-dk flex items-center justify-center text-warm-white hover:bg-burgundy transition-colors">
+          <a href="#" class="w-12 h-12 rounded-full bg-accent-dark flex items-center justify-center text-bg-surface hover:bg-accent transition-colors">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
@@ -131,7 +131,7 @@
 
         <!-- Bouton Contact -->
         <a href="{% url 'contact' %}"
-           class="inline-flex items-center gap-2 mt-10 px-8 py-4 rounded-full bg-burgundy text-warm-white font-medium hover:bg-burgundy-dk transition-colors shadow-lg">
+           class="inline-flex items-center gap-2 mt-10 px-8 py-4 rounded-full bg-accent text-bg-surface font-medium hover:bg-accent-dark transition-colors shadow-lg">
           Me contacter
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -149,15 +149,15 @@
 
 
 
-<section class="bg-cream py-24 overflow-hidden">
+<section class="bg-bg-base py-24 overflow-hidden">
 
     <!-- Séparateur décoratif -->
     <div class="text-center mb-12 reveal">
-      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">About Me</h2>
+      <h2 class="font-script text-5xl mb-2 text-accent-dark">About Me</h2>
         <div class="flex items-center gap-4 mb-8">
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
-          <span class="font-script text-5xl text-burgundy-dk">✦</span>
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <div class="flex-1 h-px bg-accent-dark"></div>
+          <span class="font-script text-5xl text-accent-dark">✦</span>
+          <div class="flex-1 h-px bg-accent-dark"></div>
         </div>
 
     </div>
@@ -180,7 +180,7 @@
                lg:w-[28%]
                mx-auto
                lg:mx-0
-               bg-rose-pale
+               bg-bg-soft
                p-8
                shadow-xl
                z-30">
@@ -188,7 +188,7 @@
         <h2
             class="font-serif italic
                    text-3xl lg:text-[34px]
-                   text-[#84635d]
+                   text-accent
                    leading-tight">
             Welcome to the Demo
         </h2>
@@ -205,7 +205,7 @@
 
         <div class="mt-8">
             <a href="{% url 'about' %}"
-               class="group relative inline-flex items-center justify-center px-6 py-3 text-xs uppercase tracking-[5px] text-[#7d3b47] font-serif italic bg-white border border-[#7d3b47]/20 rounded-full shadow-lg transition-all duration-300 hover:bg-[#7d3b47] hover:text-cream">
+               class="group relative inline-flex items-center justify-center px-6 py-3 text-xs uppercase tracking-[5px] text-accent font-serif italic bg-white border border-accent/20 rounded-full shadow-lg transition-all duration-300 hover:bg-accent hover:text-bg-surface">
                 Learn More
             </a>
         </div>
@@ -243,7 +243,7 @@
                    lg:w-[36%]
                    lg:h-[560px]
 
-                   border border-burgundy-dk">
+                   border border-accent-dark">
         </div>
 
         <!-- Grande image -->
@@ -294,7 +294,7 @@
                        lg:w-[17.5vw]
                        lg:h-[20.5vw]
 
-                       border border-burgundy-dk">
+                       border border-accent-dark">
             </div>
 
             <div
@@ -332,14 +332,14 @@
 
 
 
-<section class="bg-cream py-16 lg:py-24">
+<section class="bg-bg-base py-16 lg:py-24">
 
     <div class="text-center mb-12 reveal">
-      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Services</h2>
+      <h2 class="font-script text-5xl mb-2 text-accent-dark">Services</h2>
         <div class="flex items-center gap-4 mb-8">
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
-          <span class="font-script text-5xl text-burgundy-dk">✦</span>
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <div class="flex-1 h-px bg-accent-dark"></div>
+          <span class="font-script text-5xl text-accent-dark">✦</span>
+          <div class="flex-1 h-px bg-accent-dark"></div>
         </div>
 
     </div>
@@ -352,19 +352,19 @@
         <div id="approachTextTrack" class="min-h-[220px] sm:min-h-[180px]">
           {% for service in services %}
           <div class="approach-text-slide {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
-            <h2 class="font-sans font-bold text-3xl sm:text-4xl lg:text-[2.8rem] uppercase tracking-[0.08em] text-boss-text leading-[1.1] mb-8">
+            <h2 class="font-sans font-bold text-3xl sm:text-4xl lg:text-[2.8rem] uppercase tracking-[0.08em] text-accent leading-[1.1] mb-8">
               {{ service.title }}
             </h2>
-            <p class="font-sans text-boss-text/90 text-[0.9rem] sm:text-[0.95rem] lg:text-base leading-[1.7] max-w-[95%]">
+            <p class="font-sans text-text-main/90 text-[0.9rem] sm:text-[0.95rem] lg:text-base leading-[1.7] max-w-[95%]">
               {{ service.description }}
             </p>
           </div>
           {% empty %}
           <div class="approach-text-slide" data-index="0">
-            <h2 class="font-sans font-bold text-3xl sm:text-4xl lg:text-[2.8rem] uppercase tracking-[0.08em] text-boss-text leading-[1.1] mb-8">
+            <h2 class="font-sans font-bold text-3xl sm:text-4xl lg:text-[2.8rem] uppercase tracking-[0.08em] text-accent leading-[1.1] mb-8">
               Our Approach
             </h2>
-            <p class="font-sans text-boss-text/90 text-[0.9rem] sm:text-[0.95rem] lg:text-base leading-[1.7] max-w-[95%]">
+            <p class="font-sans text-text-main/90 text-[0.9rem] sm:text-[0.95rem] lg:text-base leading-[1.7] max-w-[95%]">
               Ajoute des services depuis ton espace admin pour qu'ils apparaissent ici.
             </p>
           </div>
@@ -374,8 +374,8 @@
         <!-- CTA statique, ne change pas selon le slide -->
         <div class="mt-10">
           <a href="{% url 'services' %}"
-             class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-burgundy text-warm-white text-sm font-medium
-                    hover:bg-burgundy/90 transition-colors">
+             class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-accent text-bg-surface text-sm font-medium
+                    hover:bg-accent/90 transition-colors">
             Découvrir nos services
             <i class="fas fa-arrow-right text-xs"></i>
           </a>
@@ -389,9 +389,9 @@
  
           <!-- Bouton précédent (unique, commun à tous les slides) -->
           <button type="button" id="approachPrev" aria-label="Service précédent"
-            class="absolute top-0 left-0 z-20 w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[1.5px] border-burgundy
-                   flex items-center justify-center text-burgundy
-                   hover:bg-burgundy hover:text-warm-white transition-colors duration-300">
+            class="absolute top-0 left-0 z-20 w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[1.5px] border-accent
+                   flex items-center justify-center text-accent
+                   hover:bg-accent hover:text-bg-surface transition-colors duration-300">
             <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" stroke="currentColor" stroke-width="2" fill="none"
                  stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6" />
@@ -402,31 +402,31 @@
           {% for service in services %}
           <div class="approach-gallery-slide {% if not forloop.first %}hidden{% endif %} absolute inset-0" data-index="{{ forloop.counter0 }}">
  
-            <div class="absolute bottom-0 left-0 z-[2] w-[110px] h-[150px] sm:w-[160px] sm:h-[220px] lg:w-[200px] lg:h-[270px] overflow-hidden bg-rose-pale group">
+            <div class="absolute bottom-0 left-0 z-[2] w-[110px] h-[150px] sm:w-[160px] sm:h-[220px] lg:w-[200px] lg:h-[270px] overflow-hidden bg-bg-soft group">
               {% if service.image_1 %}
               <img src="{{ service.image_1.url }}" alt="{{ service.title }}" loading="lazy"
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               {% else %}
-              <div class="w-full h-full flex items-center justify-center text-burgundy/30"><i class="fas fa-image"></i></div>
+              <div class="w-full h-full flex items-center justify-center text-accent/30"><i class="fas fa-image"></i></div>
               {% endif %}
             </div>
  
-            <div class="absolute top-0 right-0 z-[1] w-[120px] h-[170px] sm:w-[180px] sm:h-[250px] lg:w-[230px] lg:h-[310px] overflow-hidden bg-rose-pale group">
+            <div class="absolute top-0 right-0 z-[1] w-[120px] h-[170px] sm:w-[180px] sm:h-[250px] lg:w-[230px] lg:h-[310px] overflow-hidden bg-bg-soft group">
               {% if service.image_2 %}
               <img src="{{ service.image_2.url }}" alt="{{ service.title }}" loading="lazy"
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               {% else %}
-              <div class="w-full h-full flex items-center justify-center text-burgundy/30"><i class="fas fa-image"></i></div>
+              <div class="w-full h-full flex items-center justify-center text-accent/30"><i class="fas fa-image"></i></div>
               {% endif %}
             </div>
  
           </div>
           {% empty %}
           <div class="approach-gallery-slide absolute inset-0" data-index="0">
-            <div class="absolute bottom-0 left-0 z-[2] w-[110px] h-[150px] sm:w-[160px] sm:h-[220px] lg:w-[200px] lg:h-[270px] overflow-hidden bg-rose-pale">
+            <div class="absolute bottom-0 left-0 z-[2] w-[110px] h-[150px] sm:w-[160px] sm:h-[220px] lg:w-[200px] lg:h-[270px] overflow-hidden bg-bg-soft">
               <img src="https://placehold.co/200x270/e8e3da/7d3b47?text=Photo+1" alt="" class="w-full h-full object-cover">
             </div>
-            <div class="absolute top-0 right-0 z-[1] w-[120px] h-[170px] sm:w-[180px] sm:h-[250px] lg:w-[230px] lg:h-[310px] overflow-hidden bg-rose-pale">
+            <div class="absolute top-0 right-0 z-[1] w-[120px] h-[170px] sm:w-[180px] sm:h-[250px] lg:w-[230px] lg:h-[310px] overflow-hidden bg-bg-soft">
               <img src="https://placehold.co/230x310/e0d8cc/7d3b47?text=Photo+2" alt="" class="w-full h-full object-cover">
             </div>
           </div>
@@ -434,9 +434,9 @@
  
           <!-- Bouton suivant (unique, commun à tous les slides) -->
           <button type="button" id="approachNext" aria-label="Service suivant"
-            class="absolute bottom-0 right-0 z-20 w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[1.5px] border-burgundy
-                   flex items-center justify-center text-burgundy
-                   hover:bg-burgundy hover:text-warm-white transition-colors duration-300">
+            class="absolute bottom-0 right-0 z-20 w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-[1.5px] border-accent
+                   flex items-center justify-center text-accent
+                   hover:bg-accent hover:text-bg-surface transition-colors duration-300">
             <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" stroke="currentColor" stroke-width="2" fill="none"
                  stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6" />
@@ -488,15 +488,15 @@
 <!-- ============================= Our Blog ============================= -->
 
 
-<section class="bg-cream py-24 lg:py-32 overflow-hidden">
+<section class="bg-bg-base py-24 lg:py-32 overflow-hidden">
 
     <!-- Séparateur décoratif -->
     <div class="text-center mb-12 reveal">
-      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Latest from the Blog</h2>
+      <h2 class="font-script text-5xl mb-2 text-accent-dark">Latest from the Blog</h2>
         <div class="flex items-center gap-4 mb-8">
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
-          <span class="font-script text-5xl text-burgundy-dk">✦</span>
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <div class="flex-1 h-px bg-accent-dark"></div>
+          <span class="font-script text-5xl text-accent-dark">✦</span>
+          <div class="flex-1 h-px bg-accent-dark"></div>
         </div>
 
     </div>
@@ -507,12 +507,12 @@
 
       {# ---------- Colonne gauche : texte dynamique ---------- #}
       <div id="blog-left-content" class="max-w-lg">
-        <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-boss-text">
+        <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-accent">
           900+ Projets Partout<br>
-          <span class="text-burgundy">Dans le Monde</span>
+          <span class="text-accent">Dans le Monde</span>
         </h2>
 
-        <p class="mt-7 text-boss-muted text-lg leading-relaxed">
+        <p class="mt-7 text-accent text-lg leading-relaxed">
           De New York à Tokyo, notre portfolio traverse continents et cultures.
           Notre équipe apporte des solutions design adaptées à chaque espace —
           toujours avec un souci du détail et de l'innovation.
@@ -520,8 +520,8 @@
 
         <a href="{% url 'article_list' %}"
            class="group inline-flex items-center gap-2 mt-10 px-9 py-4 rounded-full
-                  border-2 border-burgundy text-burgundy font-semibold text-sm tracking-wide
-                  transition-colors duration-300 hover:bg-burgundy hover:text-warm-white">
+                  border-2 border-accent text-accent font-semibold text-sm tracking-wide
+                  transition-colors duration-300 hover:bg-accent hover:text-bg-surface">
           Voir plus
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -535,35 +535,35 @@
       <div class="relative">
 
         {# Formes décoratives pour donner plus de présence visuelle #}
-        <span class="hidden lg:block absolute -top-10 -right-10 w-72 h-72 bg-rose-deep/25 rounded-full blur-3xl -z-10"></span>
-        <span class="hidden lg:block absolute -bottom-10 left-10 w-56 h-56 bg-rose-mid/40 rounded-full blur-3xl -z-10"></span>
+        <span class="hidden lg:block absolute -top-10 -right-10 w-72 h-72 bg-accent-mid/25 rounded-full blur-3xl -z-10"></span>
+        <span class="hidden lg:block absolute -bottom-10 left-10 w-56 h-56 bg-accent-soft/40 rounded-full blur-3xl -z-10"></span>
 
         <div id="projects-stack" class="relative flex items-end justify-center lg:justify-start min-h-[520px]">
           <!-- Les 3 cartes visibles sont mises à jour dynamiquement en JS -->
           <article data-slot="primary" class="project-card group cursor-pointer absolute left-0 bottom-0 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 ease-out">
             <img data-role="img" src="" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-burgundy-dk/95 via-burgundy-dk/15 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-accent-dark/95 via-accent-dark/15 to-transparent"></div>
             <div class="absolute bottom-0 left-0 p-7">
-              <p data-role="title" class="text-warm-white font-bold text-2xl"></p>
-              <p data-role="count" class="text-rose-pale text-sm mt-1"></p>
+              <p data-role="title" class="text-bg-surface font-bold text-2xl"></p>
+              <p data-role="count" class="text-bg-soft text-sm mt-1"></p>
             </div>
           </article>
 
           <article data-slot="secondary" class="project-card group cursor-pointer absolute bottom-0 rounded-3xl overflow-hidden shadow-xl transition-all duration-500 ease-out">
             <img data-role="img" src="" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-burgundy-dk/90 via-burgundy-dk/10 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-accent-dark/90 via-accent-dark/10 to-transparent"></div>
             <div class="absolute bottom-0 left-0 p-5">
-              <p data-role="title" class="text-warm-white font-semibold text-lg"></p>
-              <p data-role="count" class="text-rose-pale text-xs mt-1"></p>
+              <p data-role="title" class="text-bg-surface font-semibold text-lg"></p>
+              <p data-role="count" class="text-bg-soft text-xs mt-1"></p>
             </div>
           </article>
 
           <article data-slot="tertiary" class="project-card group cursor-pointer absolute bottom-0 rounded-3xl overflow-hidden shadow-lg transition-all duration-500 ease-out">
             <img data-role="img" src="" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-burgundy-dk/90 via-burgundy-dk/10 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-accent-dark/90 via-accent-dark/10 to-transparent"></div>
             <div class="absolute bottom-0 left-0 p-4">
-              <p data-role="title" class="text-warm-white font-semibold text-base"></p>
-              <p data-role="count" class="text-rose-pale text-xs mt-1"></p>
+              <p data-role="title" class="text-bg-surface font-semibold text-base"></p>
+              <p data-role="count" class="text-bg-soft text-xs mt-1"></p>
             </div>
           </article>
         </div>
@@ -571,21 +571,21 @@
         {# Pagination fonctionnelle : fenêtre glissante de numéros #}
         <div class="flex items-center justify-center lg:justify-start gap-4 mt-10">
           <button type="button" id="pagination-prev" aria-label="Précédent"
-                  class="w-9 h-9 flex items-center justify-center rounded-full border border-rose-deep text-burgundy hover:bg-burgundy hover:text-warm-white hover:border-burgundy transition-colors duration-200">
+                  class="w-9 h-9 flex items-center justify-center rounded-full border border-accent-mid text-accent hover:bg-accent hover:text-bg-surface hover:border-accent transition-colors duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                  stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
 
-          <span id="pagination-track" class="relative h-[2px] w-16 bg-rose-mid rounded-full overflow-hidden">
-            <span id="pagination-progress" class="absolute inset-y-0 left-0 bg-burgundy rounded-full transition-all duration-300"></span>
+          <span id="pagination-track" class="relative h-[2px] w-16 bg-accent-soft rounded-full overflow-hidden">
+            <span id="pagination-progress" class="absolute inset-y-0 left-0 bg-accent rounded-full transition-all duration-300"></span>
           </span>
 
           <div id="pagination-numbers" class="flex items-center gap-3"></div>
 
           <button type="button" id="pagination-next" aria-label="Suivant"
-                  class="w-9 h-9 flex items-center justify-center rounded-full border border-rose-deep text-burgundy hover:bg-burgundy hover:text-warm-white hover:border-burgundy transition-colors duration-200">
+                  class="w-9 h-9 flex items-center justify-center rounded-full border border-accent-mid text-accent hover:bg-accent hover:text-bg-surface hover:border-accent transition-colors duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                  stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
               <path d="M9 18l6-6-6-6" />
@@ -659,19 +659,19 @@
   function updateLeftContent(item) {
     if (!leftContent || !item) return;
     leftContent.innerHTML = `
-      <span class="inline-block px-3 py-1 rounded-full bg-rose-mid text-burgundy-dk text-xs font-semibold uppercase tracking-wider mb-4">
+      <span class="inline-block px-3 py-1 rounded-full bg-accent-soft text-accent-dark text-xs font-semibold uppercase tracking-wider mb-4">
         ${item.category}
       </span>
-      <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-boss-text mb-4">
+      <h2 class="font-sans font-bold text-5xl sm:text-6xl leading-[1.08] text-accent mb-4">
         ${item.title}
       </h2>
-      <p class="mt-7 text-boss-muted text-lg leading-relaxed line-clamp-3">
+      <p class="mt-7 text-accent text-lg leading-relaxed line-clamp-3">
         ${item.excerpt}
       </p>
       <a href="${item.url || '#'}"
          class="group inline-flex items-center gap-2 mt-10 px-9 py-4 rounded-full
-                border-2 border-burgundy text-burgundy font-semibold text-sm tracking-wide
-                transition-colors duration-300 hover:bg-burgundy hover:text-warm-white">
+                border-2 border-accent text-accent font-semibold text-sm tracking-wide
+                transition-colors duration-300 hover:bg-accent hover:text-bg-surface">
         Lire l'article
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -718,8 +718,8 @@
       btn.textContent = pageIndex + 1;
       const isActive = pageIndex === state.current;
       btn.className = isActive
-        ? "page-btn font-bold text-burgundy text-lg transition-all duration-200"
-        : "page-btn text-muted text-sm transition-all duration-200 hover:text-burgundy";
+        ? "page-btn font-bold text-accent text-lg transition-all duration-200"
+        : "page-btn text-muted text-sm transition-all duration-200 hover:text-accent";
       btn.addEventListener("click", () => goTo(pageIndex));
       numbersWrap.appendChild(btn);
     }
@@ -747,32 +747,32 @@
 
 <!-- section pour les projets -->
 
-<section class="bg-warm-white py-24 lg:py-28">
+<section class="bg-bg-surface py-24 lg:py-28">
 
 
       <!-- Séparateur décoratif -->
     <div class="text-center mb-12 reveal">
-      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Latest from the Project</h2>
+      <h2 class="font-script text-5xl mb-2 text-accent-dark">Latest from the Project</h2>
         <div class="flex items-center gap-4 mb-8">
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
-          <span class="font-script text-5xl text-burgundy-dk">✦</span>
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
+          <div class="flex-1 h-px bg-accent-dark"></div>
+          <span class="font-script text-5xl text-accent-dark">✦</span>
+          <div class="flex-1 h-px bg-accent-dark"></div>
         </div>
 
     </div>
-  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+  <div class="max-w-[1600px] mx-auto px-6 lg:px-10">
 
     {# En-tête #}
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14" data-reveal="fade-up">
       <div>
-        <span class="inline-block bg-blush/40 text-burgundy text-xs font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-4">
+        <span class="inline-block bg-accent-mid/40 text-accent text-xs font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-4">
           Portfolio
         </span>
-        <h2 class="font-script text-4xl sm:text-5xl text-boss-text leading-tight">
-          Mes projets <span class="text-burgundy italic">phares</span>
+        <h2 class="font-script text-4xl sm:text-5xl text-accent leading-tight">
+          Mes projets <span class="text-accent italic">phares</span>
         </h2>
       </div>
-      <p class="text-boss-muted max-w-sm">
+      <p class="text-accent max-w-sm">
         Quatre collaborations récentes, du premier échange jusqu'à la mise en ligne.
       </p>
     </div>
@@ -780,26 +780,26 @@
     {# Grille des projets récents #}
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-14" data-stagger-parent data-stagger-delay="100">
       {% for project in recent_projects %}
-      <a href="{{ project.get_absolute_url }}" class="group relative block rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow" data-hover="lift" data-stagger-child>
-        <div class="relative h-80 overflow-hidden">
+      <a href="{{ project.get_absolute_url }}" class="group relative block rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow" data-hover="lift" data-stagger-child>
+        <div class="relative h-80 overflow-hidden ">
           <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}"
                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-dark/85 via-dark/15 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--overlay-dark)] via-[var(--overlay-light)] to-transparent"></div>
 
           {% if project.category %}
-          <span class="absolute top-4 left-4 flex items-center gap-2 bg-blush px-3 py-1.5 rounded-full text-[11px] uppercase tracking-wider text-burgundy-dk font-semibold">
-            <span class="w-2 h-2 rounded-full bg-burgundy"></span>
+          <span class="absolute top-4 left-4 flex items-center gap-2 bg-bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[11px] uppercase tracking-wider text-accent-dark font-semibold">
+            <span class="w-2 h-2 rounded-full bg-accent"></span>
             {{ project.category.name }}
           </span>
           {% endif %}
 
           <div class="absolute inset-x-0 bottom-0 p-6">
-            <h3 class="font-script text-2xl text-warm-white mb-1">{{ project.title }}</h3>
-            <p class="text-warm-white/80 text-sm line-clamp-2 mb-4">{{ project.short_description }}</p>
+            <h3 class="font-script text-2xl text-bg-surface mb-1">{{ project.title }}</h3>
+            <p class="text-bg-surface/80 text-sm line-clamp-2 mb-4">{{ project.short_description }}</p>
 
-            <span class="inline-flex items-center gap-2 text-warm-white text-xs uppercase tracking-wider font-medium">
+            <span class="inline-flex items-center gap-2 text-bg-surface text-xs uppercase tracking-wider font-medium">
               Voir le projet
-              <span class="w-7 h-7 rounded-full bg-warm-white text-burgundy flex items-center justify-center group-hover:translate-x-1 transition">
+              <span class="w-7 h-7 rounded-full bg-bg-surface text-accent flex items-center justify-center group-hover:translate-x-1 transition">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
                 </svg>
@@ -809,16 +809,16 @@
         </div>
       </a>
       {% empty %}
-      <p class="col-span-full text-center text-boss-muted">Aucun projet pour le moment.</p>
+      <p class="col-span-full text-center text-accent">Aucun projet pour le moment.</p>
       {% endfor %}
     </div>
 
     {# CTA vers la page projets #}
     <div class="text-center">
       <a href="{% url 'project_list'%}"
-         class="group inline-flex items-center gap-8 rounded-full bg-burgundy-dk pl-8 pr-1.5 py-1.5 text-warm-white shadow-lg shadow-burgundy/30 hover:shadow-xl transition">
+         class="group inline-flex items-center gap-8 rounded-full bg-accent-dark pl-8 pr-1.5 py-1.5 text-bg-surface shadow-lg shadow-burgundy/30 hover:shadow-xl transition">
         <span class="text-xs uppercase tracking-[0.2em] font-medium">Voir tous les projets</span>
-        <span class="w-11 h-11 rounded-full bg-blush text-burgundy-dk flex items-center justify-center group-hover:translate-x-1 transition">
+        <span class="w-11 h-11 rounded-full bg-accent-mid text-accent-dark flex items-center justify-center group-hover:translate-x-1 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
           </svg>
@@ -833,111 +833,21 @@
 
 
 
-<!-- ============================= Contact Us ============================= -->
-<section class="relative bg-[#fffcfa] py-24 lg:py-40 overflow-hidden">
+<section class="relative bg-gradient-to-accent-dark from-bg-base via-bg-surface/70 to-bg-base py-20 lg:py-24 overflow-hidden">
 
-  <!-- Séparateur décoratif -->
-    <div class="text-center mb-12 reveal">
-      <h2 class="font-script text-5xl mb-2" style="color:var(--burgundy-dk);">Contact Us</h2>
-        <div class="flex items-center gap-4 mb-8">
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
-          <span class="font-script text-5xl text-burgundy-dk">✦</span>
-          <div class="flex-1 h-px bg-burgundy-dk"></div>
-        </div>
-
-    </div>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-    <!-- LEFT: Text Content -->
-    <div class="space-y-8">
-      <h2 class="font-script italic text-5xl sm:text-6xl lg:text-7xl leading-tight text-[#7d3b47]">
-        Contact <span class="text-4xl sm:text-5xl">Us</span>
-      </h2>
-
-      <p class="font-serif text-[#3a2a2c] text-sm sm:text-base leading-relaxed max-w-lg">
-        Feel free to reach out via any of the following methods:
-      </p>
-
-      <div class="space-y-4">
-        <div class="flex items-center gap-4">
-          <span class="w-10 h-10 rounded-full bg-[#d4a5aa]/30 flex items-center justify-center">
-            <svg class="w-5 h-5 text-[#7d3b47]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </span>
-          <span class="font-serif text-[#8a6e72] text-sm">hello@techspace.com</span>
-        </div>
-        <div class="flex items-center gap-4">
-          <span class="w-10 h-10 rounded-full bg-[#d4a5aa]/30 flex items-center justify-center">
-            <svg class="w-5 h-5 text-[#7d3b47]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-          </span>
-          <span class="font-serif text-[#8a6e72] text-sm">Paris, France</span>
-        </div>
-      </div>
-
-      <div class="flex gap-4 pt-4">
-        <span class="w-2.5 h-2.5 rounded-full bg-[#7d3b47]/20"></span>
-        <span class="w-2 h-2 rounded-full bg-[#d4a5aa]/30"></span>
-        <span class="w-1.5 h-1.5 rounded-full bg-[#c17e88]/15"></span>
-      </div>
-    </div>
-
-    <!-- RIGHT: Contact Form -->
-    <div class="relative">
-      <div class="rounded-3xl bg-white/80 p-10 sm:p-12 shadow-lg">
-        <form class="space-y-6">
-          <div>
-            <label class="block font-serif text-xs uppercase tracking-widest text-[#8a6e72] mb-3">Name</label>
-            <input type="text" class="w-full px-5 py-4 bg-[#fdf8f5] border border-[#d4a5aa]/30 rounded-xl text-[#3a2a2c] font-serif text-sm focus:outline-none focus:border-[#7d3b47]/50 transition-colors" placeholder="Your name">
-          </div>
-          <div>
-            <label class="block font-serif text-xs uppercase tracking-widest text-[#8a6e72] mb-3">Email</label>
-            <input type="email" class="w-full px-5 py-4 bg-[#fdf8f5] border border-[#d4a5aa]/30 rounded-xl text-[#3a2a2c] font-serif text-sm focus:outline-none focus:border-[#7d3b47]/50 transition-colors" placeholder="your@email.com">
-          </div>
-          <div>
-            <label class="block font-serif text-xs uppercase tracking-widest text-[#8a6e72] mb-3">Message</label>
-            <textarea rows="4" class="w-full px-5 py-4 bg-[#fdf8f5] border border-[#d4a5aa]/30 rounded-xl text-[#3a2a2c] font-serif text-sm focus:outline-none focus:border-[#7d3b47]/50 transition-colors resize-none" placeholder="Your message..."></textarea>
-          </div>
-          <button type="submit" class="w-full py-4 bg-[#7d3b47] text-white font-serif italic text-sm tracking-widest rounded-xl hover:bg-[#5c2a33] transition-colors duration-300">
-            SEND MESSAGE
-          </button>
-        </form>
-      </div>
-      <span class="absolute -top-4 right-8 w-3 h-3 rounded-full bg-[#7d3b47]/15"></span>
-      <span class="absolute -bottom-6 left-4 w-2 h-2 rounded-full bg-[#d4a5aa]/25"></span>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-<section class="relative bg-gradient-to-br from-rose-pale via-rose-mid/70 to-rose-pale py-20 lg:py-24 overflow-hidden">
   <div class="max-w-3xl mx-auto px-6 text-center">
  
-    <h2 class="font-script text-5xl sm:text-6xl lg:text-7xl text-burgundy leading-tight">
+    <h2 class="font-script text-5xl sm:text-6xl lg:text-7xl text-accent leading-tight">
       Ready to Get Started?
     </h2>
  
-    <p class="mt-5 text-boss-muted font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">
+    <p class="mt-5 text-accent font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">
       Join thousands of boss ladies who've transformed their online presence
     </p>
  
     <a href="{% url 'contact' %}"
-       class="inline-block mt-10 px-10 py-4 bg-burgundy text-warm-white font-bold text-xl sm:text-sm
-              tracking-[0.2em] uppercase transition-colors duration-300 hover:bg-burgundy-dk rounded-full">
+       class="inline-block mt-10 px-10 py-4 bg-accent text-bg-surface font-bold text-xl sm:text-sm
+              tracking-[0.2em] uppercase transition-colors duration-300 hover:bg-accent-dark rounded-full">
       contact me
     </a>
  

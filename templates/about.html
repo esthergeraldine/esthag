@@ -17,7 +17,7 @@
    suffira de remplacer le texte en dur par des variables.
    ============================================================ #} {% endcomment %}
 <!-- ============================= HERO: About Section ============================= -->
-<section class="relative overflow-hidden bg-rose-pale font-sans w-full">
+<section class="relative overflow-hidden bg-bg-soft font-sans w-full">
   <div class="w-full px-6 sm:px-8 lg:px-10 py-14 md:py-20">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center w-full">
 
@@ -28,9 +28,9 @@
           {# Grand cercle extéerieur avec border #}
           <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[500px] lg:h-[500px]">
             {# Bordure circulaire #}
-            <div class="absolute inset-0 rounded-full border-[3px] border-rose-deep/40"></div>
+            <div class="absolute inset-0 rounded-full border-[3px] border-accent-mid/40"></div>
             {# Deuxième cercle décoratif #}
-            <div class="absolute inset-2 rounded-full border border-rose-deep/20"></div>
+            <div class="absolute inset-2 rounded-full border border-accent-strong/20"></div>
 
             {# Image dans le cercle #}
             <div class="absolute inset-4 rounded-full overflow-hidden shadow-card">
@@ -45,7 +45,7 @@
           {# Badge circulaire #}
           <div class="absolute -bottom-4 right-4 sm:right-0 w-20 h-20 sm:w-24 sm:h-24 drop-shadow-lg">
             <svg viewBox="0 0 120 120" class="w-full h-full">
-              <circle cx="60" cy="60" r="58" fill="var(--color-burgundy-dk)"/>
+              <circle cx="60" cy="60" r="58" fill="var(--color-accent-dark)"/>
               <path id="badge-circle" fill="none"
                     d="M 60,60 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0" />
               <text font-size="9.2" fill="var(--color-warm-white)" letter-spacing="2" font-family="Jost, sans-serif">
@@ -65,19 +65,19 @@
 
       {# ---------- Colonne texte ---------- #}
       <div class="lg:col-span-6 order-2 text-center lg:text-left">
-        <p class="font-script text-2xl sm:text-3xl text-ink mb-2" data-reveal="fade-up" data-delay="0">About Me</p>
+        <p class="font-script text-2xl sm:text-3xl text-text-heading mb-2" data-reveal="fade-up" data-delay="0">About Me</p>
 
-        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4" data-reveal="fade-up" data-delay="100">
+        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-accent-dark mb-4" data-reveal="fade-up" data-delay="100">
           Hello, I'm Marie
         </h1>
 
-        <div class="w-14 h-[2px] bg-rose-deep mx-auto lg:mx-0 mb-4" data-reveal="fade-up" data-delay="200"></div>
+        <div class="w-14 h-[2px] bg-accent-mid mx-auto lg:mx-0 mb-4" data-reveal="fade-up" data-delay="200"></div>
 
-        <p class="text-lg sm:text-xl text-ink font-medium mb-4" data-reveal="fade-up" data-delay="300">
+        <p class="text-lg sm:text-xl text-text-heading font-medium mb-4" data-reveal="fade-up" data-delay="300">
           Développeuse Full-Stack &amp; Designer UI/UX
         </p>
 
-        <p class="text-boss-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8" data-reveal="fade-up" data-delay="400">
+        <p class="text-text-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8" data-reveal="fade-up" data-delay="400">
           Je conçois et développe des expériences numériques élégantes,
           utiles et centrées sur l'humain. Curieuse, rigoureuse et passionnée,
           j'aime transformer des idées en produits concrets qui font la différence.
@@ -85,15 +85,15 @@
 
         <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start" data-reveal="fade-up" data-delay="500">
           <a href="{% static 'files/cv-marie-dupont.pdf' %}" download
-             class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-warm-white text-sm font-medium
-                    hover:bg-burgundy transition shadow-soft">
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-text-heading text-bg-surface text-sm font-medium
+                    hover:bg-accent transition shadow-soft">
             Télécharger mon CV
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/>
             </svg>
           </a>
 
-          <p class="font-script text-2xl text-rose-deep">Marie Dupont</p>
+          <p class="font-script text-2xl text-accent-mid">Marie Dupont</p>
         </div>
       </div>
 
@@ -104,141 +104,82 @@
 <!-- ===================================================================
      HEADER — qualités autour de la photo
      =================================================================== -->
-<section class="bg-cream font-sans py-[clamp(2.5rem,8vw,6rem)] px-4">
+<section class="bg-bg-base font-sans py-[clamp(2.5rem,8vw,6rem)] px-4">
   <div class="max-w-6xl mx-auto text-center">
 
-    <h2 class="font-script text-[clamp(1.6rem,5vw,3rem)] text-boss-text mb-3" data-reveal="fade-up">
-      <span class="text-burgundy italic">Mes</span> qualités
+    <h2 class="font-script text-[clamp(1.6rem,5vw,3rem)] text-accent mb-3" data-reveal="fade-up">
+      Mes <span class="text-accent italic">qualités</span>
     </h2>
-    <p class="text-boss-muted text-[clamp(0.7rem,2.2vw,1rem)] mb-10 sm:mb-[clamp(2.5rem,8vw,6rem)]" data-reveal="fade-up" data-delay="100">
+    <p class="text-text-muted text-[clamp(0.7rem,2.2vw,1rem)] mb-10" data-reveal="fade-up" data-delay="100">
       Ce qui guide chaque projet, du premier échange à la mise en ligne
     </p>
- 
-    <!-- ===== Version MOBILE (< sm) : sans superposition ===== -->
-    <div class="sm:hidden max-w-sm mx-auto" data-stagger-parent data-stagger-delay="100">
-      <div class="w-40 h-40 mx-auto rounded-full overflow-hidden shadow-xl ring-4 ring-warm-white mb-8" data-stagger-child>
-<img
-          src="{% if about.photo %}{{ about.photo.url }}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}"
-          alt="{{ about.name|default:'Portrait' }}"
-          class="w-full h-full object-cover"
-        >
-      </div>
 
-      <div class="grid grid-cols-2 gap-3">
-        {% for q in qualities %}
-        <div class="bg-warm-white rounded-2xl shadow-sm border border-rose-pale p-4 text-left" data-hover="lift" data-stagger-child>
-          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-deep to-burgundy flex items-center justify-center shadow-md mb-2">
-            <i class="{{ q.icon }} text-warm-white text-xs"></i>
-          </div>
-          <h3 class="text-boss-text font-semibold mb-1 text-xs">{{ q.title }}</h3>
-          <p class="text-boss-muted leading-relaxed text-[0.7rem]">{{ q.description }}</p>
+    <!-- ===== Mobile : liste verticale des qualités ===== -->
+    <div class="md:hidden grid grid-cols-1 gap-6 mb-8" data-stagger-parent data-stagger-delay="80">
+      {% for q in qualities|slice:":4" %}
+      <div class="flex items-start gap-4 text-left bg-bg-surface/50 backdrop-blur-sm rounded-2xl p-5 shadow-sm" data-stagger-child>
+        <div class="w-12 h-12 rounded-full {% if forloop.counter0|divisibleby:2 %}bg-accent{% else %}bg-accent-mid{% endif %} flex items-center justify-center shrink-0 shadow-md">
+          <i class="{{ q.icon }} text-lg {% if forloop.counter0|divisibleby:2 %}text-bg-surface{% else %}text-text-main{% endif %}"></i>
         </div>
-        {% endfor %}
+        <div>
+          <h3 class="font-semibold text-text-main text-base mb-1">{{ q.title }}</h3>
+          <p class="text-text-muted text-sm leading-snug">{{ q.description }}</p>
+        </div>
       </div>
+      {% empty %}
+      <p class="col-span-full text-text-muted">Aucune qualité enregistrée.</p>
+      {% endfor %}
     </div>
- 
-    <!-- ===== Version DESKTOP/TABLETTE (>= sm) : design circulaire d'origine ===== -->
-    <div class="hidden sm:block relative mx-auto w-full max-w-[480px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[820px]" data-reveal="zoom-in">
 
-      <div style="padding-top: 100%;"></div>
- 
-      <div class="absolute inset-0">
- 
-        <div class="absolute inset-0 rounded-full border border-dashed border-burgundy-dk"></div>
- 
-        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[47%] aspect-square rounded-full bg-rose-mid"></div>
- 
-        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square rounded-full overflow-hidden shadow-xl ring-4 ring-warm-white z-10">
-<img
-          src="{% if about %}{% if about.main_image %}{{ about.main_image.url }}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}{% else %}https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80{% endif %}"
-          alt="{% if about %}{{ about.logo_text|default:'Portrait' }}{% else %}Portrait{% endif %}"
-          class="w-full h-full object-cover"
-        >
-        </div>
- 
-        {% for q in qualities %}
-        <div class="absolute
-                    {% if forloop.counter0 == 0 %}left-0 top-[8%]
-                    {% elif forloop.counter0 == 1 %}right-0 top-[8%]
-                    {% elif forloop.counter0 == 2 %}left-0 bottom-[8%]
-                    {% else %}right-0 bottom-[8%]{% endif %}
-                    w-[34%] min-w-[130px] text-left">
-          <div class="bg-warm-white rounded-2xl shadow-sm border border-rose-pale px-[clamp(0.7rem,2.5vw,1.25rem)] pt-[clamp(1.7rem,5.5vw,2.5rem)] pb-[clamp(0.7rem,2.5vw,1.25rem)] relative">
-            <div class="absolute left-[12%] top-0 -translate-y-1/2 w-[26%] aspect-square rounded-full bg-gradient-to-br from-rose-deep to-burgundy flex items-center justify-center shadow-md z-10">
-              <i class="{{ q.icon }} text-warm-white text-[clamp(0.6rem,2vw,0.9rem)]"></i>
-            </div>
-            <h3 class="text-boss-text font-semibold mb-1 text-[clamp(0.7rem,2.2vw,1rem)]">{{ q.title }}</h3>
-            <p class="text-boss-muted leading-relaxed text-[clamp(0.6rem,1.8vw,0.75rem)]">
-              {{ q.description }}
-            </p>
-          </div>
-        </div>
-        {% endfor %}
- 
-      </div>
-    </div>
- 
-  </div>
-</section>
-
-
-
-
-
-<section class="bg-cream py-16 md:py-24 px-4">
-  <div class="max-w-5xl mx-auto">
-
-    <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-8 md:gap-10 items-center">
+    <!-- ===== Tablette et desktop : design en anneau ===== -->
+    <div class="hidden md:grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6 items-center">
 
       <!-- ===== Texte gauche (4e qualité) ===== -->
-      <div class="order-3 md:order-1 text-center md:text-right" data-reveal="fade-left" data-delay="100">
+      <div class="hidden lg:block text-right order-1" data-reveal="fade-right" data-delay="100">
         {% with q=qualities.3 %}
         {% if q %}
-        <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
-        <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[220px] mx-auto md:ml-auto md:mr-0">
-          {{ q.description }}
-        </p>
+        <div class="inline-block text-right">
+          <h3 class="font-semibold text-text-main text-lg mb-1">{{ q.title }}</h3>
+          <p class="text-text-muted text-sm leading-snug max-w-[200px] ml-auto">
+            {{ q.description }}
+          </p>
+        </div>
         {% endif %}
         {% endwith %}
       </div>
 
       <!-- ===== Colonne centrale : labels haut/bas + anneau ===== -->
-      <div class="order-1 md:order-2 flex flex-col items-center gap-6 md:gap-8">
+      <div class="order-2 flex flex-col items-center gap-4 sm:gap-6">
 
         <!-- Texte haut (1re qualité) -->
-        <div class="text-center">
+        <div class="text-center px-4" data-reveal="fade-up">
           {% with q=qualities.0 %}
           {% if q %}
-          <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
-          <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[260px] mx-auto">
+          <h3 class="font-semibold text-text-main text-[clamp(0.9rem,2.5vw,1.1rem)] mb-1">{{ q.title }}</h3>
+          <p class="text-text-muted text-[clamp(0.75rem,1.8vw,0.9rem)] leading-snug max-w-[280px] mx-auto">
             {{ q.description }}
           </p>
           {% endif %}
           {% endwith %}
         </div>
 
-        <!-- L'anneau : conteneur PLUS GRAND que l'anneau visuel, pour laisser -->
-        <!-- de la marge aux cercles satellites qui dépassent du bord (13% de -->
-        <!-- leur propre taille de chaque côté) sans jamais toucher le texte -->
-        <!-- au-dessus/en-dessous. -->
-        <div class="relative w-[260px] sm:w-[320px] md:w-[360px] aspect-square shrink-0">
+        <!-- L'anneau -->
+        <div class="relative w-[220px] xs:w-[260px] sm:w-[300px] md:w-[340px] aspect-square shrink-0">
 
-          <div class="absolute inset-[13%] rounded-full border-2 border-burgundy/25"></div>
-          <div class="absolute inset-[10%] rounded-full border border-dashed border-rose-deep/40"></div>
+          <div class="absolute inset-[13%] rounded-full border-2 border-accent-dark/25"></div>
+          <div class="absolute inset-[10%] rounded-full border border-dashed border-accent-mid/40"></div>
 
           <!-- Badge central -->
-          <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square rounded-full bg-burgundy-dk shadow-xl flex flex-col items-center justify-center text-center px-[10%] z-10">
-            <p class="font-script text-warm-white text-[clamp(0.95rem,4.5vw,1.4rem)] leading-tight">
+          <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square rounded-full bg-accent-dark shadow-xl flex flex-col items-center justify-center text-center px-[10%] z-10">
+            <p class="font-script text-bg-surface text-[clamp(0.9rem,4vw,1.3rem)] leading-tight">
               {{ about.name|default:"Qui suis-je" }}
             </p>
-            <p class="text-rose-pale/70 text-[clamp(0.55rem,2.2vw,0.7rem)] mt-2 leading-snug">
-              {{ about.tagline|default:"Développeur & designer full-stack" }}
+            <p class="text-accent-soft/70 text-[clamp(0.5rem,2vw,0.65rem)] mt-1 sm:mt-2 leading-snug">
+              {{ about.tagline|default:"Développeur & designer" }}
             </p>
           </div>
 
-          <!-- Cercles satellites : centrés exactement SUR l'anneau (à 13%/87%), -->
-          <!-- taille réduite (22%) pour que même en dépassant de moitié ils -->
-          <!-- restent DANS les limites de ce conteneur (2% à 98%). -->
+          <!-- Cercles satellites -->
           {% for q in qualities|slice:":4" %}
           <div class="absolute
                       {% if forloop.counter0 == 0 %}left-1/2 top-[13%] -translate-x-1/2 -translate-y-1/2
@@ -246,19 +187,19 @@
                       {% elif forloop.counter0 == 2 %}left-1/2 top-[87%] -translate-x-1/2 -translate-y-1/2
                       {% else %}left-[13%] top-1/2 -translate-x-1/2 -translate-y-1/2{% endif %}
                       w-[22%] aspect-square rounded-full shadow-lg flex items-center justify-center z-20
-                      {% if forloop.counter0|divisibleby:2 %}bg-burgundy{% else %}bg-rose-deep{% endif %}">
-            <i class="{{ q.icon }} text-[clamp(0.7rem,2.8vw,1.05rem)]
-                      {% if forloop.counter0|divisibleby:2 %}text-warm-white{% else %}text-boss-text{% endif %}"></i>
+                      {% if forloop.counter0|divisibleby:2 %}bg-accent{% else %}bg-accent-mid{% endif %}">
+            <i class="{{ q.icon }} text-[clamp(0.65rem,2.5vw,1rem)]
+                      {% if forloop.counter0|divisibleby:2 %}text-bg-surface{% else %}text-text-main{% endif %}"></i>
           </div>
           {% endfor %}
         </div>
 
         <!-- Texte bas (3e qualité) -->
-        <div class="text-center">
+        <div class="text-center px-4" data-reveal="fade-up" data-delay="100">
           {% with q=qualities.2 %}
           {% if q %}
-          <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
-          <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[260px] mx-auto">
+          <h3 class="font-semibold text-text-main text-[clamp(0.9rem,2.5vw,1.1rem)] mb-1">{{ q.title }}</h3>
+          <p class="text-text-muted text-[clamp(0.75rem,1.8vw,0.9rem)] leading-snug max-w-[280px] mx-auto">
             {{ q.description }}
           </p>
           {% endif %}
@@ -267,13 +208,15 @@
       </div>
 
       <!-- ===== Texte droite (2e qualité) ===== -->
-      <div class="order-2 md:order-3 text-center md:text-left" data-reveal="fade-right" data-delay="100">
+      <div class="hidden lg:block text-left order-3" data-reveal="fade-left" data-delay="100">
         {% with q=qualities.1 %}
         {% if q %}
-        <h3 class="font-semibold text-boss-text text-[clamp(0.85rem,2vw,1.05rem)] mb-1">{{ q.title }}</h3>
-        <p class="text-boss-muted text-[clamp(0.7rem,1.6vw,0.85rem)] leading-snug max-w-[220px] mx-auto md:mr-auto md:ml-0">
-          {{ q.description }}
-        </p>
+        <div class="inline-block text-left">
+          <h3 class="font-semibold text-text-main text-lg mb-1">{{ q.title }}</h3>
+          <p class="text-text-muted text-sm leading-snug max-w-[200px] mr-auto">
+            {{ q.description }}
+          </p>
+        </div>
         {% endif %}
         {% endwith %}
       </div>
@@ -290,60 +233,60 @@
 <!-- ===================================================================
      PARCOURS ACADÉMIQUE
      =================================================================== -->
-<section class="bg-warm-white py-16 lg:py-24 px-4">
+<section class="bg-bg-surface py-16 lg:py-24 px-4">
   <div class="max-w-4xl mx-auto">
 
     <div class="text-center mb-14" data-reveal="fade-up">
-      <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
-        Parcours <span class="text-burgundy italic">académique</span>
+      <h2 class="font-script text-3xl sm:text-4xl text-text-main mb-2">
+        Parcours <span class="text-accent italic">académique</span>
       </h2>
-      <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
+      <span class="block text-accent/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
     </div>
  
     <!-- Mobile / tablette : liste verticale simple -->
-    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale" data-stagger-parent data-stagger-delay="100">
+    <div class="md:hidden relative pl-8 border-l-2 border-border-subtle" data-stagger-parent data-stagger-delay="100">
       {% for item in education %}
       <div class="relative pb-10 last:pb-0" data-stagger-child>
-        <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-burgundy flex items-center justify-center ring-4 ring-warm-white">
-          <i class="{{ item.icon }} text-warm-white text-xs"></i>
+        <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-4 ring-bg-surface">
+          <i class="{{ item.icon }} text-bg-surface text-xs"></i>
         </span>
-        <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
-        <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
-        {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
-        <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+        <p class="text-xs uppercase tracking-wider text-accent font-semibold mb-1">{{ item.year }}</p>
+        <h3 class="font-serif text-lg text-text-main mb-1">{{ item.title }}</h3>
+        {% if item.subtitle %}<p class="text-sm text-text-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+        <p class="text-sm text-text-muted leading-relaxed">{{ item.description }}</p>
       </div>
       {% empty %}
-      <p class="text-boss-muted">Ajoute ton parcours académique depuis l'admin (Quality / TimelineEntry).</p>
+      <p class="text-text-muted">Ajoute ton parcours académique depuis l'admin (Quality / TimelineEntry).</p>
       {% endfor %}
     </div>
  
     <!-- Desktop : zigzag façon infographie -->
     <div class="hidden md:block relative" data-stagger-parent data-stagger-delay="100">
-      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-rose-pale -translate-x-1/2"></div>
+      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-bg-soft -translate-x-1/2"></div>
       <div class="space-y-4">
         {% for item in education %}
         <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8" data-stagger-child>
           <div class="text-right">
             {% if forloop.counter0|divisibleby:2 %}
-            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
-            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
-            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
-            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            <p class="text-xs uppercase tracking-wider text-accent font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-text-main mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-text-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-text-muted leading-relaxed">{{ item.description }}</p>
             {% endif %}
           </div>
  
           <div class="flex justify-center">
-            <div class="w-12 h-12 rounded-full bg-burgundy flex items-center justify-center text-warm-white shadow-md z-10 shrink-0">
+            <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-bg-surface shadow-md z-10 shrink-0">
               <i class="{{ item.icon }} text-sm"></i>
             </div>
           </div>
  
           <div class="text-left">
             {% if not forloop.counter0|divisibleby:2 %}
-            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
-            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
-            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
-            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            <p class="text-xs uppercase tracking-wider text-accent font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-text-main mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-text-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-text-muted leading-relaxed">{{ item.description }}</p>
             {% endif %}
           </div>
         </div>
@@ -357,39 +300,39 @@
 <!-- ===================================================================
      COMPÉTENCES
      =================================================================== -->
-<section class="bg-cream py-16 lg:py-24 px-4">
+<section class="bg-bg-base py-16 lg:py-24 px-4">
   <div class="max-w-4xl mx-auto">
 
     <div class="text-center mb-14" data-reveal="fade-up">
-      <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
-        Mes <span class="text-burgundy italic">compétences</span>
+      <h2 class="font-script text-3xl sm:text-4xl text-text-main mb-2">
+        Mes <span class="text-accent italic">compétences</span>
       </h2>
-      <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
+      <span class="block text-accent/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
     </div>
 
     <div class="grid md:grid-cols-2 gap-x-16 gap-y-8 mb-14" data-stagger-parent data-stagger-delay="80">
       {% for skill in skills %}
       <div data-stagger-child>
         <div class="flex justify-between items-baseline mb-2">
-          <span class="text-sm font-medium text-boss-text">{{ skill.name }}</span>
-          <span class="text-xs text-boss-muted">{{ skill.level }}%</span>
+          <span class="text-sm font-medium text-text-main">{{ skill.name }}</span>
+          <span class="text-xs text-text-muted">{{ skill.level }}%</span>
         </div>
-        <div class="w-full h-2 rounded-full bg-rose-pale overflow-hidden">
-          <div class="h-full rounded-full bg-gradient-to-r from-rose-deep to-burgundy transition-all duration-700"
-               style="width: {{ skill.level }}%;"></div>
+        <div class="w-full h-2 rounded-full bg-bg-soft overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-accent-mid to-accent-dark skill-bar-fill"
+               data-skill-bar style="width: {{ skill.level }}%; --skill-delay: {{ forloop.counter0 }};"></div>
         </div>
       </div>
       {% empty %}
-      <p class="text-boss-muted col-span-full">Ajoute tes compétences dans la vue about().</p>
+      <p class="text-text-muted col-span-full">Ajoute tes compétences dans la vue about().</p>
       {% endfor %}
     </div>
  
     {% if tools %}
     <div class="text-center">
-      <p class="text-xs uppercase tracking-wider text-boss-muted mb-4">Outils utilisés au quotidien</p>
+      <p class="text-xs uppercase tracking-wider text-text-muted mb-4">Outils utilisés au quotidien</p>
       <div class="flex flex-wrap justify-center gap-2.5">
         {% for tool in tools %}
-        <span class="text-xs px-4 py-1.5 rounded-full bg-warm-white border border-rose-pale text-boss-text">{{ tool }}</span>
+        <span class="text-xs px-4 py-1.5 rounded-full bg-bg-surface border border-border-subtle text-text-main">{{ tool }}</span>
         {% endfor %}
       </div>
     </div>
@@ -401,60 +344,60 @@
 <!-- ===================================================================
      EXPÉRIENCE PROFESSIONNELLE
      =================================================================== -->
-<section class="bg-warm-white py-16 lg:py-24 px-4">
+<section class="bg-bg-surface py-16 lg:py-24 px-4">
   <div class="max-w-4xl mx-auto">
 
     <div class="text-center mb-14" data-reveal="fade-up">
-      <h2 class="font-script text-3xl sm:text-4xl text-boss-text mb-2">
-        Expérience <span class="text-burgundy italic">professionnelle</span>
+      <h2 class="font-script text-3xl sm:text-4xl text-text-main mb-2">
+        Expérience <span class="text-accent italic">professionnelle</span>
       </h2>
-      <span class="block text-burgundy/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
+      <span class="block text-accent/50 tracking-[8px] mt-2">✦ ✧ ✦</span>
     </div>
  
     <!-- Mobile / tablette : liste verticale simple -->
-    <div class="md:hidden relative pl-8 border-l-2 border-rose-pale" data-stagger-parent data-stagger-delay="100">
+    <div class="md:hidden relative pl-8 border-l-2 border-border-subtle" data-stagger-parent data-stagger-delay="100">
       {% for item in experience %}
       <div class="relative pb-10 last:pb-0" data-stagger-child>
-        <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-burgundy flex items-center justify-center ring-4 ring-warm-white">
-          <i class="{{ item.icon }} text-warm-white text-xs"></i>
+        <span class="absolute -left-[41px] top-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-4 ring-bg-surface">
+          <i class="{{ item.icon }} text-bg-surface text-xs"></i>
         </span>
-        <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
-        <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
-        {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
-        <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+        <p class="text-xs uppercase tracking-wider text-accent font-semibold mb-1">{{ item.year }}</p>
+        <h3 class="font-serif text-lg text-text-main mb-1">{{ item.title }}</h3>
+        {% if item.subtitle %}<p class="text-sm text-text-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+        <p class="text-sm text-text-muted leading-relaxed">{{ item.description }}</p>
       </div>
       {% empty %}
-      <p class="text-boss-muted">Ajoute ton expérience depuis l'admin (TimelineEntry).</p>
+      <p class="text-text-muted">Ajoute ton expérience depuis l'admin (TimelineEntry).</p>
       {% endfor %}
     </div>
  
     <!-- Desktop : zigzag façon infographie -->
     <div class="hidden md:block relative" data-stagger-parent data-stagger-delay="100">
-      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-rose-pale -translate-x-1/2"></div>
+      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-bg-soft -translate-x-1/2"></div>
       <div class="space-y-4">
         {% for item in experience %}
         <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-8" data-stagger-child>
           <div class="text-right">
             {% if forloop.counter0|divisibleby:2 %}
-            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
-            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
-            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
-            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            <p class="text-xs uppercase tracking-wider text-accent font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-text-main mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-text-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-text-muted leading-relaxed">{{ item.description }}</p>
             {% endif %}
           </div>
  
           <div class="flex justify-center">
-            <div class="w-12 h-12 rounded-full bg-burgundy flex items-center justify-center text-warm-white shadow-md z-10 shrink-0">
+            <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-bg-surface shadow-md z-10 shrink-0">
               <i class="{{ item.icon }} text-sm"></i>
             </div>
           </div>
  
           <div class="text-left">
             {% if not forloop.counter0|divisibleby:2 %}
-            <p class="text-xs uppercase tracking-wider text-burgundy font-semibold mb-1">{{ item.year }}</p>
-            <h3 class="font-serif text-lg text-boss-text mb-1">{{ item.title }}</h3>
-            {% if item.subtitle %}<p class="text-sm text-boss-muted mb-2">{{ item.subtitle }}</p>{% endif %}
-            <p class="text-sm text-boss-muted leading-relaxed">{{ item.description }}</p>
+            <p class="text-xs uppercase tracking-wider text-accent font-semibold mb-1">{{ item.year }}</p>
+            <h3 class="font-serif text-lg text-text-main mb-1">{{ item.title }}</h3>
+            {% if item.subtitle %}<p class="text-sm text-text-muted mb-2">{{ item.subtitle }}</p>{% endif %}
+            <p class="text-sm text-text-muted leading-relaxed">{{ item.description }}</p>
             {% endif %}
           </div>
         </div>

@@ -190,14 +190,12 @@ body {
     }
 
     /* Gradient texte elegants */
-    h1, h2 {
-      background: linear-gradient(135deg, #7d3b47 0%, #c9a0a0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 500;
-    }
-
+h1, h2 {
+  background: linear-gradient(135deg, rgb(var(--accent-soft)) 0%, rgb(var(--accent-strong)) 50%, rgb(var(--accent-soft)) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
     /* Correction du gradient pour certains éléments */
     .text-burgundy, .text-ink, .text-boss-text {
       background: none;

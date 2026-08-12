@@ -3,13 +3,13 @@
 <nav aria-label="Pagination" class="flex items-center justify-center gap-2 mt-12">
   {% if page_obj.has_previous %}
     <a href="?{% url_replace page=page_obj.previous_page_number %}"
-       class="w-10 h-10 flex items-center justify-center rounded-full border border-rose-mid text-burgundy hover:bg-rose-pale transition">
+       class="w-10 h-10 flex items-center justify-center rounded-full border border-accent-soft text-accent hover:bg-bg-soft transition">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"/>
       </svg>
     </a>
   {% else %}
-    <span class="w-10 h-10 flex items-center justify-center rounded-full border border-rose-mid text-burgundy opacity-30">
+    <span class="w-10 h-10 flex items-center justify-center rounded-full border border-accent-soft text-accent opacity-30">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"/>
       </svg>
@@ -20,23 +20,23 @@
     {% if num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
       <a href="?{% url_replace page=num %}"
          class="w-10 h-10 flex items-center justify-center rounded-full text-sm font-medium transition
-                {% if num == page_obj.number %}bg-burgundy text-warm-white border border-burgundy{% else %}border border-rose-mid text-burgundy hover:bg-rose-pale{% endif %}">
+                {% if num == page_obj.number %}bg-accent text-bg-surface border border-accent{% else %}border border-accent-soft text-accent hover:bg-bg-soft{% endif %}">
         {{ num }}
       </a>
     {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
-      <span class="text-burgundy">...</span>
+      <span class="text-accent">...</span>
     {% endif %}
   {% endfor %}
 
   {% if page_obj.has_next %}
     <a href="?{% url_replace page=page_obj.next_page_number %}"
-       class="w-10 h-10 flex items-center justify-center rounded-full border border-rose-mid text-burgundy hover:bg-rose-pale transition">
+       class="w-10 h-10 flex items-center justify-center rounded-full border border-accent-soft text-accent hover:bg-bg-soft transition">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/>
       </svg>
     </a>
   {% else %}
-    <span class="w-10 h-10 flex items-center justify-center rounded-full border border-rose-mid text-burgundy opacity-30">
+    <span class="w-10 h-10 flex items-center justify-center rounded-full border border-accent-soft text-accent opacity-30">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/>
       </svg>

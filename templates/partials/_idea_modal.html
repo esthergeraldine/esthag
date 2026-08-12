@@ -18,7 +18,7 @@
     border-radius: 1rem !important;
   }
   #idea-modal::backdrop {
-    background: rgba(92, 42, 51, 0.7) !important;
+    background: var(--modal-backdrop) !important;
     backdrop-filter: blur(4px) !important;
   }
 </style>
@@ -27,26 +27,26 @@
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ request.path }}#proposer-une-idee">
     <button type="button" id="idea-modal-close" aria-label="Fermer"
-            class="absolute top-4 right-4 text-boss-muted hover:text-burgundy-dk">
+            class="absolute top-4 right-4 text-text-muted hover:text-accent-dk">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
       </svg>
     </button>
 
-    <h3 class="font-script text-center font-semibold text-2xl text-burgundy-dk mb-1">Proposer une idée</h3>
-    <p id="idea-modal-project" class="text-sm font-bold text-boss-muted mb-5"></p>
+    <h3 class="font-script text-center font-semibold text-2xl text-accent-dk mb-1">Proposer une idée</h3>
+    <p id="idea-modal-project" class="text-sm font-bold text-text-muted mb-5"></p>
 
     <div class="space-y-3">
       <input type="text" name="name" required placeholder="Ton nom"
-             class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30">
+             class="w-full rounded-xl border border-accent-soft px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/30">
       <input type="email" name="email" required placeholder="ton@email.com"
-             class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30">
+             class="w-full rounded-xl border border-accent-soft px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/30">
       <textarea name="message" required rows="4" placeholder="Ton idée en quelques mots..."
-                class="w-full rounded-xl border border-rose-mid px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-burgundy/30"></textarea>
+                class="w-full rounded-xl border border-accent-soft px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/30"></textarea>
     </div>
 
     <button type="submit"
-            class="mt-5 w-full px-4 py-2.5 rounded-full bg-burgundy-dk text-warm-white text-sm font-medium hover:bg-burgundy transition">
+            class="mt-5 w-full px-4 py-2.5 rounded-full bg-accent-dk text-bg-surface text-sm font-medium hover:bg-accent transition">
       Envoyer
     </button>
   </form>
@@ -114,7 +114,7 @@
     ajaxMessage.textContent = text;
     ajaxMessage.className = 'fixed top-24 left-1/2 -translate-x-1/2 z-[9999] px-8 py-4 rounded-2xl text-base font-medium shadow-xl transition-all duration-300';
     if (type === 'success') {
-      ajaxMessage.classList.add('bg-burgundy-dk', 'text-warm-white');
+      ajaxMessage.classList.add('bg-accent-dk', 'text-bg-surface');
     } else {
       ajaxMessage.classList.add('bg-red-50', 'text-red-600', 'border', 'border-red-200');
     }
