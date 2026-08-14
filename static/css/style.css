@@ -337,3 +337,31 @@ h1, h2 {
 
 }
 
+.js-comment-like.liked {
+  color: #C97C8B !important;
+}
+
+.js-comment-like.liked svg {
+  fill: currentColor;
+}
+
+.comment-item .rounded-2xl:hover {
+  transform: none;
+}
+
+.reply-item .rounded-xl:hover {
+  transform: none;
+}
+
+.js-more-menu {
+  min-width: 140px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 0.8s linear infinite;
+}
+

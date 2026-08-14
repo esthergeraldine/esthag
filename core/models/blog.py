@@ -43,6 +43,7 @@ class Author(models.Model):
     Pourra plus tard être fusionné avec le modèle Profile de la page About.
     """
     name = models.CharField("Nom", max_length=100)
+    email = models.EmailField("Email", blank=True)
     bio = models.TextField("Bio courte", blank=True)
     photo = models.ImageField("Photo", upload_to="blog/authors/", blank=True, null=True)
     website = models.URLField("Site web", blank=True)
@@ -161,46 +162,64 @@ class ArticleLike(models.Model):
         return f"Like — {self.article}"
 
 
-class ArticleComment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
-    name = models.CharField("Nom", max_length=100)
-    email = models.EmailField("Email")
-    content = models.TextField("Commentaire")
-    created_date = models.DateTimeField("Date", auto_now_add=True)
-    is_approved = models.BooleanField("Approuvé", default=True)
-    likes_count = models.PositiveIntegerField("Likes", default=0)
-
-    class Meta:
-        ordering = ["created_date"]
-        verbose_name = "Commentaire"
-        verbose_name_plural = "Commentaires"
-
-    def __str__(self):
-        return f"{self.name} — {self.article}"
-
-
-class CommentLike(models.Model):
-    comment = models.ForeignKey(ArticleComment, on_delete=models.CASCADE, related_name="likes")
-    session_key = models.CharField(max_length=40)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ("comment", "session_key")
-
-    def __str__(self):
-        return f"Like — {self.comment}"
-
-
 class ArticleSubscriber(models.Model):
-    """Abonnés à la newsletter du blog."""
+    STATUS_CHOICES = (
+        ("pending", "En attente"),
+        ("confirmed", "Confirmé"),
+        ("unsubscribed", "Désabonné"),
+    )
+
     email = models.EmailField("Email", unique=True)
-    is_active = models.BooleanField("Actif", default=True)
-    subscribed_at = models.DateTimeField("Abonné le", auto_now_add=True)
+    name = models.CharField("Nom", max_length=100)
+    status = models.CharField(
+        "Statut",
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending",
+    )
+    confirmation_token = models.CharField("Token de confirmation", max_length=64, blank=True)
+    token_expires_at = models.DateTimeField("Expiration du token", null=True, blank=True)
+    unsubscribe_token = models.CharField("Token de désabonnement", max_length=64, blank=True)
+    confirmed_at = models.DateTimeField("Confirmé le", null=True, blank=True)
+    created_at = models.DateTimeField("Créé le", default=timezone.now)
 
     class Meta:
         verbose_name = "Abonné newsletter"
         verbose_name_plural = "Abonnés newsletter"
-        ordering = ["-subscribed_at"]
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return self.email
+        return f"{self.email} ({self.get_status_display()})"
+
+    def save(self, *args, **kwargs):
+        if not self.unsubscribe_token:
+            import secrets
+            self.unsubscribe_token = secrets.token_urlsafe(32)
+        super().save(*args, **kwargs)
+
+    def generate_confirmation_token(self):
+        import secrets
+        from django.utils import timezone
+        self.confirmation_token = secrets.token_urlsafe(32)
+        self.token_expires_at = timezone.now() + timezone.timedelta(days=2)
+        self.save(update_fields=["confirmation_token", "token_expires_at"])
+        return self.confirmation_token
+
+    def confirm(self):
+        from django.utils import timezone
+        self.status = "confirmed"
+        self.confirmed_at = timezone.now()
+        self.confirmation_token = ""
+        self.token_expires_at = None
+        self.save(update_fields=["status", "confirmed_at", "confirmation_token", "token_expires_at"])
+
+    def unsubscribe(self):
+        self.status = "unsubscribed"
+        self.save(update_fields=["status"])
+
+    def is_confirmed(self):
+        return self.status == "confirmed"
+
+    @property
+    def is_active(self):
+        return self.status == "confirmed"

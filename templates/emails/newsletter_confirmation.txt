@@ -1,0 +1,15 @@
+Bonjour {{ name }},
+
+Merci pour votre inscription !
+
+Cliquez sur le lien ci-dessous pour confirmer votre adresse email et activer votre abonnement à la newsletter :
+
+{{ confirmation_url }}
+
+Ce lien expire dans 48 heures.
+
+Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet email en toute sécurité.
+
+--
+Estha Portfolio
+Vous recevez cet email car vous vous êtes inscrit à la newsletter.
