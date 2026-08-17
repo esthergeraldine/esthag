@@ -9,12 +9,12 @@
 
 
 
-  <section class="w-full bg-rose-pale border-b border-rose-pale overflow-hidden">
+  <section class="w-full bg-bg-soft border-b border-border-subtle overflow-hidden">
     <div class="w-full flex flex-col lg:flex-row items-center">
  
       <!-- Colonne gauche : texte -->
       <div class="w-full lg:w-[44%] px-8 sm:px-12 lg:px-16 py-14 lg:py-0">
-        <p class="font-script text-2xl text-rose mb-3">Mon travail ✨</p>
+        <p class="font-script text-2xl text-accent-mid mb-3">Mon travail ✨</p>
  
         <h1 class="font-display font-extrabold text-maroon text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
           Mes Projets
@@ -28,40 +28,40 @@
         <div class="flex flex-wrap gap-x-10 gap-y-6">
           <!-- Projets réalisés -->
           <div class="flex items-center gap-3">
-            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-accent-soft text-accent shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.586a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
               </svg>
             </span>
             <div>
-              <p class="font-display font-bold text-burgundy-dk text-xl leading-none">{{ projects_count }}</p>
-              <p class="text-boss-muted text-sm mt-1">Projets réalisés</p>
+              <p class="font-display font-bold text-accent-dark text-xl leading-none">{{ projects_count }}</p>
+              <p class="text-text-muted text-sm mt-1">Projets réalisés</p>
             </div>
           </div>
 
           <!-- Technologies -->
           <div class="flex items-center gap-3">
-            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-boss-text text-burgundy shrink-0">
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-boss-text text-accent shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10"  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
               </svg>
             </span>
             <div>
-              <p class="font-display font-bold text-burgundy-dk text-2xl leading-none">{{ technologies_count }}</p>
-              <p class="text-boss-muted text-sm mt-1">Technologies</p>
+              <p class="font-display font-bold text-accent-dark text-2xl leading-none">{{ technologies_count }}</p>
+              <p class="text-text-muted text-sm mt-1">Technologies</p>
             </div>
           </div>
 
           <!-- Clients satisfaits -->
           <div class="flex items-center gap-3">
-            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-rose-mid text-burgundy shrink-0">
+            <span class="flex items-center justify-center w-11 h-11 rounded-full bg-accent-soft text-accent shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-4a4 4 0 10-4-4 4 4 0 004 4zm6 0a4 4 0 10-3-6.65" />
               </svg>
             </span>
             <div>
-              <p class="font-display font-bold text-burgundy-dk text-xl leading-none">{{ clients_count }}</p>
-              <p class="text-boss-muted text-sm mt-1">Clients satisfaits</p>
+              <p class="font-display font-bold text-accent-dark text-xl leading-none">{{ clients_count }}</p>
+              <p class="text-text-muted text-sm mt-1">Clients satisfaits</p>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
             src="{% static 'images/ordi3.jpeg' %}"
             alt="Espace de travail avec ordinateur portable, vase et livres"
             class="w-full h-full object-cover"
-            onerror="this.style.display='none'; this.parentElement.classList.add('bg-gradient-to-br','from-[#e8c9c2]','to-[#d9a9a0]');"
+            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--fallback-gradient-from), var(--fallback-gradient-to))';"
           >
  
  
@@ -103,7 +103,7 @@
     {% if messages %}
       {% for message in messages %}
         <div class="mb-6 px-4 py-3 rounded-xl text-sm font-medium
-                    {% if message.tags == 'error' %}bg-red-50 text-red-600{% else %}bg-rose-mid text-burgundy-dk{% endif %}">
+                    {% if message.tags == 'error' %}bg-red-50 text-red-600{% else %}bg-accent-soft text-accent-dark{% endif %}">
           {{ message }}
         </div>
       {% endfor %}
@@ -118,13 +118,13 @@
       <div class="flex flex-wrap gap-2 overflow-x-auto pb-1 -mx-1 px-1 lg:mx-0 lg:px-0">
         <a href="?sort={{ current_sort }}&view={{ view_mode }}"
            class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition
-                  {% if current_category == 'all' %}bg-burgundy-dk text-warm-white{% else %}bg-rose-mid text-burgundy-dk hover:bg-rose-deep{% endif %}">
+                  {% if current_category == 'all' %}bg-accent-dark text-bg-surface{% else %}bg-accent-soft text-accent-dark hover:bg-accent-mid{% endif %}">
           All Projects
         </a>
         {% for cat in categories %}
           <a href="?category={{ cat.slug }}&sort={{ current_sort }}&view={{ view_mode }}"
              class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition
-                    {% if current_category == cat.slug %}bg-burgundy-dk text-warm-white{% else %}bg-rose-mid text-burgundy-dk hover:bg-rose-deep{% endif %}">
+                    {% if current_category == cat.slug %}bg-accent-dark text-bg-surface{% else %}bg-accent-soft text-accent-dark hover:bg-accent-mid{% endif %}">
             {{ cat.name }}
           </a>
         {% endfor %}
@@ -135,28 +135,28 @@
           <input type="hidden" name="category" value="{{ current_category }}">
           <input type="hidden" name="view" value="{{ view_mode }}">
           <select name="sort" onchange="this.form.submit()"
-                  class="appearance-none pl-4 pr-9 py-2 rounded-full border border-rose-mid text-sm
-                         text-burgundy-dk bg-warm-white focus:outline-none focus:ring-2 focus:ring-burgundy/30 cursor-pointer">
+                  class="appearance-none pl-4 pr-9 py-2 rounded-full border border-accent-soft text-sm
+                         text-accent-dark bg-bg-surface focus:outline-none focus:ring-2 focus:ring-burgundy/30 cursor-pointer">
             {% for key, opt in sort_options.items %}
               <option value="{{ key }}" {% if current_sort == key %}selected{% endif %}>{{ opt.1 }}</option>
             {% endfor %}
           </select>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-burgundy pointer-events-none">
+               class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-accent pointer-events-none">
             <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/>
           </svg>
         </form>
 
-        <div class="flex items-center rounded-full border border-rose-mid overflow-hidden">
+        <div class="flex items-center rounded-full border border-accent-soft overflow-hidden">
           <a href="?category={{ current_category }}&sort={{ current_sort }}&view=grid"
-             class="p-2.5 {% if view_mode == 'grid' %}bg-burgundy-dk text-warm-white{% else %}bg-warm-white text-burgundy{% endif %}">
+             class="p-2.5 {% if view_mode == 'grid' %}bg-accent-dark text-bg-surface{% else %}bg-bg-surface text-accent{% endif %}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
               <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
             </svg>
           </a>
           <a href="?category={{ current_category }}&sort={{ current_sort }}&view=list"
-             class="p-2.5 border-l border-rose-mid {% if view_mode == 'list' %}bg-burgundy-dk text-warm-white{% else %}bg-warm-white text-burgundy{% endif %}">
+             class="p-2.5 border-l border-accent-soft {% if view_mode == 'list' %}bg-accent-dark text-bg-surface{% else %}bg-bg-surface text-accent{% endif %}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -169,19 +169,19 @@
        Grille : 4 colonnes → 8 projets/page = exactement 2 rangées
        ============================================================ #} {% endcomment %}
     {% if projects %}
-    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2 lg:grid-cols-4{% endif %}">
+    <div class="grid gap-6 md:gap-7 {% if view_mode == 'list' %}grid-cols-1{% else %}grid-cols-1 sm:grid-cols-2 lg:grid-cols-4{% endif %}" data-stagger-parent data-stagger-delay="80">
       {% for project in projects %}
-        <article class="group bg-warm-white rounded-2xl overflow-hidden border border-rose-pale shadow-card hover:shadow-hover transition-shadow
-                         {% if view_mode == 'list' %}sm:flex{% endif %}">
+        <article class="group bg-bg-surface rounded-2xl overflow-hidden border border-border-subtle shadow-card hover:shadow-hover transition-shadow
+                         {% if view_mode == 'list' %}sm:flex{% endif %}" data-hover="lift" data-stagger-child>
 
           {# ---------- Image (hauteur fixe, plus jamais "trop grande") ---------- #}
-          <div class="relative {% if view_mode == 'list' %}sm:w-64 shrink-0{% endif %} bg-rose-pale">
+          <div class="relative {% if view_mode == 'list' %}sm:w-64 shrink-0{% endif %} bg-bg-soft">
             <a href="{{ project.get_absolute_url }}" class="block w-full h-44 sm:h-48">
               {% if project.thumbnail %}
                 <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}"
                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
               {% else %}
-                <div class="w-full h-full flex items-center justify-center text-burgundy">
+                <div class="w-full h-full flex items-center justify-center text-accent">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-10 h-10">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>
                   </svg>
@@ -190,15 +190,15 @@
             </a>
 
             {% if project.status == 'production' %}
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-cream text-secondary">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-bg-base text-secondary">
                 {{ project.status_label }}
               </span>
             {% elif project.status == 'development' %}
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-cream text-tertiaryBlack">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-bg-base text-tertiaryBlack">
                 {{ project.status_label }}
               </span>
             {% elif project.status == 'prototype' %}
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-cream text-primary">
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-bg-base text-primary">
                 {{ project.status_label }}
               </span>
             {% endif %}
@@ -206,7 +206,7 @@
             {# ---------- Like / Unlike ---------- #}
             <button type="button"
                     class="js-like-btn absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium
-                           bg-warm-white/90 text-burgundy-dk hover:bg-warm-white transition"
+                           bg-bg-surface/90 text-accent-dark hover:bg-bg-surface transition"
                     data-project-id="{{ project.pk }}"
                     data-url="{% url 'toggle_project_like' project.pk %}">
               <svg class="js-like-icon w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -221,18 +221,18 @@
           {# ---------- Contenu ---------- #}
           <div class="p-5 {% if view_mode == 'list' %}sm:flex-1{% endif %}">
             {% if project.category %}
-              <p class="text-xs font-medium text-burgundy mb-1.5">{{ project.category.name }}</p>
+              <p class="text-xs font-medium text-accent mb-1.5">{{ project.category.name }}</p>
             {% endif %}
 
-            <h3 class="font-serif font-semibold text-lg text-burgundy-dk mb-1.5">
+            <h3 class="font-serif font-semibold text-lg text-accent-dark mb-1.5">
               <a href="{{ project.get_absolute_url }}" class="group-hover:underline">{{ project.title }}</a>
             </h3>
-            <p class="text-sm text-boss-muted line-clamp-2 mb-4">{{ project.short_description }}</p>
+            <p class="text-sm text-text-muted line-clamp-2 mb-4">{{ project.short_description }}</p>
 
             {% if project.technologies.all %}
             <div class="flex flex-wrap gap-1.5 mb-4">
               {% for tech in project.technologies.all %}
-                <span class="flex items-center gap-1.5 text-xs pl-1 pr-2.5 py-1 rounded-full bg-rose-pale text-burgundy-dk">
+                <span class="flex items-center gap-1.5 text-xs pl-1 pr-2.5 py-1 rounded-full bg-bg-soft text-accent-dark">
                   {% if tech.icon %}
                     <img src="{{ tech.icon.url }}" alt="" class="w-4 h-4 rounded-full object-contain">
                   {% else %}
@@ -244,7 +244,7 @@
             </div>
             {% endif %}
 
-            <div class="flex items-center gap-4 text-xs text-boss-muted mb-4">
+            <div class="flex items-center gap-4 text-xs text-text-muted mb-4">
               <span class="flex items-center gap-1.5">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5">
                   <rect x="3" y="4" width="18" height="17" rx="2"/><path stroke-linecap="round" d="M3 9h18M8 3v3M16 3v3"/>
@@ -261,15 +261,15 @@
 
             <div class="flex items-center gap-2">
               <a href="{{ project.get_absolute_url }}"
-                 class="flex-1 text-center px-4 py-2 rounded-full bg-rose-mid text-burgundy-dk text-sm font-medium
-                        hover:bg-rose-deep transition inline-flex items-center justify-center gap-1.5">
+                 class="flex-1 text-center px-4 py-2 rounded-full bg-accent-soft text-accent-dark text-sm font-medium
+                        hover:bg-accent-mid transition inline-flex items-center justify-center gap-1.5">
                 Voir les détails
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/>
                 </svg>
               </a>
               <button type="button"
-                      class="js-open-idea flex-1 text-center px-4 py-2 rounded-full bg-burgundy-dk text-warm-white text-sm font-medium hover:bg-burgundy transition"
+                      class="js-open-idea flex-1 text-center px-4 py-2 rounded-full bg-accent-dark text-bg-surface text-sm font-medium hover:bg-accent transition"
                       data-url="{% url 'submit_project_idea' project.pk %}"
                       data-title="{{ project.title }}">
                 Proposer une idée
@@ -284,8 +284,8 @@
 
     {% else %}
     <div class="text-center py-20">
-      <p class="text-burgundy-dk font-serif font-semibold text-xl mb-2">Aucun projet pour l'instant</p>
-      <p class="text-boss-muted text-sm">Ajoute un projet depuis l'admin Django pour qu'il apparaisse ici.</p>
+      <p class="text-accent-dark font-serif font-semibold text-xl mb-2">Aucun projet pour l'instant</p>
+      <p class="text-text-muted text-sm">Ajoute un projet depuis l'admin Django pour qu'il apparaisse ici.</p>
     </div>
     {% endif %}
 

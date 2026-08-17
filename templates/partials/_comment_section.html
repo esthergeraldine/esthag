@@ -1,0 +1,38 @@
+{% load static %}
+<section id="comments" class="mt-14 pt-10 border-t border-border-subtle" data-article-slug="{{ article.slug }}">
+
+  <div class="flex items-center justify-between mb-8">
+    <a href="{% url 'article_discussion' article.slug %}"
+       class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent transition">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l7.5 7.5M4.5 12l7.5-7.5"/>
+      </svg>
+      Retour à l'article
+    </a>
+    <h3 class="font-script text-2xl text-text-heading">Commentaires (<span id="comments-count">{{ total_comments_count }}</span>)</h3>
+  </div>
+
+  <div id="view-all-comments" class="{% if total_comments_count <= 3 %}hidden{% endif %} text-center mb-8">
+    <a href="{% url 'article_discussion' article.slug %}"
+       class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-dark transition">
+      Voir toute la discussion
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+
+  <div id="comments-list" class="space-y-5 mb-8">
+  </div>
+
+  <div id="comments-loading" class="hidden text-center py-6">
+    <div class="inline-block w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <div id="comments-empty" class="hidden text-center py-8">
+    <p class="text-text-muted text-sm">Aucun commentaire pour le moment.</p>
+  </div>
+
+</section>
+
+<script src="{% static 'js/comments.js' %}"></script>

@@ -1,0 +1,404 @@
+/**
+ * =====================================================
+ * ANIMATIONS.CSS — Classes d'animations et de scroll
+ * =====================================================
+ */
+
+/* ─────────────────────────────────────────────────────
+   REVEAL ANIMATIONS — apparition au scroll
+   Utilisation: <div data-reveal="fade-up" data-delay="200">
+   ───────────────────────────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal="fade-up"] {
+  transform: translateY(40px);
+}
+[data-reveal="fade-down"] {
+  transform: translateY(-40px);
+}
+[data-reveal="fade-left"] {
+  transform: translateX(40px);
+}
+[data-reveal="fade-right"] {
+  transform: translateX(-40px);
+}
+[data-reveal="zoom-in"] {
+  transform: scale(0.9);
+}
+[data-reveal="zoom-out"] {
+  transform: scale(1.1);
+}
+[data-reveal="rotate-in"] {
+  transform: rotate(-5deg) scale(0.95);
+}
+[data-reveal="flip-up"] {
+  transform: perspective(800px) rotateX(-15deg);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Legacy .reveal class animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────────────────
+   STAGGER CHILDREN — apparition en cascade
+   Utilisation: <div data-stagger-parent data-stagger-delay="100">
+                  <div data-stagger-child>
+   ───────────────────────────────────────────────────── */
+
+[data-stagger-child] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-stagger-child].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────────────────
+   CARD HOVER LIFT — élévation au survol
+   Utilisation: <div data-hover="lift">
+   ───────────────────────────────────────────────────── */
+
+[data-hover="lift"] {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-hover="lift"].is-lifted {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────
+   RIPPLE EFFECT — onde au clic
+   Utilisation: <button data-ripple>
+   ───────────────────────────────────────────────────── */
+
+[ data-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   SCROLL PROGRESS BAR — barre de progression
+   Utilisation: <div id="scroll-progress">
+   ───────────────────────────────────────────────────── */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--burgundy), var(--rose-mid));
+  width: 0;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* ─────────────────────────────────────────────────────
+   CURSOR TRAIL — traînée au curseur
+   Utilisation: <div id="cursor-trail">
+   ───────────────────────────────────────────────────── */
+
+#cursor-trail {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: rgba(125, 59, 71, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+
+body:hover #cursor-trail {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────
+   NAVBAR SCROLL STATES
+   ───────────────────────────────────────────────────── */
+
+.navbar-scrolled {
+  background: rgba(255, 252, 250, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+/* ─────────────────────────────────────────────────────
+   COUNTER ANIMATION
+   Utilisation: <span data-counter="150" data-suffix="+">
+   ───────────────────────────────────────────────────── */
+
+[data-counter] {
+  display: inline-block;
+}
+
+/* ─────────────────────────────────────────────────────
+   SMOOTH TRANSITIONS
+   ───────────────────────────────────────────────────── */
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.4s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────────────
+   PULSE ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ─────────────────────────────────────────────────────
+   FLOAT ANIMATION — élément flottant
+   ───────────────────────────────────────────────────── */
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ─────────────────────────────────────────────────────
+   SPIN ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────────────
+   SHAKE ANIMATION — secousse
+   ───────────────────────────────────────────────────── */
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* ─────────────────────────────────────────────────────
+   BOUNCE ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.bounce {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+/* ─────────────────────────────────────────────────────
+   GLOW EFFECT — effet lumineux
+   ───────────────────────────────────────────────────── */
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px rgba(125, 59, 71, 0.2); }
+  to { box-shadow: 0 0 20px rgba(125, 59, 71, 0.6); }
+}
+
+/* ─────────────────────────────────────────────────────
+   TYPEWRITER CURSOR
+   ───────────────────────────────────────────────────── */
+
+.typewriter {
+  border-right: 2px solid currentColor;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ─────────────────────────────────────────────────────
+   SCROLL INDICATOR — indicateur de défilement
+   ───────────────────────────────────────────────────── */
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+/* ─────────────────────────────────────────────────────
+   PAGE LOAD ANIMATION
+   ───────────────────────────────────────────────────── */
+
+.page-loaded [data-animate-on-load] {
+  animation: pageEntry 0.8s ease forwards;
+}
+
+@keyframes pageEntry {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────────────
+   MARQUEE — texte défilant
+   ───────────────────────────────────────────────────── */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────────────────
+   UTILITY CLASSES
+   ───────────────────────────────────────────────────── */
+
+.will-animate {
+  opacity: 0;
+}
+
+.animate-now {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────────────────────────────────────────────────
+   SKILL BAR ANIMATION — barres de compétences
+   ───────────────────────────────────────────────────── */
+
+.skill-bar-fill {
+  transform-origin: left;
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+[data-stagger-child].is-revealed .skill-bar-fill {
+  animation: skillBarFill 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) calc(var(--skill-delay, 0) * 120ms) forwards;
+}
+
+@keyframes skillBarFill {
+  from { transform: scaleX(0); opacity: 1; }
+  to { transform: scaleX(1); opacity: 1; }
+}

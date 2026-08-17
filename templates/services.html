@@ -8,16 +8,16 @@ En-tête de la page Services — utilise `intro` (instance ServicesIntro).
 
 
 
-<section class="relative overflow-hidden bg-rose-pale font-sans">
+<section class="relative overflow-hidden bg-bg-soft font-sans">
   <div class="w-full mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center">
- 
+
       {# ---------- Colonne photo ---------- #}
-      <div class="lg:col-span-5 order-1">
+      <div class="lg:col-span-5 order-1" data-reveal="fade-right" data-delay="100">
         <div class="relative max-w-sm mx-auto lg:mx-0">
  
           {# écho décoratif du contour, légèrement décalé derrière la photo #}
-          <div class="absolute -left-3 -top-3 w-full h-full rounded-tr-[160px] sm:rounded-tr-[200px] border-2 border-rose-deep/50 -z-10"></div>
+          <div class="absolute -left-3 -top-3 w-full h-full rounded-tr-[160px] sm:rounded-tr-[200px] border-2 border-accent-mid/50 -z-10"></div>
  
           <img
             src="{% static 'images/boss1.jpeg' %}"
@@ -28,16 +28,16 @@ En-tête de la page Services — utilise `intro` (instance ServicesIntro).
           {# ---------- Badge / sceau rond ---------- #}
           <div class="absolute -bottom-7 right-6 sm:right-10 w-24 h-24 sm:w-28 sm:h-28 drop-shadow-lg">
             <svg viewBox="0 0 120 120" class="w-full h-full">
-              <circle cx="60" cy="60" r="58" fill="var(--color-burgundy-dk)"/>
+              <circle cx="60" cy="60" r="58" fill="var(--color-accent-dark)"/>
               <path id="badge-circle" fill="none"
                     d="M 60,60 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0" />
-              <text font-size="9.2" fill="var(--color-warm-white)" letter-spacing="2" font-family="Jost, sans-serif">
+              <text font-size="9.2" fill="var(--color-bg-surface)" letter-spacing="2" font-family="Jost, sans-serif">
                 <textPath href="#badge-circle" startOffset="2%">
                   LISBON · CREATIVE · LIFESTYLE ·
                 </textPath>
               </text>
               {# petite rose minimaliste au centre #}
-              <g transform="translate(60,60)" stroke="var(--color-warm-white)" stroke-width="1.4" fill="none" stroke-linecap="round">
+              <g transform="translate(60,60)" stroke="var(--color-bg-surface)" stroke-width="1.4" fill="none" stroke-linecap="round">
                 <circle r="9"/>
                 <circle r="4.5"/>
                 <path d="M -13,10 Q -8,18 0,20 M 13,10 Q 8,18 0,20" />
@@ -49,35 +49,35 @@ En-tête de la page Services — utilise `intro` (instance ServicesIntro).
  
       {# ---------- Colonne texte ---------- #}
       <div class="lg:col-span-7 order-2 text-center lg:text-left">
-        <p class="font-script text-2xl sm:text-3xl text-ink mb-2">About Me</p>
- 
-        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-burgundy-dk mb-4">
+        <p class="font-script text-2xl sm:text-3xl text-text-heading mb-2" data-reveal="fade-up" data-delay="0">About Me</p>
+
+        <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-accent-dark mb-4" data-reveal="fade-up" data-delay="100">
           Hello, I'm Marie
         </h1>
- 
-        <div class="w-14 h-[2px] bg-rose-deep mx-auto lg:mx-0 mb-4"></div>
- 
-        <p class="text-lg sm:text-xl text-ink font-medium mb-4">
+
+        <div class="w-14 h-[2px] bg-accent-mid mx-auto lg:mx-0 mb-4" data-reveal="fade-up" data-delay="200"></div>
+
+        <p class="text-lg sm:text-xl text-text-heading font-medium mb-4" data-reveal="fade-up" data-delay="300">
           Développeuse Full-Stack &amp; Designer UI/UX
         </p>
- 
-        <p class="text-boss-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
+
+        <p class="text-text-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8" data-reveal="fade-up" data-delay="400">
           Je conçois et développe des expériences numériques élégantes,
           utiles et centrées sur l'humain. Curieuse, rigoureuse et passionnée,
           j'aime transformer des idées en produits concrets qui font la différence.
         </p>
- 
-        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+
+        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start" data-reveal="fade-up" data-delay="500">
           <a href="{% static 'files/cv-marie-dupont.pdf' %}" download
-             class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-warm-white text-sm font-medium
-                    hover:bg-burgundy transition shadow-soft">
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-text-heading text-bg-surface text-sm font-medium
+                    hover:bg-accent transition shadow-soft">
             Télécharger mon CV
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/>
             </svg>
           </a>
  
-          <p class="font-script text-2xl text-rose-deep">Marie Dupont</p>
+          <p class="font-script text-2xl text-accent-mid">Marie Dupont</p>
         </div>
       </div>
  
@@ -94,28 +94,28 @@ En-tête de la page Services — utilise `intro` (instance ServicesIntro).
 {% comment %}
 Section Prestations — utilise `services_list` (queryset Service).
 {% endcomment %}
-<section id="prestations" class="relative bg-warm-white py-20 md:py-28">
+<section id="prestations" class="relative bg-bg-surface py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 sm:px-10">
-    <div class="text-center mb-14">
-      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Prestations</p>
-      <p class="font-serif italic text-boss-muted">Des solutions sur mesure pour vos projets</p>
+    <div class="text-center mb-14" data-reveal="fade-up">
+      <p class="font-script text-3xl sm:text-4xl text-accent mb-3">Prestations</p>
+      <p class="font-serif italic text-text-muted">Des solutions sur mesure pour vos projets</p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" data-stagger-parent data-stagger-delay="100">
       {% for service in services_list %}
-        <div class="bg-rose-pale/60 border border-rose-deep/20 p-8 text-center hover:bg-rose-pale transition-colors duration-200">
+        <div class="bg-bg-soft/60 border border-accent-mid/20 p-8 text-center hover:bg-bg-soft transition-colors duration-200" data-hover="lift" data-stagger-child>
           {% if service.icon %}
             <img src="{{ service.icon.url }}" alt="" class="w-14 h-14 mx-auto mb-5 object-contain">
           {% else %}
-            <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-rose-deep/30"></div>
+            <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-accent-mid/30"></div>
           {% endif %}
-          <h3 class="font-sans font-semibold uppercase tracking-wide text-boss-text mb-3">
+          <h3 class="font-sans font-semibold uppercase tracking-wide text-text-main mb-3">
             {{ service.title }}
           </h3>
-          <p class="font-sans text-sm text-boss-muted leading-relaxed">{{ service.description }}</p>
+          <p class="font-sans text-sm text-text-muted leading-relaxed">{{ service.description }}</p>
         </div>
       {% empty %}
-        <p class="col-span-full text-center text-boss-muted">
+        <p class="col-span-full text-center text-text-muted">
           Ajoutez vos prestations depuis l'admin (modèle « Service »).
         </p>
       {% endfor %}
@@ -129,29 +129,29 @@ Section Prestations — utilise `services_list` (queryset Service).
 {% comment %}
 Section Processus de travail — utilise `process_steps` (queryset ProcessStep).
 {% endcomment %}
-<section id="processus" class="relative bg-cream py-20 md:py-28">
+<section id="processus" class="relative bg-bg-base py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 sm:px-10">
-    <div class="text-center mb-16">
-      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Processus de travail</p>
-      <p class="font-serif italic text-boss-muted">Comment je transforme votre idée en réalité</p>
+    <div class="text-center mb-16" data-reveal="fade-up">
+      <p class="font-script text-3xl sm:text-4xl text-accent mb-3">Processus de travail</p>
+      <p class="font-serif italic text-text-muted">Comment je transforme votre idée en réalité</p>
     </div>
 
-    <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+    <div class="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-12" data-stagger-parent data-stagger-delay="80">
       <!-- trait de liaison entre les étapes (desktop uniquement) -->
-      <div class="hidden lg:block absolute top-6 left-0 right-0 h-px bg-rose-deep/40"></div>
+      <div class="hidden lg:block absolute top-6 left-0 right-0 h-px bg-accent-mid/40"></div>
 
       {% for step in process_steps %}
-        <div class="relative text-center px-2">
-          <div class="relative z-10 w-12 h-12 mx-auto mb-5 rounded-full bg-warm-white border border-burgundy flex items-center justify-center font-serif text-burgundy">
+        <div class="relative text-center px-2" data-stagger-child>
+          <div class="relative z-10 w-12 h-12 mx-auto mb-5 rounded-full bg-bg-surface border border-accent flex items-center justify-center font-serif text-accent">
             {{ forloop.counter|stringformat:"02d" }}
           </div>
-          <h3 class="font-sans font-semibold uppercase tracking-wide text-boss-text mb-2">
+          <h3 class="font-sans font-semibold uppercase tracking-wide text-text-main mb-2">
             {{ step.title }}
           </h3>
-          <p class="font-sans text-sm text-boss-muted leading-relaxed">{{ step.description }}</p>
+          <p class="font-sans text-sm text-text-muted leading-relaxed">{{ step.description }}</p>
         </div>
       {% empty %}
-        <p class="col-span-full text-center text-boss-muted">
+        <p class="col-span-full text-center text-text-muted">
           Ajoutez vos étapes depuis l'admin (modèle « ProcessStep »).
         </p>
       {% endfor %}
@@ -162,11 +162,11 @@ Section Processus de travail — utilise `process_steps` (queryset ProcessStep).
 {% comment %}
 Section Technologies — utilise `technologies` (queryset Technology).
 {% endcomment %}
-<section id="technologies" class="relative bg-warm-white py-20 md:py-28">
+<section id="technologies" class="relative bg-bg-surface py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6 sm:px-10">
     <div class="text-center mb-14">
-      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">Technologies</p>
-      <p class="font-serif italic text-boss-muted">Les outils que j'utilise au quotidien</p>
+      <p class="font-script text-3xl sm:text-4xl text-accent mb-3">Technologies</p>
+      <p class="font-serif italic text-text-muted">Les outils que j'utilise au quotidien</p>
     </div>
 
     <div class="flex flex-wrap justify-center gap-8 sm:gap-12">
@@ -174,12 +174,12 @@ Section Technologies — utilise `technologies` (queryset Technology).
         <div class="flex flex-col items-center gap-3 w-24">
           <img src="{{ tech.icon.url }}" alt="{{ tech.name }}"
                class="w-12 h-12 object-contain grayscale hover:grayscale-0 transition duration-200">
-          <span class="text-xs font-sans uppercase tracking-wide text-boss-muted text-center">
+          <span class="text-xs font-sans uppercase tracking-wide text-text-muted text-center">
             {{ tech.name }}
           </span>
         </div>
       {% empty %}
-        <p class="text-center text-boss-muted">
+        <p class="text-center text-text-muted">
           Ajoutez vos technologies depuis l'admin (modèle « Technology »).
         </p>
       {% endfor %}
@@ -192,24 +192,24 @@ Section Technologies — utilise `technologies` (queryset Technology).
 Section FAQ — utilise `faq_items` (queryset FAQItem).
 Accordéon natif via <details>/<summary>, aucun JavaScript nécessaire.
 {% endcomment %}
-<section id="faq" class="relative bg-cream py-20 md:py-28">
+<section id="faq" class="relative bg-bg-base py-20 md:py-28">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-14">
-      <p class="font-script text-3xl sm:text-4xl text-burgundy mb-3">FAQ</p>
-      <p class="font-serif italic text-boss-muted">Les questions les plus fréquentes</p>
+    <div class="text-center mb-14" data-reveal="fade-up">
+      <p class="font-script text-3xl sm:text-4xl text-accent mb-3">FAQ</p>
+      <p class="font-serif italic text-text-muted">Les questions les plus fréquentes</p>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-4" data-stagger-parent data-stagger-delay="80">
       {% for faq in faq_items %}
-        <details class="group bg-warm-white border border-rose-deep/20 p-6 open:bg-rose-pale/40">
-          <summary class="flex items-center justify-between gap-4 cursor-pointer font-sans font-semibold text-boss-text list-none [&::-webkit-details-marker]:hidden">
+        <details class="group bg-bg-surface border border-accent-mid/20 p-6 open:bg-bg-soft/40" data-stagger-child>
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-sans font-semibold text-text-main list-none [&::-webkit-details-marker]:hidden">
             <span>{{ faq.question }}</span>
-            <span class="shrink-0 text-burgundy text-xl leading-none transition-transform duration-200 group-open:rotate-45">+</span>
+            <span class="shrink-0 text-accent text-xl leading-none transition-transform duration-200 group-open:rotate-45">+</span>
           </summary>
-          <p class="mt-4 font-sans text-sm text-boss-muted leading-relaxed">{{ faq.answer }}</p>
+          <p class="mt-4 font-sans text-sm text-text-muted leading-relaxed">{{ faq.answer }}</p>
         </details>
       {% empty %}
-        <p class="text-center text-boss-muted">
+        <p class="text-center text-text-muted">
           Ajoutez vos questions depuis l'admin (modèle « FAQItem »).
         </p>
       {% endfor %}

@@ -4,6 +4,8 @@ Admin pour l'application blog de TechSpace.
 """
 
 from django.contrib import admin
+from django.utils.html import format_html
+
 from ..models import Category, Author, Article, ArticleSubscriber
 
 
@@ -57,15 +59,49 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(ArticleSubscriber)
 class ArticleSubscriberAdmin(admin.ModelAdmin):
-    list_display = ("email", "is_active", "subscribed_at")
-    list_filter = ("is_active", "subscribed_at")
-    search_fields = ("email",)
-    actions = ["activate_subscribers", "deactivate_subscribers"]
+    list_display = ("email", "name", "status_badge", "confirmed_at", "created_at")
+    list_filter = ("status", "created_at")
+    search_fields = ("email", "name")
+    readonly_fields = ("confirmation_token", "token_expires_at", "unsubscribe_token", "confirmed_at", "created_at")
 
-    @admin.action(description="Activer les abonnés sélectionnés")
-    def activate_subscribers(self, request, queryset):
-        queryset.update(is_active=True)
+    fieldsets = (
+        ("Abonné", {
+            "fields": ("email", "name", "status")
+        }),
+        ("Confirmation", {
+            "fields": ("confirmation_token", "token_expires_at", "confirmed_at")
+        }),
+        ("Désabonnement", {
+            "fields": ("unsubscribe_token",)
+        }),
+        ("Dates", {
+            "fields": ("created_at",)
+        }),
+    )
 
-    @admin.action(description="Désactiver les abonnés sélectionnés")
-    def deactivate_subscribers(self, request, queryset):
-        queryset.update(is_active=False)
+    actions = ["confirm_subscribers", "unsubscribe_subscribers"]
+
+    def status_badge(self, obj):
+        colors = {
+            'pending': 'orange',
+            'confirmed': 'green',
+            'unsubscribed': 'red',
+        }
+        color = colors.get(obj.status, 'gray')
+        color_hex = {'orange': 'f97316', 'green': '22c55e', 'red': 'ef4444'}.get(color, '6b7280')
+        return format_html(
+            '<span style="background-color: #{0}; color: white; padding: 3px 8px; '
+            'border-radius: 12px; font-size: 11px;">{1}</span>',
+            color_hex,
+            obj.get_status_display()
+        )
+    status_badge.short_description = 'Statut'
+
+    @admin.action(description="Confirmer les abonnés sélectionnés")
+    def confirm_subscribers(self, request, queryset):
+        for subscriber in queryset.filter(status='pending'):
+            subscriber.confirm()
+
+    @admin.action(description="Désabonner les abonnés sélectionnés")
+    def unsubscribe_subscribers(self, request, queryset):
+        queryset.update(status='unsubscribed')

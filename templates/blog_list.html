@@ -3,73 +3,71 @@
 
 {% block title %}Articles — TechSpace{% endblock %}
 
-{% block nav_articles_active %}text-burgundy border-b-2 border-burgundy pb-1{% endblock %}
+{% block nav_articles_active %}text-accent border-b-2 border-accent pb-1{% endblock %}
 
 {% block content %}
-
-
 
 <section class="relative min-h-[40vh] w-full overflow-hidden">
 
 
   <!-- Background image avec overlay burgundy (plus sombre à gauche) -->
   <div class="absolute inset-0" style="background-image: url('{% static 'images/ordi4.jpeg' %}'); background-size: cover; background-position: center;"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-burgundy/85 via-burgundy/60 to-burgundy/30"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-accent-dark/85 via-accent-dark/60 to-accent-dark/30"></div>
 
   <!-- Contenu principal aligné à gauche -->
   <div class="relative z-10 w-full pl-[8%] pt-12 pb-20">
     <!-- Label BLOG -->
-    <span class="inline-block text-boss-text text-xs font-semibold uppercase tracking-[0.2em] mb-4">Blog</span>
+    <span class="inline-block text-white text-xs font-semibold uppercase tracking-[0.2em] mb-4" data-reveal="fade-up" data-delay="0">Blog</span>
 
     <!-- Titre -->
-    <h1 class="text-boss-text  font-script font-bold text-5xl sm:text-6xl lg:text-7xl tracking-tight mb-4">
-      Mon <span class="text-cream">Blog</span>
+    <h1 class="text-accent-dark font-bold font-script text-5xl sm:text-6xl lg:text-7xl tracking-tight mb-4" data-reveal="fade-up" data-delay="100">
+      Mon <span class="text-text-main">Blog</span>
     </h1>
 
     <!-- Ligne décorative -->
-    <div class="w-12 h-px bg-rose-mid/50 mb-6"></div>
+    <div class="w-12 h-px bg-accent-soft/50 mb-6" data-reveal="fade-up" data-delay="200"></div>
 
     <!-- Description -->
-    <p class="text-warm-white/90 text-base sm:text-lg max-w-md leading-relaxed mb-16">
+    <p class="text-bg-surface/90 text-base sm:text-lg max-w-md leading-relaxed mb-16" data-reveal="fade-up" data-delay="300">
       Articles, tutoriels et réflexions sur le développement web, le design UI/UX et l'entrepreneuriat digital.
     </p>
 
     <!-- Stats -->
-    <div class="flex items-center gap-8 sm:gap-10">
+    <div class="flex items-center gap-8 sm:gap-10" data-reveal="fade-up" data-delay="400">
       <!-- Article icon -->
       <div class="flex items-center gap-3">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4a5aa" stroke-width="1.5" class="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6 text-text-muted">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
         </svg>
         <div>
-          <p class="text-2xl sm:text-3xl font-bold text-warm-white leading-tight">{{ articles_count|default:"0" }}</p>
-          <p class="text-warm-white/60 text-xs sm:text-sm">Articles</p>
+          <p class="text-2xl sm:text-3xl font-bold text-bg-surface leading-tight">{{ articles_count|default:"0" }}</p>
+          <p class="text-bg-surface/60 text-xs sm:text-sm">Articles</p>
         </div>
       </div>
 
-      <div class="w-px h-12 bg-rose-mid/40"></div>
+      <div class="w-px h-12 bg-accent-soft/40"></div>
 
       <!-- Categories icon -->
       <div class="flex items-center gap-3">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4a5aa" stroke-width="1.5" class="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6 text-text-muted">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
         </svg>
         <div>
-          <p class="text-2xl sm:text-3xl font-bold text-warm-white leading-tight">{{ categories_count|default:"0" }}</p>
-          <p class="text-warm-white/60 text-xs sm:text-sm">Catégories</p>
+          <p class="text-2xl sm:text-3xl font-bold text-bg-surface leading-tight">{{ categories_count|default:"0" }}</p>
+          <p class="text-bg-surface/60 text-xs sm:text-sm">Catégories</p>
         </div>
       </div>
 
-      <div class="w-px h-12 bg-rose-mid/40"></div>
+      <div class="w-px h-12 bg-accent-soft/40"></div>
 
       <!-- Users icon -->
       <div class="flex items-center gap-3">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4a5aa" stroke-width="1.5" class="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6 text-text-muted">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/>
         </svg>
         <div>
-          <p class="text-2xl sm:text-3xl font-bold text-warm-white leading-tight" id="subscribers-count">{{ subscribers_count|default:"0" }}</p>
-          <p class="text-warm-white/60 text-xs sm:text-sm">Abonnés</p>
+          <p class="text-2xl sm:text-3xl font-bold text-bg-surface leading-tight" id="subscribers-count">{{ subscribers_count|default:"0" }}</p>
+          <p class="text-bg-surface/60 text-xs sm:text-sm">Abonnés</p>
         </div>
       </div>
     </div>
@@ -83,14 +81,14 @@
   <!-- LEFT: filtres + grille + pagination -->
   <div>
     <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
-      <h2 class="text-sm font-semibold text-boss-text">Parcourir par catégories</h2>
+      <h2 class="text-sm font-semibold text-text-main">Parcourir par catégories</h2>
 
       <form method="get" action="{% url 'article_list' %}" class="flex items-center gap-2">
         {% if search_query %}<input type="hidden" name="q" value="{{ search_query }}">{% endif %}
         {% if current_category != "all" %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
-        <label for="sortSelect" class="text-sm text-boss-muted">Trier par :</label>
+        <label for="sortSelect" class="text-sm text-text-muted">Trier par :</label>
         <select id="sortSelect" name="sort" onchange="this.form.submit()"
-                class="text-sm border border-rose-pale rounded-full px-3 py-1.5 bg-warm-white focus:outline-none focus:ring-1 focus:ring-rose-deep">
+                class="text-sm border border-border-subtle rounded-full px-3 py-1.5 bg-bg-surface focus:outline-none focus:ring-1 focus:ring-rose-deep">
           <option value="newest" {% if current_sort == "newest" %}selected{% endif %}>Plus récents</option>
           <option value="oldest" {% if current_sort == "oldest" %}selected{% endif %}>Plus anciens</option>
           <option value="popular" {% if current_sort == "popular" %}selected{% endif %}>Plus populaires</option>
@@ -101,32 +99,32 @@
     <div class="flex flex-wrap gap-2 mb-10">
       <a href="?{% url_replace category="" %}"
          class="text-sm font-medium px-4 py-2 rounded-full border transition
-         {% if current_category == 'all' %}bg-burgundy text-warm-white border-burgundy
-         {% else %}bg-warm-white text-boss-text border-rose-pale hover:border-rose-deep{% endif %}">
+         {% if current_category == 'all' %}bg-accent text-bg-surface border-accent
+         {% else %}bg-bg-surface text-text-main border-border-subtle hover:border-accent-mid{% endif %}">
         Tous
       </a>
       {% for cat in categories %}
       <a href="?{% url_replace category=cat.slug %}"
          class="text-sm font-medium px-4 py-2 rounded-full border transition
-         {% if current_category == cat.slug %}bg-burgundy text-warm-white border-burgundy
-         {% else %}bg-warm-white text-boss-text border-rose-pale hover:border-rose-deep{% endif %}">
+         {% if current_category == cat.slug %}bg-accent text-bg-surface border-accent
+         {% else %}bg-bg-surface text-text-main border-border-subtle hover:border-accent-mid{% endif %}">
         {{ cat.name }}
       </a>
       {% endfor %}
     </div>
 
     {% if articles %}
-    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6" data-stagger-parent data-stagger-delay="100">
       {% for article in articles %}
 
-        <div class="bg-warm-white border border-rose-pale rounded-2xl overflow-hidden card-shadow flex flex-col">
+        <div class="bg-bg-surface border border-border-subtle rounded-2xl overflow-hidden card-shadow flex flex-col" data-hover="lift" data-stagger-child>
             <a href="{{ article.get_absolute_url }}" class="relative block">
                 <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-44 object-cover" />
-                <span class="absolute top-3 left-3 bg-boss-text text-warm-white text-xs font-mono px-3 py-1 rounded-full">
+                <span class="absolute top-3 left-3 bg-boss-text text-bg-surface text-xs font-mono px-3 py-1 rounded-full">
                 {{ article.category.name }}
                 </span>
                 <button type="button"
-                        class="js-like-btn absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-warm-white text-burgundy hover:bg-warm-white transition shadow"
+                        class="js-like-btn absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-bg-surface text-accent hover:bg-bg-surface transition shadow"
                         data-url="{% url 'toggle_article_like' article.slug %}">
                   <svg class="js-like-icon w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                        fill="{% if article.is_liked_by_me %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.8">
@@ -136,14 +134,14 @@
                 </button>
             </a>
             <div class="p-5 flex flex-col flex-1">
-                <div class="text-xs text-boss-muted font-mono mb-2">
+                <div class="text-xs text-text-muted font-mono mb-2">
                 📅 {{ article.published_date|date:"d M Y" }} &nbsp;·&nbsp; {{ article.reading_time }} min de lecture
                 </div>
-                <h3 class="font-semibold text-boss-text leading-snug mb-2">
-                <a href="{{ article.get_absolute_url }}" class="hover:text-burgundy transition">{{ article.title }}</a>
+                <h3 class="font-semibold text-text-main leading-snug mb-2">
+                <a href="{{ article.get_absolute_url }}" class="hover:text-accent transition">{{ article.title }}</a>
                 </h3>
-                <p class="text-sm text-boss-muted flex-1 mb-4">{{ article.excerpt }}</p>
-                <a href="{{ article.get_absolute_url }}" class="text-sm font-medium text-burgundy hover:text-burgundy-dk inline-flex items-center gap-1">
+                <p class="text-sm text-text-muted flex-1 mb-4">{{ article.excerpt }}</p>
+                <a href="{{ article.get_absolute_url }}" class="text-sm font-medium text-accent hover:text-accent-dark inline-flex items-center gap-1">
                 Lire la suite →
                 </a>
             </div>
@@ -151,7 +149,7 @@
       {% endfor %}
     </div>
     {% else %}
-    <div class="text-center py-16 text-boss-muted">
+    <div class="text-center py-16 text-text-muted">
       Aucun article ne correspond à ta recherche.
     </div>
     {% endif %}
@@ -163,29 +161,29 @@
   <aside class="space-y-6">
 
     <!-- Recherche -->
-    <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
-      <h3 class="text-sm font-semibold text-boss-text mb-3">Recherche</h3>
+    <div class="bg-bg-surface border border-border-subtle rounded-2xl p-5 card-shadow">
+      <h3 class="text-sm font-semibold text-text-main mb-3">Recherche</h3>
       <div class="relative" id="search-wrapper">
         <form method="get" action="{% url 'article_list' %}" id="search-form"
-              class="flex items-center gap-2 bg-rose-pale rounded-full pl-4 pr-1.5 py-1.5">
+              class="flex items-center gap-2 bg-bg-soft rounded-full pl-4 pr-1.5 py-1.5">
           {% if current_category != "all" %}<input type="hidden" name="category" value="{{ current_category }}">{% endif %}
           {% if current_sort != "newest" %}<input type="hidden" name="sort" value="{{ current_sort }}">{% endif %}
           <input type="text" name="q" id="search-input" value="{{ search_query }}" placeholder="Rechercher un article..."
-                 class="flex-1 bg-transparent text-sm text-ink placeholder-boss-muted focus:outline-none"
+                 class="flex-1 bg-transparent text-sm text-text-heading placeholder-text-muted focus:outline-none"
                  autocomplete="off" />
-          <button type="button" id="search-clear" class="hidden hover:text-burgundy transition p-1">
+          <button type="button" id="search-clear" class="hidden hover:text-accent transition p-1">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
           </button>
-          <button type="submit" class="bg-blush hover:bg-rose-mid transition p-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-burgundy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <button type="submit" class="bg-accent-mid hover:bg-accent-soft transition p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-bg-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
         </form>
-        <div id="search-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-warm-white border border-rose-pale rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
-          <div id="search-loading" class="hidden p-4 text-center text-boss-muted text-sm">
+        <div id="search-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-bg-surface border border-border-subtle rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
+          <div id="search-loading" class="hidden p-4 text-center text-text-muted text-sm">
             <svg class="animate-spin inline w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
@@ -193,10 +191,10 @@
             Recherche en cours...
           </div>
           <div id="search-results"></div>
-          <div id="search-empty" class="hidden p-4 text-center text-boss-muted text-sm">
+          <div id="search-empty" class="hidden p-4 text-center text-text-muted text-sm">
             Aucun article trouvé pour "<span id="search-empty-query"></span>"
           </div>
-          <div id="search-error" class="hidden p-4 text-center text-boss-muted text-sm">
+          <div id="search-error" class="hidden p-4 text-center text-text-muted text-sm">
             Erreur lors de la recherche. Réessaie.
           </div>
         </div>
@@ -205,15 +203,15 @@
 
     <!-- Featured Post -->
     {% if featured_post %}
-    <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
-      <h3 class="text-sm font-semibold text-boss-text mb-4">Article à la une</h3>
+    <div class="bg-bg-surface border border-border-subtle rounded-2xl p-5 card-shadow">
+      <h3 class="text-sm font-semibold text-text-main mb-4">Article à la une</h3>
       <a href="{{ featured_post.get_absolute_url }}" class="flex gap-3 group">
         <img src="{{ featured_post.image.url }}" class="w-16 h-16 rounded-xl object-cover flex-shrink-0" alt="{{ featured_post.title }}" />
         <div>
-          <h4 class="text-sm font-semibold text-boss-text leading-snug mb-1 group-hover:text-burgundy transition">
+          <h4 class="text-sm font-semibold text-text-main leading-snug mb-1 group-hover:text-accent transition">
             {{ featured_post.title }}
           </h4>
-          <p class="text-xs text-boss-muted font-mono">
+          <p class="text-xs text-text-muted font-mono">
             {{ featured_post.published_date|date:"d F Y" }} · {{ featured_post.reading_time }} min
           </p>
         </div>
@@ -222,32 +220,28 @@
     {% endif %}
 
     <!-- Newsletter -->
-    <div class="bg-cream border border-blush rounded-2xl p-6 text-burgundy-dk">
-      <div class="flex items-center gap-4">
-        <div class="w-15 h-15 rounded-full bg-burgundy-dk/10 flex items-center justify-center mb-4">
-          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M22 6L12 13L2 6"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="font-semibold mb-2">Newsletter</h3> 
-        </div>    
-      </div>  
+   
+ 
       
-      <p class="text-sm text-burgundy mb-4">
-        Reçois mes dernières réflexions et mises à jour directement dans ta boîte mail.
-      </p>
-      <form method="post" action="{% url 'newsletter_subscribe' %}" id="newsletter-form">
-        {% csrf_token %}
-        <input type="email" name="email" required placeholder="Ton adresse e-mail"
-               class="w-full mb-3 px-4 py-2 rounded-full text-sm text-ink bg-cream border border-blush focus:outline-none" />
-        <button type="submit" class="w-full bg-burgundy hover:bg-rose-deep transition text-warm-white text-sm font-medium py-2 rounded-full">
-          S'abonner
-        </button>
-        <div id="newsletter-message" class="mt-3 text-center text-sm font-medium hidden"></div>
-      </form>
-    </div>
+      <!-- Newsletter -->
+      <div class="bg-bg-surface rounded-2xl p-6 md:p-8 border border-border-subtle">
+        <h3 class="font-script text-2xl text-text-heading mb-2 text-center">Rejoignez la communauté</h3>
+        <p class="text-sm text-text-muted text-center mb-6">Recevez mes nouveaux articles et actualités.</p>
+        <form id="newsletter-cta-form" class="space-y-4">
+          {% csrf_token %}
+          <input type="text" name="name" placeholder="Votre nom / pseudo" maxlength="100" required
+                 class="w-full px-4 py-3 rounded-xl bg-bg-soft border border-border-subtle text-text-main text-sm placeholder-text-muted focus:outline-none focus:border-accent transition" />
+          <input type="email" name="email" placeholder="Votre adresse email" required
+                 class="w-full px-4 py-3 rounded-xl bg-bg-soft border border-border-subtle text-text-main text-sm placeholder-text-muted focus:outline-none focus:border-accent transition" />
+          <button type="submit" id="newsletter-modal-submit"
+                  class="w-full px-6 py-3 bg-accent text-bg-surface rounded-full text-sm font-medium hover:bg-accent-dark transition shadow-md">
+            S'abonner
+          </button>
+        </form>
+        <p id="newsletter-modal-error" class="hidden text-red-500 text-sm text-center mt-3"></p>
+        <p id="newsletter-modal-success" class="hidden text-green-500 text-sm text-center mt-3"></p>
+      </div>
+   
 
   </aside>
 </section>
@@ -276,52 +270,50 @@ document.querySelectorAll('.js-like-btn').forEach((btn) => {
   });
 });
 
-// Newsletter form AJAX
-const newsletterForm = document.getElementById('newsletter-form');
-const newsletterMsg = document.getElementById('newsletter-message');
-const subscribersCountEl = document.getElementById('subscribers-count');
-if (newsletterForm) {
-  newsletterForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(newsletterForm);
-    const submitBtn = newsletterForm.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Envoi...';
+// Newsletter form inline
+(function() {
+  const newsletterForm = document.getElementById('newsletter-cta-form');
+  const newsletterError = document.getElementById('newsletter-modal-error');
+  const newsletterSuccess = document.getElementById('newsletter-modal-success');
+  const newsletterSubmitBtn = document.getElementById('newsletter-modal-submit');
 
-    try {
-      const res = await fetch(newsletterForm.action, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': getCookie('csrftoken'),
-        },
-        body: formData,
-      });
-      const data = await res.json();
-      newsletterMsg.classList.remove('hidden');
-      if (data.success) {
-        newsletterMsg.textContent = data.message;
-        newsletterMsg.className = 'mt-3 text-center text-sm font-medium text-green';
-        newsletterForm.reset();
-        // Mise à jour du nombre d'abonnés
-        if (subscribersCountEl) {
-          subscribersCountEl.textContent = parseInt(subscribersCountEl.textContent) + 1;
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      newsletterError.classList.add('hidden');
+      newsletterSuccess.classList.add('hidden');
+      newsletterSubmitBtn.disabled = true;
+      newsletterSubmitBtn.textContent = 'Envoi...';
+
+      const formData = new FormData(newsletterForm);
+
+      try {
+        const response = await fetch('{% url "subscribe_newsletter" %}', {
+          method: 'POST',
+          body: formData,
+          headers: { 'X-CSRFToken': getCookie('csrftoken') }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          newsletterSuccess.textContent = '✓ Email de confirmation envoyé ! Vérifiez votre boîte de réception.';
+          newsletterSuccess.classList.remove('hidden');
+          newsletterForm.reset();
+        } else {
+          newsletterError.textContent = data.error || 'Erreur lors de l\'inscription';
+          newsletterError.classList.remove('hidden');
         }
-        // Masquer le message après 4 secondes
-        setTimeout(() => {
-          newsletterMsg.classList.add('hidden');
-        }, 4000);
-      } else {
-        newsletterMsg.textContent = data.message;
-        newsletterMsg.className = 'mt-3 text-center text-sm font-medium text-red';
+      } catch (error) {
+        newsletterError.textContent = 'Erreur lors de l\'inscription';
+        newsletterError.classList.remove('hidden');
+      } finally {
+        newsletterSubmitBtn.disabled = false;
+        newsletterSubmitBtn.textContent = 'S\'abonner';
       }
-      submitBtn.disabled = false;
-      submitBtn.textContent = "S'abonner";
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "S'abonner";
-    }
-  });
-}
+    });
+  }
+})();
 
 (function() {
   const wrapper = document.getElementById('search-wrapper');
@@ -355,12 +347,12 @@ if (newsletterForm) {
     results.forEach((article, i) => {
       const a = document.createElement('a');
       a.href = article.url;
-      a.className = 'flex gap-3 p-3 hover:bg-rose-pale transition' + (i === selectedIndex ? ' bg-rose-pale' : '');
+      a.className = 'flex gap-3 p-3 hover:bg-bg-soft transition' + (i === selectedIndex ? ' bg-bg-soft' : '');
       a.innerHTML = `
         ${article.image ? `<img src="${article.image}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0" alt="">` : ''}
         <div class="flex-1 min-w-0">
-          <h4 class="text-sm font-medium text-boss-text leading-snug truncate">${article.title}</h4>
-          <p class="text-xs text-boss-muted mt-0.5">${article.category} · ${article.reading_time} min</p>
+          <h4 class="text-sm font-medium text-text-main leading-snug truncate">${article.title}</h4>
+          <p class="text-xs text-text-muted mt-0.5">${article.category} · ${article.reading_time} min</p>
         </div>
       `;
       resultsEl.appendChild(a);

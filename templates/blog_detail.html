@@ -3,7 +3,7 @@
 
 {% block title %}{{ article.title }} — TechSpace{% endblock %}
 
-{% block nav_articles_active %}text-burgundy border-b-2 border-burgundy pb-1{% endblock %}
+{% block nav_articles_active %}text-accent border-b-2 border-accent pb-1{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -12,12 +12,12 @@
     font-family: "Cormorant Garamond", serif;
     font-weight: 600;
     font-size: 1.5rem;
-    color: #7B1E3A;
+    color: var(--color-accent-dark, #7B1E3A);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
   .article-content p {
-    color: #2E2024;
+    color: var(--color-text-main, #2E2024);
     line-height: 1.8;
     margin-bottom: 1rem;
   }
@@ -25,10 +25,10 @@
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
     font-size: 1.15rem;
-    color: #C97C8B;
+    color: var(--color-accent, #C97C8B);
     text-align: center;
-    border-top: 1px solid #FBEEF0;
-    border-bottom: 1px solid #FBEEF0;
+    border-top: 1px solid var(--color-border-subtle, #FBEEF0);
+    border-bottom: 1px solid var(--color-border-subtle, #FBEEF0);
     padding: 1rem 0;
     margin: 1.5rem 0;
   }
@@ -37,50 +37,56 @@
 
 {% block content %}
 
+
+
+{% include "partials/_newsletter_modal.html" %}
+
 <section class="max-w-7xl mx-auto px-6 py-8">
 
   <!-- BREADCRUMB -->
-  <nav class="text-sm text-boss-muted mb-6">
-    <a href="{% url 'home' %}" class="hover:text-burgundy">Accueil</a>
+  <nav class="text-sm text-text-muted mb-6">
+    <a href="{% url 'home' %}" class="hover:text-accent">Accueil</a>
     <span class="mx-2">›</span>
-    <a href="{% url 'article_list' %}" class="hover:text-burgundy">Articles</a>
+    <a href="{% url 'article_list' %}" class="hover:text-accent">Articles</a>
     <span class="mx-2">›</span>
-    <span class="text-boss-text">{{ article.title }}</span>
+    <span class="text-text-main">{{ article.title }}</span>
   </nav>
 
   <!-- HERO : titre / meta à gauche, grande image dynamique à droite -->
-  <div class="grid md:grid-cols-2 gap-10 items-center mb-14">
-    <div>
-      <span class="inline-block bg-blush text-burgundy text-xs font-mono font-medium px-4 py-1.5 rounded-full mb-5">
-        {{ article.category.name|upper }}
-      </span>
-      <h1 class="font-script text-4xl md:text-5xl leading-tight text-ink mb-6">
-        {{ article.title }}
-      </h1>
-      <div class="flex items-center gap-3">
-        {% if article.author.photo %}
-        <img src="{{ article.author.photo.url }}" alt="{{ article.author.name }}"
-             class="w-10 h-10 rounded-full object-cover" />
-        {% endif %}
-        <div class="text-sm text-boss-muted">
-          {% if article.author %}Par <span class="text-boss-text font-medium">{{ article.author.name }}</span> &nbsp;·&nbsp;{% endif %}
-          {{ article.published_date|date:"d F Y" }} &nbsp;·&nbsp; {{ article.reading_time }} min de lecture
+  <div class="w-screen relative left-1/2 -translate-x-1/2 mb-14 -mx-6">
+    <div class="grid md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto px-6">
+      <div>
+        <span class="inline-block bg-accent-soft text-accent-dark text-xs font-mono font-medium px-4 py-1.5 rounded-full mb-5">
+          {{ article.category.name|upper }}
+        </span>
+        <h1 class="font-script text-4xl md:text-5xl leading-tight text-text-heading mb-6">
+          {{ article.title }}
+        </h1>
+        <div class="flex items-center gap-3">
+          {% if article.author.photo %}
+          <img src="{{ article.author.photo.url }}" alt="{{ article.author.name }}"
+               class="w-10 h-10 rounded-full object-cover" />
+          {% endif %}
+          <div class="text-sm text-text-muted">
+            {% if article.author %}Par <span class="text-text-main font-medium">{{ article.author.name }}</span> &nbsp;·&nbsp;{% endif %}
+            {{ article.published_date|date:"d F Y" }} &nbsp;·&nbsp; {{ article.reading_time }} min de lecture
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="relative">
-      <div class="rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-xl">
-        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
+      <div class="relative">
+        <div class="rounded-[2.5rem] overflow-hidden aspect-[4/3] shadow-xl">
+          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
+        </div>
+        <button type="button" id="like-btn"
+                data-url="{% url 'toggle_article_like' article.slug %}"
+                class="js-like-btn absolute -bottom-5 left-6 w-12 h-12 bg-accent-mid hover:bg-accent-soft transition rounded-full flex items-center justify-center shadow-lg"
+                aria-label="Aimer cet article" title="{{ likes_total }} j'aime">
+          <svg id="like-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-bg-surface" fill="{% if is_liked %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6.7-4.35-9.3-8.28C1 10.1 1.5 6.6 4.4 5.1c2.1-1.1 4.4-.4 5.6 1.3.4.5.7 1 1 1.5.3-.5.6-1 1-1.5 1.2-1.7 3.5-2.4 5.6-1.3 2.9 1.5 3.4 5 1.7 7.62C18.7 16.65 12 21 12 21z"/>
+          </svg>
+        </button>
       </div>
-      <button type="button" id="like-btn"
-              data-url="{% url 'toggle_article_like' article.slug %}"
-              class="js-like-btn absolute -bottom-5 left-6 w-12 h-12 bg-blush hover:bg-rose-mid transition rounded-full flex items-center justify-center shadow-lg"
-              aria-label="Aimer cet article" title="{{ likes_total }} j'aime">
-        <svg id="like-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-burgundy" fill="{% if is_liked %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6.7-4.35-9.3-8.28C1 10.1 1.5 6.6 4.4 5.1c2.1-1.1 4.4-.4 5.6 1.3.4.5.7 1 1 1.5.3-.5.6-1 1-1.5 1.2-1.7 3.5-2.4 5.6-1.3 2.9 1.5 3.4 5 1.7 7.62C18.7 16.65 12 21 12 21z"/>
-        </svg>
-      </button>
     </div>
   </div>
 
@@ -89,108 +95,135 @@
 
     <div>
       {% if article.featured_quote %}
-      <blockquote class="bg-rose-pale rounded-2xl p-6 md:p-8 mb-8 relative">
-        <span class="font-script text-5xl text-rose-mid absolute top-2 left-4 select-none">"</span>
-        <p class="font-script italic text-lg md:text-xl text-boss-text relative z-10 pl-4">
+      <blockquote class="bg-bg-soft rounded-2xl p-6 md:p-8 mb-8 relative">
+        <span class="font-script text-5xl text-accent-soft absolute top-2 left-4 select-none">"</span>
+        <p class="font-script italic text-lg md:text-xl text-text-main relative z-10 pl-4">
           {{ article.featured_quote }}
         </p>
         {% if article.featured_quote_author %}
-        <p class="text-sm text-burgundy font-medium mt-3 pl-4">— {{ article.featured_quote_author }}</p>
+        <p class="text-sm text-accent font-medium mt-3 pl-4">— {{ article.featured_quote_author }}</p>
         {% endif %}
       </blockquote>
       {% endif %}
 
-      <div class="article-content">
-        {{ article.content|safe }}
+      <div class="max-w-prose mx-auto">
+        <div class="article-content">
+          {{ article.content|safe }}
+        </div>
       </div>
 
       <!-- BIO AUTEURE -->
       {% if article.author %}
-      <div class="bg-rose-pale rounded-2xl p-6 md:p-8 mt-10 flex flex-col sm:flex-row gap-5 items-start relative overflow-hidden">
+      <div class="bg-bg-soft rounded-2xl p-6 md:p-8 mt-10 flex flex-col sm:flex-row gap-5 items-start relative overflow-hidden">
         {% if article.author.photo %}
         <img src="{{ article.author.photo.url }}" alt="{{ article.author.name }}"
              class="w-16 h-16 rounded-full object-cover flex-shrink-0" />
         {% endif %}
         <div>
-          <p class="text-xs font-mono text-burgundy mb-1">À propos de l'auteure</p>
+          <p class="text-xs font-mono text-accent mb-1">À propos de l'auteure</p>
           {% if article.author.bio %}
-          <p class="text-sm text-boss-text leading-relaxed mb-3">{{ article.author.bio }}</p>
+          <p class="text-sm text-text-main leading-relaxed mb-3">{{ article.author.bio }}</p>
           {% endif %}
           <div class="flex items-center gap-3">
             {% if article.author.website %}
-            <a href="{{ article.author.website }}" target="_blank" rel="noopener" class="text-burgundy hover:text-burgundy-dk">🌐</a>
+            <a href="{{ article.author.website }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark">🌐</a>
             {% endif %}
             {% if article.author.linkedin %}
-            <a href="{{ article.author.linkedin }}" target="_blank" rel="noopener" class="text-burgundy hover:text-burgundy-dk">in</a>
+            <a href="{{ article.author.linkedin }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark">in</a>
             {% endif %}
             {% if article.author.github %}
-            <a href="{{ article.author.github }}" target="_blank" rel="noopener" class="text-burgundy hover:text-burgundy-dk">gh</a>
+            <a href="{{ article.author.github }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark">gh</a>
             {% endif %}
             {% if article.author.dribbble %}
-            <a href="{{ article.author.dribbble }}" target="_blank" rel="noopener" class="text-burgundy hover:text-burgundy-dk">●</a>
+            <a href="{{ article.author.dribbble }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark">●</a>
             {% endif %}
           </div>
         </div>
       </div>
       {% endif %}
 
-      <!-- NAVIGATION PRÉCÉDENT / SUIVANT -->
-      <div class="flex items-center justify-between mt-10">
-        {% if previous_article %}
-        <a href="{{ previous_article.get_absolute_url }}"
-           class="text-sm font-medium text-boss-text border border-rose-pale rounded-full px-5 py-2.5 hover:border-rose-deep transition">
-          ← Article précédent
-        </a>
+      <!-- Commentaires Preview - Elevated Card -->
+      <a href="{% url 'article_discussion' article.slug %}"
+         class="block mt-10 bg-bg-surface rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border-subtle hover:border-accent-mid group">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center shadow-md">
+            <svg class="w-6 h-6 text-bg-surface" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-2xl font-script text-text-heading">{{ total_comments_count }}</span>
+            <span class="text-sm text-text-muted ml-2">commentaire{{ total_comments_count|pluralize:"s" }}</span>
+          </div>
+        </div>
+
+        {% if preview_comment %}
+        <div class="bg-bg-soft rounded-xl p-4 mb-4">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-full bg-accent-mid flex items-center justify-center">
+              <span class="text-xs font-medium text-bg-surface">{{ preview_comment.name|slice:":1"|upper }}</span>
+            </div>
+            <p class="text-xs text-accent font-medium">{{ preview_comment.name }}</p>
+          </div>
+          <p class="text-sm text-text-muted leading-relaxed line-clamp-2">{{ preview_comment.content }}</p>
+        </div>
         {% else %}
-        <span></span>
+        <p class="text-sm text-text-muted mb-4">Soyez le premier à rejoindre la discussion !</p>
         {% endif %}
 
-        {% if next_article %}
-        <a href="{{ next_article.get_absolute_url }}"
-           class="text-sm font-medium text-warm-white bg-burgundy rounded-full px-5 py-2.5 hover:bg-burgundy-dk transition">
-          Article suivant →
-        </a>
-        {% endif %}
-      </div>
+        <div class="flex items-center justify-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all">
+          <span>Voir la discussion</span>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
     </div>
 
     <!-- SIDEBAR -->
     <aside class="space-y-6">
 
-      <!-- À propos de l'article -->
-      <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
-        <h3 class="text-sm font-semibold text-boss-text mb-4">À propos de l'article</h3>
-        <ul class="space-y-3 text-sm text-boss-muted">
-          <li class="flex items-center gap-2">📁 Catégorie <span class="text-boss-text ml-auto">{{ article.category.name }}</span></li>
-          <li class="flex items-center gap-2">📅 Date <span class="text-boss-text ml-auto">{{ article.published_date|date:"d F Y" }}</span></li>
-          <li class="flex items-center gap-2">⏱ Temps de lecture <span class="text-boss-text ml-auto">{{ article.reading_time }} min</span></li>
-        </ul>
-        <p class="text-xs text-boss-muted mt-5 mb-2">Partagez cet article</p>
-        <div class="flex items-center gap-2">
-          <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener"
-             class="w-8 h-8 rounded-full bg-blush hover:bg-rose-mid flex items-center justify-center text-burgundy text-xs">f</a>
-          <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title|urlencode }}" target="_blank" rel="noopener"
-             class="w-8 h-8 rounded-full bg-blush hover:bg-rose-mid flex items-center justify-center text-burgundy text-xs">x</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank" rel="noopener"
-             class="w-8 h-8 rounded-full bg-blush hover:bg-rose-mid flex items-center justify-center text-burgundy text-xs">in</a>
-          <a href="https://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}&media={{ article.image.url }}&description={{ article.title|urlencode }}" target="_blank" rel="noopener"
-             class="w-8 h-8 rounded-full bg-blush hover:bg-rose-mid flex items-center justify-center text-burgundy text-xs">p</a>
+      <!-- À propos de l'auteur -->
+      {% if article.author %}
+      <div class="bg-bg-surface border border-border-subtle rounded-2xl p-5 card-shadow">
+        <h3 class="text-sm font-semibold text-text-main mb-4">À propos de l'auteure</h3>
+        <div class="flex flex-col items-center text-center">
+          {% if article.author.photo %}
+          <img src="{{ article.author.photo.url }}" alt="{{ article.author.name }}"
+               class="w-20 h-20 rounded-full object-cover mb-3" />
+          {% endif %}
+          <p class="font-medium text-text-main text-sm">{{ article.author.name }}</p>
+          {% if article.author.bio %}
+          <p class="text-xs text-text-muted mt-2 leading-relaxed">{{ article.author.bio|truncatewords:20 }}</p>
+          {% endif %}
+          <div class="flex items-center gap-3 mt-3">
+            {% if article.author.website %}
+            <a href="{{ article.author.website }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark text-sm">🌐</a>
+            {% endif %}
+            {% if article.author.linkedin %}
+            <a href="{{ article.author.linkedin }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark text-sm">in</a>
+            {% endif %}
+            {% if article.author.github %}
+            <a href="{{ article.author.github }}" target="_blank" rel="noopener" class="text-accent hover:text-accent-dark text-sm">gh</a>
+            {% endif %}
+          </div>
         </div>
       </div>
+      {% endif %}
 
-      <!-- Articles récents -->
-      {% if recent_articles %}
-      <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
-        <h3 class="text-sm font-semibold text-boss-text mb-4">Articles récents</h3>
+      <!-- Recommandations -->
+      {% if recommendations %}
+      <div class="bg-bg-surface border border-border-subtle rounded-2xl p-5 card-shadow">
+        <h3 class="text-sm font-semibold text-text-main mb-4">Recommandations</h3>
         <div class="space-y-4">
-          {% for recent in recent_articles %}
-          <a href="{{ recent.get_absolute_url }}" class="flex gap-3 group">
-            <img src="{{ recent.image.url }}" class="w-14 h-14 rounded-xl object-cover flex-shrink-0" alt="{{ recent.title }}" />
+          {% for rec in recommendations %}
+          <a href="{{ rec.get_absolute_url }}" class="flex gap-3 group">
+            <img src="{{ rec.image.url }}" class="w-14 h-14 rounded-xl object-cover flex-shrink-0" alt="{{ rec.title }}" />
             <div>
-              <h4 class="text-sm font-medium text-boss-text leading-snug group-hover:text-burgundy transition">
-                {{ recent.title }}
+              <h4 class="text-sm font-medium text-text-main leading-snug group-hover:text-accent transition">
+                {{ rec.title }}
               </h4>
-              <p class="text-xs text-boss-muted font-mono mt-1">{{ recent.published_date|date:"d F Y" }}</p>
+              <p class="text-xs text-text-muted font-mono mt-1">{{ rec.published_date|date:"d F Y" }}</p>
             </div>
           </a>
           {% endfor %}
@@ -199,24 +232,24 @@
       {% endif %}
 
       <!-- Catégories -->
-      <div class="bg-warm-white border border-rose-pale rounded-2xl p-5 card-shadow">
-        <h3 class="text-sm font-semibold text-boss-text mb-4">Catégories</h3>
+      <div class="bg-bg-surface border border-border-subtle rounded-2xl p-5 card-shadow">
+        <h3 class="text-sm font-semibold text-text-main mb-4">Catégories</h3>
         <ul class="space-y-2 text-sm">
           <li>
-            <a href="{% url 'article_list' %}" class="flex items-center gap-2 text-boss-text hover:text-burgundy transition">
-              <span class="w-2 h-2 rounded-full bg-burgundy"></span>
+            <a href="{% url 'article_list' %}" class="flex items-center gap-2 text-text-main hover:text-accent transition">
+              <span class="w-2 h-2 rounded-full bg-accent"></span>
               Tous les articles
-              <span class="ml-auto text-boss-muted">({{ total_articles }})</span>
+              <span class="ml-auto text-text-muted">({{ total_articles }})</span>
             </a>
           </li>
           {% for cat in categories %}
           <li>
             <a href="{% url 'article_list' %}?category={{ cat.slug }}"
                class="flex items-center gap-2 transition
-               {% if cat.slug == article.category.slug %}text-burgundy font-medium{% else %}text-boss-text hover:text-burgundy{% endif %}">
-              <span class="w-2 h-2 rounded-full bg-rose-mid"></span>
+               {% if cat.slug == article.category.slug %}text-accent font-medium{% else %}text-text-main hover:text-accent{% endif %}">
+              <span class="w-2 h-2 rounded-full bg-accent-soft"></span>
               {{ cat.name }}
-              <span class="ml-auto text-boss-muted">({{ cat.article_count }})</span>
+              <span class="ml-auto text-text-muted">({{ cat.article_count }})</span>
             </a>
           </li>
           {% endfor %}
@@ -225,28 +258,75 @@
 
     </aside>
   </div>
+
+  <!-- NAVIGATION BAS DE PAGE -->
+  <div class="flex items-center justify-center gap-4 mt-10 pt-8 border-t border-border-subtle flex-wrap">
+    {% if previous_article %}
+    <a href="{{ previous_article.get_absolute_url }}"
+       class="text-sm font-medium text-text-main border border-border-subtle rounded-full px-5 py-2.5 hover:border-accent-mid transition">
+      ← {{ previous_article.title|truncatewords:3 }}
+    </a>
+    {% endif %}
+
+    <a href="{% url 'article_list' %}"
+       class="text-sm text-text-muted hover:text-accent transition px-3 py-2">
+      Retour aux articles
+    </a>
+
+    {% if next_article %}
+    <a href="{{ next_article.get_absolute_url }}"
+       class="text-sm font-medium text-bg-surface bg-accent rounded-full px-5 py-2.5 hover:bg-accent-dark transition">
+      {{ next_article.title|truncatewords:3 }} →
+    </a>
+    {% endif %}
+  </div>
+
+  <!-- Partager -->
+  <div class="flex items-center justify-center gap-3 mt-10 pt-6 border-t border-border-subtle">
+    <span class="text-sm text-text-muted mr-2">Partager :</span>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener"
+       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
+       aria-label="Partager sur Facebook">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title|urlencode }}" target="_blank" rel="noopener"
+       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
+       aria-label="Partager sur X (Twitter)">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank" rel="noopener"
+       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
+       aria-label="Partager sur LinkedIn">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a href="https://www.pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}&media={{ article.image.url }}&description={{ article.title|urlencode }}" target="_blank" rel="noopener"
+       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
+       aria-label="Partager sur Pinterest">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+    </a>
+  </div>
+
+  <!-- Full-width CTA Section (bottom) -->
 </section>
 
-<script>
-  function getCookie(name) {
-    const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-    return match ? match.pop() : '';
-  }
-  const likeBtn = document.getElementById('like-btn');
-  if (likeBtn) {
-    likeBtn.addEventListener('click', async () => {
-      const res = await fetch(likeBtn.dataset.url, {
-        method: 'POST',
-        headers: { 'X-CSRFToken': getCookie('csrftoken') },
-      });
-      if (!res.ok) return;
-      const data = await res.json();
-      const icon = document.getElementById('like-icon');
-      icon.setAttribute('fill', data.liked ? 'currentColor' : 'none');
-      likeBtn.querySelector('svg').setAttribute('fill', data.liked ? 'currentColor' : 'none');
-      likeBtn.title = data.likes_count + " j'aime";
-    });
-  }
-</script>
+<section class="relative bg-bg-soft py-20 lg:py-24 overflow-hidden mx-[calc(50%-50vw)] w-screen">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="font-script text-4xl sm:text-5xl lg:text-6xl text-accent leading-tight">
+      Rejoignez la communauté
+    </h2>
+    <p class="mt-4 text-text-muted font-medium text-xs sm:text-sm tracking-[0.15em] uppercase">
+      Participate in the discussion or subscribe to the newsletter
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+      <button type="button" class="newsletter-cta-btn w-full sm:w-auto px-8 py-4 bg-accent text-bg-surface font-bold text-sm tracking-[0.15em] uppercase transition-colors duration-300 hover:bg-accent-dark rounded-full">
+        S'abonner à la newsletter
+      </button>
+      <a href="{% url 'article_discussion' article.slug %}"
+         class="w-full sm:w-auto px-8 py-4 bg-bg-surface text-accent border-2 border-accent font-bold text-sm tracking-[0.15em] uppercase transition-colors duration-300 hover:bg-accent hover:text-bg-surface rounded-full">
+        Voir la discussion
+      </a>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

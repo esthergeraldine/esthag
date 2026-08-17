@@ -86,7 +86,7 @@ class ArticleListView(ListView):
         # Stats pour la hero section
         context["articles_count"] = Article.objects.filter(is_published=True).count()
         context["categories_count"] = Category.objects.count()
-        context["subscribers_count"] = ArticleSubscriber.objects.filter(is_active=True).count()
+        context["subscribers_count"] = ArticleSubscriber.objects.filter(status='confirmed').count()
 
         params = self.request.GET.copy()
         params.pop("page", None)
@@ -134,11 +134,23 @@ class ArticleDetailView(DetailView):
         context["previous_article"] = article.get_previous_article()
         context["next_article"] = article.get_next_article()
 
-        context["recent_articles"] = (
-            Article.objects.filter(is_published=True)
-            .exclude(pk=article.pk)
-            .order_by("-published_date")[:3]
-        )
+        same_category = Article.objects.filter(
+            is_published=True,
+            category=article.category
+        ).exclude(pk=article.pk).order_by("-published_date")[:3]
+
+        if same_category.count() < 3:
+            exclude_ids = list(same_category.values_list('pk', flat=True)) + [article.pk]
+            other_articles = (
+                Article.objects.filter(is_published=True)
+                .exclude(pk__in=exclude_ids)
+                .order_by("-likes__created_at", "-comments__created_date")[:3 - same_category.count()]
+            )
+            recommendations = list(same_category) + list(other_articles)
+        else:
+            recommendations = list(same_category)
+
+        context["recommendations"] = recommendations
 
         context["categories"] = Category.objects.annotate(
             article_count=Count("articles", filter=Q(articles__is_published=True))
@@ -149,6 +161,19 @@ class ArticleDetailView(DetailView):
         article_likes_qs = article_qs.filter(pk=article.pk)
         context["likes_total"] = article_likes_qs.first().likes_total
         context["is_liked"] = article_likes_qs.first().is_liked_by_me
+
+        context["total_comments_count"] = article.comments.filter(status='published', parent=None).count()
+
+        comments_qs = article.comments.filter(status='published', parent=None).select_related('subscriber')
+        if comments_qs.exists():
+            best_comment = comments_qs.order_by('-likes_count', '-created_date').first()
+            context["preview_comment"] = {
+                'name': best_comment.display_name,
+                'content': best_comment.content[:150] + '...' if len(best_comment.content) > 150 else best_comment.content,
+                'likes_count': best_comment.likes_count,
+            }
+        else:
+            context["preview_comment"] = None
 
         return context
 

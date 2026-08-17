@@ -106,13 +106,13 @@ class ProjectDetailView(DetailView):
         ctx["solutions"] = project.challenges.filter(kind=ProjectChallenge.SOLUTION)
 
         ctx["previous_project"] = (
-            Project.objects.filter(project_date__lt=project.project_date)
-            .order_by("-project_date")
+            Project.objects.filter(pk__lt=project.pk)
+            .order_by("-pk")
             .first()
         )
         ctx["next_project"] = (
-            Project.objects.filter(project_date__gt=project.project_date)
-            .order_by("project_date")
+            Project.objects.filter(pk__gt=project.pk)
+            .order_by("pk")
             .first()
         )
 
