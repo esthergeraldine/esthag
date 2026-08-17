@@ -82,6 +82,7 @@
     --leading-tight: 1.25;
     --leading-snug: 1.375;
     --leading-relaxed: 1.625;
+    --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
@@ -513,6 +514,9 @@
       max-width: 96rem;
     }
   }
+  .\!m-0 {
+    margin: 0px !important;
+  }
   .m-auto {
     margin: auto;
   }
@@ -530,6 +534,9 @@
   }
   .mx-auto {
     margin-inline: auto;
+  }
+  .my-6 {
+    margin-block: calc(var(--spacing) * 6);
   }
   .mt-0 {
     margin-top: 0px;
@@ -1280,6 +1287,9 @@
   .overflow-hidden {
     overflow: hidden;
   }
+  .\!overflow-x-auto {
+    overflow-x: auto !important;
+  }
   .overflow-x-auto {
     overflow-x: auto;
   }
@@ -1288,6 +1298,9 @@
   }
   .scroll-smooth {
     scroll-behavior: smooth;
+  }
+  .\!rounded-none {
+    border-radius: 0 !important;
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
@@ -1303,6 +1316,9 @@
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
+  }
+  .rounded-md {
+    border-radius: var(--radius-md);
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
@@ -1448,6 +1464,12 @@
   .border-t-transparent {
     border-top-color: transparent;
   }
+  .\!bg-\[rgb\(var\(--bg-base\)\)\] {
+    background-color: rgb(var(--bg-base)) !important;
+  }
+  .bg-\[rgb\(var\(--accent-dark\)\)\] {
+    background-color: rgb(var(--accent-dark));
+  }
   .bg-accent {
     background-color: var(--color-accent);
   }
@@ -1556,6 +1578,12 @@
   .bg-green-500 {
     background-color: var(--color-green-500);
   }
+  .bg-green-500\/50 {
+    background-color: color-mix(in srgb, oklch(72.3% 0.219 149.579) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-green-500) 50%, transparent);
+    }
+  }
   .bg-red-50 {
     background-color: var(--color-red-50);
   }
@@ -1573,6 +1601,12 @@
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .bg-white\/20 {
+    background-color: color-mix(in srgb, #fff 20%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
+    }
   }
   .bg-white\/80 {
     background-color: color-mix(in srgb, #fff 80%, transparent);
@@ -1720,6 +1754,9 @@
   }
   .object-cover {
     object-fit: cover;
+  }
+  .\!p-4 {
+    padding: calc(var(--spacing) * 4) !important;
   }
   .p-1 {
     padding: var(--spacing);
@@ -1943,6 +1980,10 @@
   .font-serif {
     font-family: var(--font-serif);
   }
+  .\!text-sm {
+    font-size: var(--text-sm) !important;
+    line-height: var(--tw-leading, var(--text-sm--line-height)) !important;
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -2023,6 +2064,10 @@
   }
   .text-\[clamp\(1\.6rem\,5vw\,3rem\)\] {
     font-size: clamp(1.6rem, 5vw, 3rem);
+  }
+  .\!leading-relaxed {
+    --tw-leading: var(--leading-relaxed) !important;
+    line-height: var(--leading-relaxed) !important;
   }
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
@@ -2469,6 +2514,9 @@
     .group-hover\:underline:is(:where(.group):hover *) {
       text-decoration-line: underline;
     }
+    .group-hover\:opacity-100:is(:where(.group):hover *) {
+      opacity: 100%;
+    }
     .group-hover\:shadow-md:is(:where(.group):hover *) {
       --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -2583,6 +2631,14 @@
     }
     .hover\:bg-red-600:hover {
       background-color: var(--color-red-600);
+    }
+    .hover\:bg-white\/30:hover {
+      background-color: color-mix(in srgb, #fff 30%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-white\/30:hover {
+        background-color: color-mix(in oklab, var(--color-white) 30%, transparent);
+      }
     }
     .hover\:text-accent:hover {
       color: var(--color-accent);

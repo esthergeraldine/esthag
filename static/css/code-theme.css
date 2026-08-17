@@ -1,0 +1,71 @@
+/* Custom Highlight.js Theme - Rose & Bordeaux */
+.hljs {
+  color: rgb(var(--text-main));
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: rgb(var(--text-muted));
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: #c97c8b;
+}
+
+.hljs-number,
+.hljs-string,
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  color: #7d3b47;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #5c2a33;
+  font-weight: 600;
+}
+
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #c97c8b;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  color: #d4a5aa;
+}
+
+.hljs-built_in,
+.hljs-deletion {
+  color: #8a6e72;
+}
+
+.hljs-formula {
+  background: rgb(var(--bg-soft));
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

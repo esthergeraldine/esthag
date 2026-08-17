@@ -5,6 +5,9 @@ Admin pour l'application blog de TechSpace.
 
 from django.contrib import admin
 from django.utils.html import format_html
+from django.db import models
+
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from ..models import Category, Author, Article, ArticleSubscriber
 
@@ -40,6 +43,17 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     date_hierarchy = "published_date"
     readonly_fields = ("views_count", "updated_date")
+
+    formfield_overrides = {
+        models.TextField: {
+            "widget": CKEditor5Widget(
+                attrs={
+                    "data-language": "fr",
+                    "style": "min-height: 500px;",
+                }
+            )
+        },
+    }
 
     fieldsets = (
         ("Contenu", {

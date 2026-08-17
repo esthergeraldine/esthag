@@ -7,6 +7,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.urls import reverse
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Category(models.Model):
@@ -81,7 +82,7 @@ class Article(models.Model):
         "Extrait / description courte", max_length=300,
         help_text="Affiché sur la carte de la liste des articles."
     )
-    content = models.TextField("Contenu")
+    content = CKEditor5Field("Contenu")
     featured_quote = models.CharField(
         "Citation mise en avant", max_length=300, blank=True,
         help_text='Ex : "Le design n\'est pas juste ce à quoi ça ressemble..."'
