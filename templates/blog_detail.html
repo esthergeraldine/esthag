@@ -17,30 +17,192 @@
 <meta name="twitter:description" content="{{ article.excerpt }}">
 <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ article.image.url }}">
 <style>
-  /* Styles pour le contenu riche saisi dans l'admin (article.content) */
+  .article-content h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: var(--color-accent-dark, #5C2A33);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
   .article-content h3 {
     font-family: "Cormorant Garamond", serif;
     font-weight: 600;
     font-size: 1.5rem;
-    color: var(--color-accent-dark, #7B1E3A);
+    color: var(--color-accent-dark, #5C2A33);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
   }
+  .article-content h4 {
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--color-text-main, #3A2A2C);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
   .article-content p {
-    color: var(--color-text-main, #2E2024);
+    color: var(--color-text-main, #3A2A2C);
     line-height: 1.8;
     margin-bottom: 1rem;
   }
-  .article-content .pull-quote {
+  .article-content a {
+    color: var(--color-accent, #7D3B47);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+  .article-content a:hover {
+    color: var(--color-accent-dark, #5C2A33);
+  }
+  .article-content strong {
+    font-weight: 600;
+    color: var(--color-accent-dark, #5C2A33);
+  }
+  .article-content em {
+    font-style: italic;
+  }
+  .article-content code:not(pre code) {
+    background: rgb(var(--bg-soft));
+    color: var(--color-accent-dark, #5C2A33);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875em;
+  }
+  .article-content blockquote {
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
-    font-size: 1.15rem;
+    font-size: 1.125rem;
     color: var(--color-accent, #C97C8B);
     text-align: center;
     border-top: 1px solid var(--color-border-subtle, #FBEEF0);
     border-bottom: 1px solid var(--color-border-subtle, #FBEEF0);
-    padding: 1rem 0;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+  .article-content blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--color-accent-soft, #E8CDD0);
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+  }
+  .article-content blockquote p {
+    margin-bottom: 0;
+  }
+  .article-content ul, .article-content ol {
+    margin: 1rem 0 1rem 1.5rem;
+    color: var(--color-text-main, #3A2A2C);
+  }
+  .article-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+  .article-content ul li {
+    list-style-type: disc;
+  }
+  .article-content ol li {
+    list-style-type: decimal;
+  }
+  .article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
     margin: 1.5rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .article-content figure {
+    margin: 2rem 0;
+  }
+  .article-content figcaption {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #8A6E72);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  .article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9375rem;
+  }
+  .article-content th {
+    background: rgb(var(--bg-soft));
+    color: var(--color-accent-dark, #5C2A33);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--color-accent-soft, #E8CDD0);
+  }
+  .article-content td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border-subtle, #FBEEF0);
+    color: var(--color-text-main, #3A2A2C);
+  }
+  .article-content tr:hover {
+    background: rgb(var(--bg-base));
+  }
+  .article-content hr {
+    border: none;
+    border-top: 1px solid var(--color-border-subtle, #FBEEF0);
+    margin: 2rem 0;
+  }
+  .article-content pre {
+    margin: 1.5rem 0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .article-content .code-block {
+    margin: 1.5rem 0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .article-content .code-header {
+    background: var(--color-accent-dark, #5C2A33);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .article-content .code-lang {
+    font-family: 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .article-content .copy-code-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: background 0.2s;
+  }
+  .article-content .copy-code-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  @media (max-width: 768px) {
+    .article-content table {
+      font-size: 0.875rem;
+    }
+    .article-content th, .article-content td {
+      padding: 0.5rem 0.75rem;
+    }
+    .article-content blockquote {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+    }
   }
 </style>
 {% endblock %}
@@ -148,40 +310,44 @@
         </div>
       </div>
 
+
+
+
+{% comment %} barre d'action {% endcomment %}
       <div class="relative">
         <div class="w-full bg-bg-soft border border-border-subtle rounded-2xl px-6 py-4 flex items-center justify-between mt-8">
-          <div class="flex items-center gap-8">
+          <div class="flex items-center gap-12">
             <button type="button"
                     data-url="{% url 'toggle_article_like' article.slug %}"
                     class="js-like-btn group flex items-center gap-2.5 text-text-muted hover:text-accent transition">
-              <span class="w-10 h-10 rounded-full bg-bg-surface border border-border-subtle group-hover:border-accent flex items-center justify-center transition shadow-sm">
+              <span class="w-10 h-10 rounded-full bg-bg-soft border border-border-subtle group-hover:border-accent flex items-center justify-center transition shadow-sm">
                 <svg class="js-like-icon w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="{% if is_liked %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 0 1 6.364 0L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 21l-7.682-8.318a4.5 4.5 0 0 1 0-6.364Z"/>
                 </svg>
               </span>
-              <span class="text-sm font-medium"><span class="js-like-count">{{ likes_total }}</span> J'aime</span>
+              <span class="text-xl font-script font-medium"><span class="js-like-count">{{ likes_total }}</span> J'aime</span>
             </button>
 
             <a href="{% url 'article_discussion' article.slug %}" class="group flex items-center gap-2.5 text-text-muted hover:text-accent transition">
-              <span class="w-10 h-10 rounded-full bg-bg-surface border border-border-subtle group-hover:border-accent flex items-center justify-center transition shadow-sm">
+              <span class="w-10 h-10 rounded-full bg-bg-soft border border-border-subtle group-hover:border-accent flex items-center justify-center transition shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8-1.436 0-2.795-.29-4.005-.812L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8Z"/>
                 </svg>
               </span>
-              <span class="text-sm font-medium">{{ total_comments_count }} commentaire{{ total_comments_count|pluralize:"s" }}</span>
+              <span class="text-xl font-script font-medium">{{ total_comments_count }} commentaire{{ total_comments_count|pluralize:"s" }}</span>
             </a>
 
             <button type="button" id="share-btn" class="group flex items-center gap-2.5 text-text-muted hover:text-accent transition">
-              <span class="w-10 h-10 rounded-full bg-bg-surface border border-border-subtle group-hover:border-accent flex items-center justify-center transition shadow-sm">
+              <span class="w-10 h-10 rounded-full bg-bg-soft border border-border-subtle group-hover:border-accent flex items-center justify-center transition shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/>
                 </svg>
               </span>
-              <span class="text-sm font-medium">Partager</span>
+              <span class="text-xl   font-script font-medium">Partager</span>
             </button>
           </div>
 
-          <a href="{% url 'article_discussion' article.slug %}" class="text-sm font-medium text-accent hover:text-accent-dark transition ml-4">
+          <a href="{% url 'article_discussion' article.slug %}" class="text-xl font-script font-medium text-accent hover:text-accent-dark transition ml-4">
             Voir la discussion →
           </a>
         </div>
@@ -335,30 +501,7 @@
 
 
 
-  <!-- Partager -->
-  <div class="flex items-center justify-center gap-3 mt-10 pt-6 border-t border-border-subtle">
-    <span class="text-sm text-text-muted mr-2">Partager :</span>
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener"
-       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
-       aria-label="Partager sur Facebook">
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-    </a>
-    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title|urlencode }}" target="_blank" rel="noopener"
-       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
-       aria-label="Partager sur X (Twitter)">
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </a>
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank" rel="noopener"
-       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
-       aria-label="Partager sur LinkedIn">
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    </a>
-    <a href="https://www.pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}&media={{ article.image.url }}&description={{ article.title|urlencode }}" target="_blank" rel="noopener"
-       class="w-10 h-10 rounded-full bg-accent-mid hover:bg-accent flex items-center justify-center text-bg-surface transition shadow-sm"
-       aria-label="Partager sur Pinterest">
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
-    </a>
-  </div>
+
 
 
   <!-- NAVIGATION BAS DE PAGE -->

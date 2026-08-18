@@ -11,10 +11,12 @@
   <meta name="description" content="{% block meta_description %}mon portfolio personnel{% endblock %}"/>
 
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/code-theme.css' %}">
 
 
   <link rel="stylesheet" href="{% static 'css/output.css' %}">
   <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
   <title>portfolio</title>
@@ -285,6 +287,78 @@
   </script>
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/animations.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/core.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/python.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/javascript.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/typescript.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/html.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/css.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/sql.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/json.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/bash.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/java.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/c.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/cpp.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/csharp.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/php.js' %}"></script>
+<script src="{% static 'node_modules/highlight.js/lib/languages/xml.js' %}"></script>
+<script>
+  hljs.registerLanguage('python', hljs.python);
+  hljs.registerLanguage('django', hljs.python);
+  hljs.registerLanguage('javascript', hljs.javascript);
+  hljs.registerLanguage('typescript', hljs.typescript);
+  hljs.registerLanguage('html', hljs.html);
+  hljs.registerLanguage('css', hljs.css);
+  hljs.registerLanguage('sql', hljs.sql);
+  hljs.registerLanguage('json', hljs.json);
+  hljs.registerLanguage('bash', hljs.bash);
+  hljs.registerLanguage('java', hljs.java);
+  hljs.registerLanguage('c', hljs.c);
+  hljs.registerLanguage('cpp', hljs.cpp);
+  hljs.registerLanguage('csharp', hljs.csharp);
+  hljs.registerLanguage('php', hljs.php);
+  hljs.registerLanguage('xml', hljs.xml);
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.article-content pre code').forEach(function(block) {
+      const pre = block.parentElement;
+      const language = block.className.replace('language-', '');
+      const langLabel = language.charAt(0).toUpperCase() + language.slice(1);
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block relative group my-6 rounded-xl overflow-hidden shadow-lg';
+
+      const header = document.createElement('div');
+      header.className = 'code-header flex items-center justify-between px-4 py-2 bg-[rgb(var(--accent-dark))] text-white text-xs font-medium';
+      header.innerHTML = `
+        <span class="code-lang">${langLabel}</span>
+        <button type="button" class="copy-code-btn opacity-0 group-hover:opacity-100 transition px-3 py-1 rounded-md bg-white/20 hover:bg-white/30 text-xs">
+          Copier
+        </button>
+      `;
+
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(header);
+      wrapper.appendChild(pre);
+
+      pre.classList.add('!m-0', '!rounded-none', '!bg-[rgb(var(--bg-base))]');
+      block.classList.add('!text-sm', '!leading-relaxed', '!p-4', '!overflow-x-auto');
+
+      const copyBtn = header.querySelector('.copy-code-btn');
+      copyBtn.addEventListener('click', function() {
+        navigator.clipboard.writeText(block.textContent).then(function() {
+          copyBtn.textContent = 'Copié !';
+          copyBtn.classList.add('bg-green-500/50');
+          setTimeout(function() {
+            copyBtn.textContent = 'Copier';
+            copyBtn.classList.remove('bg-green-500/50');
+          }, 2000);
+        });
+      });
+    });
+  });
+</script>
 
 
 </body>

@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'core',
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +171,87 @@ DEFAULT_FROM_EMAIL = f'Estha Portfolio <{os.getenv("EMAIL_HOST_USER")}>'
 # 8. Ton adresse email où tu reçois les messages
 # Quand quelqu'un remplit le formulaire, c'est ICI que tu recois le mail
 CONTACT_RECIPIENT_EMAIL = os.getenv('CONTACT_RECIPIENT_EMAIL')
+
+# =============================================================================
+# CKEDITOR 5 CONFIGURATION
+# =============================================================================
+SITE_ID = 1
+
+CKEDITOR_5_FILE_UPLOAD_TO = 'ckeditor5/'
+CKEDITOR_5_FILE_STORAGE = 'django.core.files.storage.DefaultStorage'
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': {
+            'items': [
+                'heading',
+                '|',
+                'bold', 'italic', 'underline', 'strikethrough', 'code', 'subscript', 'superscript', 'removeFormat',
+                '|',
+                'link', 'blockquote', 'codeBlock',
+                '|',
+                'bulletedList', 'numberedList', 'todoList',
+                '|',
+                'insertImage', 'insertTable', 'mediaEmbed',
+                '|',
+                'alignment',
+                '|',
+                'undo', 'redo',
+            ],
+            'shouldNotGroupWhenFull': True,
+        },
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Paragraphe', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Titre H2', 'class': 'ck-heading_h2'},
+                {'model': 'heading3', 'view': 'h3', 'title': 'Titre H3', 'class': 'ck-heading_h3'},
+            ]
+        },
+        'codeBlock': {
+            'languages': [
+                {'language': 'plain', 'label': 'Plain text'},
+                {'language': 'python', 'label': 'Python'},
+                {'language': 'django', 'label': 'Django'},
+                {'language': 'html', 'label': 'HTML'},
+                {'language': 'css', 'label': 'CSS'},
+                {'language': 'javascript', 'label': 'JavaScript'},
+                {'language': 'typescript', 'label': 'TypeScript'},
+                {'language': 'sql', 'label': 'SQL'},
+                {'language': 'json', 'label': 'JSON'},
+                {'language': 'bash', 'label': 'Bash'},
+                {'language': 'php', 'label': 'PHP'},
+                {'language': 'java', 'label': 'Java'},
+                {'language': 'c', 'label': 'C'},
+                {'language': 'cpp', 'label': 'C++'},
+                {'language': 'csharp', 'label': 'C#'},
+                {'language': 'xml', 'label': 'XML'},
+            ],
+        },
+        'image': {
+            'styles': {
+                'side': 'Float',
+                'alignLeft': 'Left',
+                'alignCenter': 'Centered image',
+                'alignRight': 'Right',
+            },
+            'toolbar': [
+                'imageTextAlternative',
+                '|',
+                'imageStyle:alignLeft',
+                'imageStyle:alignCenter',
+                'imageStyle:alignRight',
+                '|',
+                'imageStyle:side',
+            ],
+        },
+        'table': {
+            'contentToolbar': [
+                'tableColumn', 'tableRow', 'mergeTableCells',
+                'tableProperties', 'tableCellProperties',
+            ],
+        },
+        'link': {
+            'defaultProtocol': 'https://',
+        },
+    }
+}
